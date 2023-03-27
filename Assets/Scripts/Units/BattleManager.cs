@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,18 +28,25 @@ public class BattleManager : MonoBehaviour
     private List<GameObject> spawnedWords = new List<GameObject>();
     private List<GameObject> chain = new List<GameObject>();
     public GameObject selectedWord;
+    public Canvas canvas;
 
     //transform values to instantiate prefabs
     public Transform enemyBattleStation;
     public Transform playerBattleStation;
     public List<Transform> spawnPoints;
+    
+    //animation
+    public GameObject scrollOpenAnimationPrefab;
+    public GameObject scrollCloseAnimationPrefab;
+    private GameObject _scrollOpenAnimationGO;
+    private GameObject _scrollCloseAnimationGO;
 
     private void Start()
     {
-        SetupBattle();
+        StartCoroutine(SetupBattle());
     }
 
-    private void SetupBattle()
+    IEnumerator SetupBattle()
     {
         //instantiate the player and enemy prefabs
         _battleState = BattleState.START;
@@ -54,6 +62,7 @@ public class BattleManager : MonoBehaviour
             playerUnit.wordList.Add(wordList[i]);
         }
 
+        yield return new WaitForSeconds(1.5f);
         spawnableWords = new List<GameObject>(playerUnit.wordList);
 
         StartCoroutine(PlayerTurn());
@@ -62,7 +71,10 @@ public class BattleManager : MonoBehaviour
     IEnumerator PlayerTurn()
     {
         _battleState = BattleState.PLAYERTURN;
-        yield return new WaitForSeconds(2f);
+        
+        _scrollOpenAnimationGO = Instantiate(scrollOpenAnimationPrefab, canvas.GetComponent<Transform>());
+        yield return new WaitForSeconds(1.25f);
+        Destroy(_scrollCloseAnimationGO);
         rerollAndDisplay();
     }
 
@@ -77,7 +89,7 @@ public class BattleManager : MonoBehaviour
         }
 
         spawnedWords.Clear();
-
+        
         spawnableWords = Fisher_Yates_CardDeck_Shuffle(spawnableWords);
         int index = 0;
         
@@ -86,21 +98,22 @@ public class BattleManager : MonoBehaviour
             GameObject tempGO = Instantiate(spawnableWords[index], spawnPoint);
             tempGO.GetComponent<WordManager>().manager = this;
             tempGO.GetComponent<WordManager>().updateText();
+            spawnedWords.Add(tempGO);
             index++;
         }
-
+        
     }
 
     public void OnSelectWord()
     {
-        if (chain.Count == 2)
+        if (chain.Count >= 2)
         {
-            chain.Add(selectedWord);
-            castSpell();
+            chain.Add(Instantiate(selectedWord));
+            StartCoroutine(castSpell());
         }
         else
         {
-            chain.Add(selectedWord);
+            chain.Add(Instantiate(selectedWord));
             rerollAndDisplay();
         }
     }
@@ -109,8 +122,6 @@ public class BattleManager : MonoBehaviour
     {
         
     }
-
-
 
     public static List<GameObject> Fisher_Yates_CardDeck_Shuffle(List<GameObject> aList)
     {
@@ -133,14 +144,13 @@ public class BattleManager : MonoBehaviour
         return aList;
     }
 
-    public void castSpell()
+    IEnumerator castSpell()
     {
-
-    float _damageMultiplier = 0;
+        float _damageMultiplier = 0;
     float _protectMultiplier = 0;
     bool _healingMultiplier = false;
 
-    switch (chain[0].GetComponent<WordUnit>().wordType)
+    switch (chain.First().GetComponent<WordUnit>().wordType)
     {
         case WordUnit.WordType.DAMAGE :
             _damageMultiplier = 1.5f;
@@ -177,16 +187,32 @@ public class BattleManager : MonoBehaviour
     {
         playerUnit.damage *= (int)(playerUnit.damage * 1.5);
     }
-
+    
+    
     enemyUnit.takeDamage(playerUnit.damage);
     playerUnit.resetValues();
+    Destroy(_scrollOpenAnimationGO);
+    
+    foreach (var word in spawnedWords)
+    {
+        Destroy(word);
+    }
+    foreach (var word in chain)
+    {
+        Destroy(word);
+    }
+    chain.Clear();
+    _scrollCloseAnimationGO = Instantiate(scrollCloseAnimationPrefab, canvas.GetComponent<Transform>());
+    yield return new WaitForSeconds(1.2f);
+    Destroy(_scrollCloseAnimationGO);
     StartCoroutine(enemyTurn());
+    
     }
 
     IEnumerator enemyTurn()
     {
         _battleState = BattleState.ENEMYTURN;
-
+        
         yield return new WaitForSeconds(2f);
         
         switch (enemyUnit.intent)

@@ -18,6 +18,8 @@ public class WordManager : MonoBehaviour
 
     public void selectWord()
     {
-        manager.selectedWord = GetComponent<GameObject>();
+        
+        manager.selectedWord = gameObject;
+        manager.OnSelectWord();
     }
 }
