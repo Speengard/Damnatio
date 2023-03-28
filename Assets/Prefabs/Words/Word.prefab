@@ -284,9 +284,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordType: 2
-  damage: 20
+  damage: 0
   healing: 0
-  protect: 0
+  protect: 20
   word: Sancto
 --- !u!114 &7812501826805281748
 MonoBehaviour:
