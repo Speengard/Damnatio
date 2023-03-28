@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ede06efeaff4f49e792379d6bb6f00c4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - PR Uncl Alt Caps
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 378678f46290a4b2baf1f326f27d3ef5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
