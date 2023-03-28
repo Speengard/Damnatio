@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
@@ -40,6 +42,10 @@ public class BattleManager : MonoBehaviour
     public GameObject scrollCloseAnimationPrefab;
     private GameObject _scrollOpenAnimationGO;
     private GameObject _scrollCloseAnimationGO;
+    
+    //UI variables
+    public PlayerHUDManager playerHUDManager;
+    public EnemyHUDManager enemyHUDManager;
 
     private void Start()
     {
@@ -55,6 +61,11 @@ public class BattleManager : MonoBehaviour
 
         playerUnit = playerGO.GetComponent<PlayerUnit>();
         enemyUnit = enemyGO.GetComponent<EnemyUnit>();
+
+        playerHUDManager.playerUnit = playerUnit;
+        enemyHUDManager.unit = enemyUnit;
+        
+        UpdateHUD();
 
         //copying all of the words in the game to the player's inventory
         for (int i = 0; i < wordList.Count; i++)
@@ -96,6 +107,7 @@ public class BattleManager : MonoBehaviour
         foreach (var spawnPoint in spawnPoints)
         {
             GameObject tempGO = Instantiate(spawnableWords[index], spawnPoint);
+            // StartCoroutine(fadeButton(tempGO.GetComponent<Button>(), true, 4f));
             tempGO.GetComponent<WordManager>().manager = this;
             tempGO.GetComponent<WordManager>().updateText();
             spawnedWords.Add(tempGO);
@@ -120,7 +132,8 @@ public class BattleManager : MonoBehaviour
 
     private void UpdateHUD()
     {
-        
+        playerHUDManager.updateHUD();
+        enemyHUDManager.updateText();
     }
 
     public static List<GameObject> Fisher_Yates_CardDeck_Shuffle(List<GameObject> aList)
@@ -205,6 +218,7 @@ public class BattleManager : MonoBehaviour
     _scrollCloseAnimationGO = Instantiate(scrollCloseAnimationPrefab, canvas.GetComponent<Transform>());
     yield return new WaitForSeconds(1.2f);
     Destroy(_scrollCloseAnimationGO);
+    UpdateHUD();
     StartCoroutine(enemyTurn());
     
     }
@@ -222,18 +236,103 @@ public class BattleManager : MonoBehaviour
                 break;
             case EnemyUnit.ActionType.HEAL:
                 enemyUnit.currentHP += enemyUnit.heal;
+                if (enemyUnit.currentHP > enemyUnit.maxHP)
+                {
+                    enemyUnit.currentHP = enemyUnit.maxHP;
+                }
                 break;
             case EnemyUnit.ActionType.DAMAGEPROTECT:
                 playerUnit.takeDamage(enemyUnit.damage);
                 enemyUnit.currentHP += enemyUnit.heal;
                 break;
         }
-
+        
         enemyUnit.resetValues();
         enemyUnit.getNewAction();
+        UpdateHUD();
         StartCoroutine(PlayerTurn());
     }
     
+    
+    IEnumerator fadeButton(Button button, bool fadeIn, float duration)
+    {
+
+        float counter = 0f;
+
+        //Set Values depending on if fadeIn or fadeOut
+        float a, b;
+        if (fadeIn)
+        {
+            a = 0;
+            b = 1;
+        }
+        else
+        {
+            a = 1;
+            b = 0;
+        }
+
+        Image buttonImage = button.GetComponent<Image>();
+        TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+
+        //Enable both Button, Image and Text components
+        if (!button.enabled)
+            button.enabled = true;
+
+        if (!buttonImage.enabled)
+            buttonImage.enabled = true;
+
+        if (!buttonText.enabled)
+            buttonText.enabled = true;
+
+        //For Button None or ColorTint mode
+        Color buttonColor = buttonImage.color;
+        Color textColor = buttonText.color;
+
+        //For Button SpriteSwap mode
+        ColorBlock colorBlock = button.colors;
+
+
+        //Do the actual fading
+        while (counter < duration)
+        {
+            counter += Time.deltaTime;
+            float alpha = Mathf.Lerp(a, b, counter / duration);
+            //Debug.Log(alpha);
+
+            if (button.transition == Selectable.Transition.None || button.transition == Selectable.Transition.ColorTint)
+            {
+                buttonImage.color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, alpha);//Fade Traget Image
+                buttonText.color = new Color(textColor.r, textColor.g, textColor.b, alpha);//Fade Text
+            }
+            else if (button.transition == Selectable.Transition.SpriteSwap)
+            {
+                ////Fade All Transition Images
+                colorBlock.normalColor = new Color(colorBlock.normalColor.r, colorBlock.normalColor.g, colorBlock.normalColor.b, alpha);
+                colorBlock.pressedColor = new Color(colorBlock.pressedColor.r, colorBlock.pressedColor.g, colorBlock.pressedColor.b, alpha);
+                colorBlock.highlightedColor = new Color(colorBlock.highlightedColor.r, colorBlock.highlightedColor.g, colorBlock.highlightedColor.b, alpha);
+                colorBlock.disabledColor = new Color(colorBlock.disabledColor.r, colorBlock.disabledColor.g, colorBlock.disabledColor.b, alpha);
+
+                button.colors = colorBlock; //Assign the colors back to the Button
+                buttonImage.color = new Color(buttonColor.r, buttonColor.g, buttonColor.b, alpha);//Fade Traget Image
+                buttonText.color = new Color(textColor.r, textColor.g, textColor.b, alpha);//Fade Text
+            }
+            else
+            {
+                Debug.LogError("Button Transition Type not Supported");
+            }
+
+            yield return null;
+        }
+
+        if (!fadeIn)
+        {
+            //Disable both Button, Image and Text components
+            buttonImage.enabled = false;
+            buttonText.enabled = false;
+            button.enabled = false;
+        }
+    }
 }
 
 
