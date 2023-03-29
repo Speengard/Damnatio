@@ -289,7 +289,6 @@ public class BattleManager : MonoBehaviour
                 break;
             case EnemyUnit.ActionType.DAMAGEPROTECT:
                 playerUnit.takeDamage(enemyUnit.damage);
-                enemyUnit.currentHP += enemyUnit.heal;
                 break;
         }
         

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Build.Content;
+
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -39,12 +39,9 @@ public class WordManager : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.17f);
         reproduceText();
     }
-    
-    
-    
 
     public void selectWord()
     {
