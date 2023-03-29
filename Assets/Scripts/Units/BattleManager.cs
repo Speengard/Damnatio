@@ -192,8 +192,8 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator castSpell()
     {
-        float _damageMultiplier = 0;
-    float _protectMultiplier = 0;
+        float _damageMultiplier = 1;
+    float _protectMultiplier = 1;
     bool _healingMultiplier = false;
 
     switch (chain.First().GetComponent<WordUnit>().wordType)
@@ -234,7 +234,7 @@ public class BattleManager : MonoBehaviour
         playerUnit.damage *= (int)(playerUnit.damage * _damageMultiplier);
     }
     
-    playerUnit.resetValues();
+    
     Destroy(_scrollOpenAnimationGO);
     
     foreach (var word in spawnedWords)
@@ -255,17 +255,18 @@ public class BattleManager : MonoBehaviour
     _scrollCloseAnimationGO = Instantiate(scrollCloseAnimationPrefab, canvas.GetComponent<Transform>());
     yield return new WaitForSeconds(1.03f);
     Destroy(_scrollCloseAnimationGO);
-    UpdateHUD();
-
+    
     if (enemyUnit.takeDamage(playerUnit.damage))
     {
-        
+        //enemy dead
     }
     else
     {
+        
         StartCoroutine(enemyTurn());    
     }
-    
+    playerUnit.resetValues();
+    UpdateHUD();
     
     }
 

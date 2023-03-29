@@ -17,7 +17,14 @@ public class PlayerUnit : MonoBehaviour
 
     public bool takeDamage(int damage)
     {
-        currentHP -= (damage - protect);
+        if (damage > protect)
+        {
+            currentHP -= (damage - protect);
+        }
+        else
+        {
+            protect -= damage;
+        }
 
         if (currentHP <= 0)
         {

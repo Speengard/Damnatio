@@ -18,7 +18,7 @@ public class EnemyUnit : MonoBehaviour
    {
       if (damage > protect)
       {
-         currentHP -= (damage - currentHP);
+         currentHP -= ( damage - protect );
       }
       else
       {

@@ -11,7 +11,7 @@ public class PlayerHUDManager : MonoBehaviour
     public void updateHUD()
     {
         TMP_Text text = GameObject.FindWithTag("PlayerLifeText").GetComponent<TMP_Text>();
-        text.text = playerUnit.currentHP + "/" + playerUnit.currentHP;
+        text.text = playerUnit.currentHP + "/" + playerUnit.maxHP;
         text = GameObject.FindWithTag("PlayerDevotionLevel").GetComponent<TMP_Text>();
         text.text = playerUnit.currentDev + "/" + playerUnit.maxDev;
     }
