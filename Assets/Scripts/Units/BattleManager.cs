@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,12 +32,17 @@ public class BattleManager : MonoBehaviour
     private List<GameObject> chain = new List<GameObject>();
     public GameObject selectedWord;
     public Canvas canvas;
-
+    public GameObject swordPrefab;
+    public GameObject shieldPrefab;
+    public GameObject crossrefab;
+    private List<GameObject> _spawnedSymbols = new List<GameObject>();
+    
     //transform values to instantiate prefabs
     public Transform enemyBattleStation;
     public Transform playerBattleStation;
     public List<Transform> spawnPoints;
-    
+    public List<Transform> symbolSpawnPoint;
+
     //animation
     public GameObject scrollOpenAnimationPrefab;
     public GameObject scrollCloseAnimationPrefab;
@@ -82,16 +88,17 @@ public class BattleManager : MonoBehaviour
     IEnumerator PlayerTurn()
     {
         _battleState = BattleState.PLAYERTURN;
+        foreach (var symbol in _spawnedSymbols)
+        {
+            Destroy(symbol);
+        }
         
+        _spawnedSymbols.Clear();
         _scrollOpenAnimationGO = Instantiate(scrollOpenAnimationPrefab, canvas.GetComponent<Transform>());
         yield return new WaitForSeconds(1.25f);
         Destroy(_scrollCloseAnimationGO);
         rerollAndDisplay();
     }
-
-
-
-
     private void rerollAndDisplay()
     {
         foreach (var word in spawnedWords)
@@ -121,11 +128,37 @@ public class BattleManager : MonoBehaviour
         if (chain.Count >= 2)
         {
             chain.Add(Instantiate(selectedWord));
+
+            switch (chain.Last().GetComponent<WordUnit>().wordType)
+            {
+                case WordUnit.WordType.DAMAGE:
+                    _spawnedSymbols.Add(Instantiate(swordPrefab,symbolSpawnPoint[chain.Count-1]));
+                    break;
+                case WordUnit.WordType.HEALING:
+                    _spawnedSymbols.Add(Instantiate(crossrefab,symbolSpawnPoint[chain.Count-1]));
+                    break;
+                case WordUnit.WordType.PROTECTION:
+                    _spawnedSymbols.Add(Instantiate(shieldPrefab,symbolSpawnPoint[chain.Count-1]));
+                    break;
+            }
+            
             StartCoroutine(castSpell());
         }
         else
         {
             chain.Add(Instantiate(selectedWord));
+            switch (chain.Last().GetComponent<WordUnit>().wordType)
+            {
+                case WordUnit.WordType.DAMAGE:
+                    _spawnedSymbols.Add(Instantiate(swordPrefab,symbolSpawnPoint[chain.Count-1]));
+                    break;
+                case WordUnit.WordType.HEALING:
+                    _spawnedSymbols.Add(Instantiate(crossrefab,symbolSpawnPoint[chain.Count-1]));
+                    break;
+                case WordUnit.WordType.PROTECTION:
+                    _spawnedSymbols.Add(Instantiate(shieldPrefab,symbolSpawnPoint[chain.Count-1]));
+                    break;
+            }
             rerollAndDisplay();
         }
     }
@@ -198,11 +231,9 @@ public class BattleManager : MonoBehaviour
         chain[1].GetComponent<WordUnit>().wordType == WordUnit.WordType.DAMAGE &&
         chain[2].GetComponent<WordUnit>().wordType == WordUnit.WordType.DAMAGE)
     {
-        playerUnit.damage *= (int)(playerUnit.damage * 1.5);
+        playerUnit.damage *= (int)(playerUnit.damage * _damageMultiplier);
     }
     
-    
-    enemyUnit.takeDamage(playerUnit.damage);
     playerUnit.resetValues();
     Destroy(_scrollOpenAnimationGO);
     
@@ -214,12 +245,27 @@ public class BattleManager : MonoBehaviour
     {
         Destroy(word);
     }
+    foreach (var symbol in _spawnedSymbols)
+    {
+        Destroy(symbol);
+    }
+    
     chain.Clear();
+    _spawnedSymbols.Clear();
     _scrollCloseAnimationGO = Instantiate(scrollCloseAnimationPrefab, canvas.GetComponent<Transform>());
-    yield return new WaitForSeconds(1.2f);
+    yield return new WaitForSeconds(1.03f);
     Destroy(_scrollCloseAnimationGO);
     UpdateHUD();
-    StartCoroutine(enemyTurn());
+
+    if (enemyUnit.takeDamage(playerUnit.damage))
+    {
+        
+    }
+    else
+    {
+        StartCoroutine(enemyTurn());    
+    }
+    
     
     }
 
