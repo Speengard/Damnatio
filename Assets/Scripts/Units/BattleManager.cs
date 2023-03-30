@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
@@ -259,6 +260,7 @@ public class BattleManager : MonoBehaviour
     if (enemyUnit.takeDamage(playerUnit.damage))
     {
         //enemy dead
+        SceneManager.LoadScene("WinScene");
     }
     else
     {
@@ -289,7 +291,11 @@ public class BattleManager : MonoBehaviour
                 }
                 break;
             case EnemyUnit.ActionType.DAMAGEPROTECT:
-                playerUnit.takeDamage(enemyUnit.damage);
+                if (playerUnit.takeDamage(enemyUnit.damage))
+            {
+                //player dead
+                SceneManager.LoadScene("LoseScene");
+            }
                 break;
         }
         

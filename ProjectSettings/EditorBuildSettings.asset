@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: e27e8fc777369479e80ef4f413650e93
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 240e67e1cede040b6b22eaf158e64eae
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 58f2e28a24a6346deb25bdf64a88574b, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 07a60096ed6c64a49934f4d7986f9653, type: 2}
