@@ -25,6 +25,9 @@ This project is under the GPL-3.0 free license
 - Serena Palumbo
   **Game Developer** (https://github.com/sepalu)
   
+- Giada Saccucci
+  **Project Manager (https://www.linkedin.com/in/giada-saccucci-670435209)
+  
 # Current Stage in developement
 At this point the project is in its very early stages, as of now (march 2023) we are aiming to develop and refine details and hoping to land on App store by July.
 
