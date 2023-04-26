@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem.EnhancedTouch;
-using ETouch  = UnityEngine.InputSystem.EnhancedTouch; //this is because Unity has an omonimy on the Touch class(old
+using ETouch  = UnityEngine.InputSystem.EnhancedTouch; //this is because Unity has an homonymy on the Touch class(old
 //and new system)
 using Touch = UnityEngine.Touch;
 
@@ -21,10 +21,12 @@ public class PlayerMovementController : MonoBehaviour
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
+    private Vector2 speed = new Vector2(7, 7);
 
     private void Awake()
     {
         JoystickSize = new Vector2(200, 200);
+        
     }
 
     //since every time the player lifts the finger, and since the joystick starts disabled, we have to
@@ -142,7 +144,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        Vector2 scaledMovement = Player.velocity * Time.deltaTime * new Vector2(MovementAmount.x,MovementAmount.y);
-        Player.MovePosition(scaledMovement);
+        Vector2 scaledMovement = speed * Time.deltaTime * new Vector2(MovementAmount.x,MovementAmount.y);
+        Player.transform.Translate(scaledMovement);
     }
 }
