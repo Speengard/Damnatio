@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject groundPrefab;
     [SerializeField] private GameObject playerPrefab;
+
+    private Player player;
     
     private void SpawnEnemies()
     {

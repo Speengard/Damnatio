@@ -1,17 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MovingObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public int playerDamage;
+
+    private Animator animator;
+    public Transform target;
+    private bool skipMove;
+    private float speed = 3f;
+
+    public AudioClip[] attackClips;
+
+    protected override void Start()
+    {
+        //GameManager.Instance.AddEnemyToList(this);
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        print(target);
+        base.Start();
+    }
+
+    private void Update()
+    {
+
+        if (Vector3.Distance(transform.position, target.position) > 0.3f)
+        {
+            //move if distance from target is greater than 1
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x,target.position.y), speed * Time.deltaTime);
+        }   
+    }
+
+    public void MoveEnemy()
+    {
+        Vector2Int dir = Vector2Int.zero;
+        if (Mathf.Abs(target.position.x - transform.position.x) < float.Epsilon)
+            dir.y = target.position.y > transform.position.y ? 1 : -1;
+        else
+            dir.x = target.position.x > transform.position.x ? 1 : -1;
+
+        AttemptMove<Player>(dir);
+    }
+
+    protected override void AttemptMove<T>(Vector2Int dir)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnCantMove<T>(T component)
     {
         
     }

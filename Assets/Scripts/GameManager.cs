@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 		enemies = new List<Enemy>();
 		boardScript = GetComponent<LevelManager>();
 	}
+	
 
 	public void GameOver()
 	{
