@@ -60,11 +60,7 @@ public class GameManager : MonoBehaviour
 		enemies.Clear();
 		boardScript.SetupScene(level);
 	}
-
-	void HideLevelImage()
-	{
-		doingSetup = false;
-	}
+	
 
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{

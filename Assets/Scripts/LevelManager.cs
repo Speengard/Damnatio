@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject groundPrefab;
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject borders;
+    [SerializeField] private FloatingJoystick joystick;
 
     private Player player;
     
@@ -26,22 +28,24 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private Vector2 RandomPointInScreen()
-    {
-        Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
-        return randomPositionOnScreen;
-    }
+        private Vector2 RandomPointInScreen()
+        {
+            Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
+            return randomPositionOnScreen;
+        }
 
-    public void SetupScene(int level)
-    {
-        Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
-        Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        SpawnEnemies();
-        print("level:" + level);
-    }
+        public void SetupScene(int level)
+        {
+            Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
+            Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
+            Instantiate(borders, Vector3.zero, Quaternion.identity);
+            SpawnEnemies();
+            print("level:" + level);
+        }
 
-    private void Start()
-    {
-        SpawnEnemies();
+        private void Start()
+        {
+            SetupScene(0);
+            DontDestroyOnLoad(this);
+        }
     }
-}

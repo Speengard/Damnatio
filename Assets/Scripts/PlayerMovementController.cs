@@ -16,7 +16,7 @@ public class PlayerMovementController : MonoBehaviour
 {
     
     [SerializeField] private Vector2 JoystickSize;//this just serves as a way to speed things up and not access the component every time
-    [SerializeField] private FloatingJoystick Joystick;//our variable for the joystick
+    [SerializeField] public FloatingJoystick Joystick;//our variable for the joystick
     [SerializeField] private Rigidbody2D Player;//our variable for the player
 
     private Finger MovementFinger = null;
@@ -26,7 +26,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Awake()
     {
         JoystickSize = new Vector2(200, 200);
-        
+        Player = GetComponent<Rigidbody2D>();
     }
 
     //since every time the player lifts the finger, and since the joystick starts disabled, we have to
