@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.spoiledcat.git": {
+      "version": "1.0.12",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.spoiledcat.com"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 1,
@@ -143,7 +150,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.18",
+      "version": "3.0.21",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -165,6 +172,15 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.inputsystem": {
+      "version": "1.4.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.uielements": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
