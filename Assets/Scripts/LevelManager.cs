@@ -11,6 +11,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class LevelManager : MonoBehaviour
 {
+    //this class serves as a manager for the level (prefab spawning and entities spawning)
     [SerializeField] private int enemiesToSpawn;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject groundPrefab;

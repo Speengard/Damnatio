@@ -11,7 +11,7 @@ public class Enemy : MovingObject
     private Animator animator;
     public Transform target;
     private bool skipMove;
-    private float speed = 3f;
+    private float speed = 1f;
 
     public AudioClip[] attackClips;
 
