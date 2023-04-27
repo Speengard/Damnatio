@@ -19,7 +19,7 @@ public class TargetClosestEnemy : MonoBehaviour
             {
                 if (Vector2.Distance(player.transform.position, col.transform.position) < player.distance)
                 {
-                    player.target = col.gameObject;
+                    player.target = col.gameObject; 
                     player.hasEnemy = true;
                 }
             }

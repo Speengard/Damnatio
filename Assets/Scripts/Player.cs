@@ -8,21 +8,46 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int damage  = 20;
     [SerializeField] public GameObject target = null;
+
     [SerializeField] public bool hasEnemy = false;
+    
     [SerializeField] public float distance;
-    public void DrawLineToEnemy()
+    [SerializeField] public Vector3 direction;
+    public GameObject bulletPrefab;
+    public bool isShooting = false;
+    public void ShootAtTarget()
     {
-        Vector3 start = transform.position;
-        Vector3 direction = (target.transform.position - transform.position).normalized;
+        if (!hasEnemy)
+        {
+            isShooting = false;
+            return;
+        }
+
+        if (isShooting)
+        {
+            return;
+        }
+        direction = (target.transform.position - transform.position).normalized;
         distance = Vector2.Distance(target.transform.position,transform.position);
         
         //draw the ray in the editor
-        Debug.DrawRay(start,direction*distance,Color.red);
+        Debug.DrawRay(transform.position,direction*distance,Color.red);
+        Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>().direction = direction * 0.01f;
+        StartCoroutine(Wait());
+    }
+    
+    
+    private IEnumerator Wait()
+    {
+        isShooting = true;
+        yield return new WaitForSeconds(1f);
+        isShooting = false;
+        ShootAtTarget();
     }
     
     private void Update()
     {
-        if (!hasEnemy) return;
-        DrawLineToEnemy();
+        if (isShooting) return;
+        ShootAtTarget();
     }
 }

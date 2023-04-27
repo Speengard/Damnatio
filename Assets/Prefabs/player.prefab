@@ -331,3 +331,6 @@ MonoBehaviour:
   damage: 20
   target: {fileID: 0}
   hasEnemy: 0
+  distance: 0
+  direction: {x: 0, y: 0, z: 0}
+  bulletPrefab: {fileID: 368056117143045443, guid: 9714023a9f8b04498b868e4541444782, type: 3}
