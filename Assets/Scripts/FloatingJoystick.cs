@@ -13,5 +13,6 @@ public class FloatingJoystick : MonoBehaviour
     private void Awake()
     {
         RectTransform = GetComponent<RectTransform>();
+        
     }
 }

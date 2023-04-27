@@ -43,9 +43,5 @@ public class LevelManager : MonoBehaviour
             print("level:" + level);
         }
 
-        private void Start()
-        {
-            SetupScene(0);
-            DontDestroyOnLoad(this);
-        }
+    
     }
