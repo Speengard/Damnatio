@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 	private int level = 0;
 	private List<Enemy> enemies;
 	private bool enemiesMoving;
+	[SerializeField] private int playerHealth = 100; // initial health; TODO: test the right value
 
 	void Awake()
 	{
@@ -67,5 +68,17 @@ public class GameManager : MonoBehaviour
 	{
 		level += 1;
 		InitGame();
+	}
+
+	public void AddHealth(int value) {
+		playerHealth += value;
+
+		// check if the player is dead
+		if (playerHealth <= 0) {
+			Debug.Log("Game Over!"); // TODO: Game over scene
+			playerHealth = 0;
+		}
+
+		Debug.Log("Health Bar = " + playerHealth);
 	}
 }
