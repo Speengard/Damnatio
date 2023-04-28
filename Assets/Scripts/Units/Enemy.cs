@@ -32,25 +32,5 @@ public class Enemy : MovingObject
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x,target.position.y), speed * Time.deltaTime);
         }   
     }
-
-    public void MoveEnemy()
-    {
-        Vector2Int dir = Vector2Int.zero;
-        if (Mathf.Abs(target.position.x - transform.position.x) < float.Epsilon)
-            dir.y = target.position.y > transform.position.y ? 1 : -1;
-        else
-            dir.x = target.position.x > transform.position.x ? 1 : -1;
-
-        AttemptMove<Player>(dir);
-    }
-
-    protected override void AttemptMove<T>(Vector2Int dir)
-    {
-        
-    }
-
-    protected override void OnCantMove<T>(T component)
-    {
-        
-    }
+    
 }

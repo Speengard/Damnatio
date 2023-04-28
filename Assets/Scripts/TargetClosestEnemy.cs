@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TargetClosestEnemy : MonoBehaviour
 {
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerAttackController player;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
@@ -31,10 +31,10 @@ public class TargetClosestEnemy : MonoBehaviour
         if (Vector2.Distance(player.transform.position, other.transform.position) < player.distance)
         {
             player.target = other.gameObject;
-            player.hasEnemy = true;
+             
         }
     }
-
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy") && player.hasEnemy)
