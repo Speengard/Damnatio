@@ -10,12 +10,10 @@ public class GameManager : MonoBehaviour
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
-
 	private LevelManager boardScript;
 	private bool doingSetup;
-
 	private int level = 0;
-	private List<Enemy> enemies;
+	public List<Enemy> enemies;
 	private bool enemiesMoving;
 	[SerializeField] private int playerHealth = 100; // initial health; TODO: test the right value
 

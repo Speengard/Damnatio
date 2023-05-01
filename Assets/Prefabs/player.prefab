@@ -153,12 +153,12 @@ GameObject:
   - component: {fileID: 7635736290668141512}
   - component: {fileID: 2941875982876770599}
   - component: {fileID: -5337454889481875387}
-  - component: {fileID: 1839378342}
+  - component: {fileID: 3894502764827791881}
   - component: {fileID: 1839378337}
+  - component: {fileID: 9057762477854236976}
   - component: {fileID: 3985354816990493185}
   - component: {fileID: 7953683686301474866}
-  - component: {fileID: 5912782910672009829}
-  - component: {fileID: 643347810936778814}
+  - component: {fileID: 7275337741186953573}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -174,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926458876681971923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.66, y: -1.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -249,8 +249,8 @@ MonoBehaviour:
   JoystickSize: {x: 0, y: 0}
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
---- !u!61 &1839378342
-BoxCollider2D:
+--- !u!58 &3894502764827791881
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -263,18 +263,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.31, y: 0.31}
-    newSize: {x: 0.31, y: 0.31}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31, y: 0.31}
-  m_EdgeRadius: 0
+  m_Radius: 0.155
 --- !u!50 &1839378337
 Rigidbody2D:
   serializedVersion: 4
@@ -296,6 +286,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!233 &9057762477854236976
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926458876681971923}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
 --- !u!114 &3985354816990493185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,30 +339,22 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   hasEnemy: 0
   mace: {fileID: 0}
-  morningStar: {fileID: 0}
---- !u!114 &5912782910672009829
-MonoBehaviour:
+  morningStar: {fileID: 1268711592875907900, guid: 12a5c5726f8c445bcb3159359ed87624, type: 3}
+--- !u!255 &7275337741186953573
+FixedJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926458876681971923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4732ff83be04656b243ad198161f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 368056117143045443, guid: 9714023a9f8b04498b868e4541444782, type: 3}
-  isShooting: 0
---- !u!114 &643347810936778814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926458876681971923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 722d8ca0a5a454e64a1436a69d0636d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_DampingRatio: 0
+  m_Frequency: 0

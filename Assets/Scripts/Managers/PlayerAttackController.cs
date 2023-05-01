@@ -18,15 +18,27 @@ public class PlayerAttackController : MonoBehaviour
     public static PlayerAttackController Instance = null;
 
     [SerializeField] private Mace mace;
-    [SerializeField] private MorningStar morningStar;
+    [SerializeField] private GameObject morningStar;
     private bool hasMace;
     
     private void Awake()
     {
         if (Instance == null) Instance = this;
-        morningStar = this.GetComponentInChildren<MorningStar>();
-        mace = this.GetComponentInChildren<Mace>();
         hasMace = false;
+        LoadWeapon();
+    }
+
+    public void LoadWeapon()
+    {
+        if (hasMace)
+        {
+            //instantiate mace
+        }
+        else
+        {
+            gameObject.GetComponent<HingeJoint2D>().enabled = true;
+            morningStar = Instantiate(morningStar).GetComponent<MorningStar>().player = gameObject;
+        }
     }
 
     private void Update()
@@ -39,11 +51,7 @@ public class PlayerAttackController : MonoBehaviour
     
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
-
-        if (!hasMace)
-        {
-            morningStar.Attack();
-        }
+        
     }
     
 }

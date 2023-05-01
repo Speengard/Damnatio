@@ -8,8 +8,12 @@ public class Restart : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("contact happened");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (!other.gameObject.CompareTag("Player")) return;
+        if (GameManager.Instance.enemies.Count == 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        
     }
 
 }

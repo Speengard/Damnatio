@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
+            print("Spawning");
             Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity);
         }
     }
