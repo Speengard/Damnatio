@@ -17,14 +17,14 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] public bool hasEnemy = false;
     public static PlayerAttackController Instance = null;
 
-    [SerializeField] private Mace mace;
+    [SerializeField] private GameObject mace;
     [SerializeField] private GameObject morningStar;
     private bool hasMace;
     
     private void Awake()
     {
         if (Instance == null) Instance = this;
-        hasMace = false;
+        hasMace = true;
         LoadWeapon();
     }
 
@@ -32,7 +32,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
-            //instantiate mace
+            gameObject.GetComponent<HingeJoint2D>().enabled = true;
+            mace = Instantiate(mace).GetComponent<Mace>().player = gameObject;
         }
         else
         {

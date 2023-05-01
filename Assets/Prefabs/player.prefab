@@ -152,13 +152,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7635736290668141512}
   - component: {fileID: 2941875982876770599}
-  - component: {fileID: -5337454889481875387}
   - component: {fileID: 3894502764827791881}
   - component: {fileID: 1839378337}
   - component: {fileID: 9057762477854236976}
   - component: {fileID: 3985354816990493185}
   - component: {fileID: 7953683686301474866}
-  - component: {fileID: 7275337741186953573}
+  - component: {fileID: -5337454889481875387}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -233,22 +232,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!114 &-5337454889481875387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926458876681971923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d5a6e9511fc49a1bbb3de0d1c7b642, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  JoystickSize: {x: 0, y: 0}
-  Joystick: {fileID: 0}
-  Player: {fileID: 1839378337}
+  m_SpriteSortPoint: 1
 --- !u!58 &3894502764827791881
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -338,23 +322,20 @@ MonoBehaviour:
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   hasEnemy: 0
-  mace: {fileID: 0}
+  mace: {fileID: 4778458491132812291, guid: a563e0db49a894a65b29674c7dbe4373, type: 3}
   morningStar: {fileID: 1268711592875907900, guid: 12a5c5726f8c445bcb3159359ed87624, type: 3}
---- !u!255 &7275337741186953573
-FixedJoint2D:
+--- !u!114 &-5337454889481875387
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926458876681971923}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_DampingRatio: 0
-  m_Frequency: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d5a6e9511fc49a1bbb3de0d1c7b642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JoystickSize: {x: 0, y: 0}
+  Joystick: {fileID: 0}
+  Player: {fileID: 1839378337}
