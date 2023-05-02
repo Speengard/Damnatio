@@ -19,10 +19,8 @@ public class Enemy : MovingObject
 
     private void Start()
     {
-        print("instantiated");
         GameManager.Instance.AddEnemyToList(this);
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        print(target);
         healthController.SetupHealthBar(); 
     }
 

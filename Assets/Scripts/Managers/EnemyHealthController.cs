@@ -51,10 +51,16 @@ public class EnemyHealthController : MonoBehaviour
             health -= damage;
             UpdateHealthBar();
         }
+
+        if (col.gameObject.CompareTag("Mace"))
+        {
+            
+        }
     }
 
-    private void Update()
+    private void OnCollisionExit(Collision other)
     {
         CheckDeath();
     }
+
 }

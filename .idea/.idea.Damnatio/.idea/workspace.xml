@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f376aad-7651-4d37-96cb-8fe417c0813f" name="Changes" comment="" />
+    <list default="true" id="4f376aad-7651-4d37-96cb-8fe417c0813f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Damnatio/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Damnatio/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Mace.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Mace.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MorningStar.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MorningStar.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Behaviours/TargetClosestEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Behaviours/TargetClosestEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/EnemyHealthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/EnemyHealthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerAttackController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerAttackController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Units/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Units/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Mace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Mace.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +117,7 @@
       <workItem from="1682437229511" duration="1188000" />
       <workItem from="1682449991041" duration="5132000" />
       <workItem from="1682668301003" duration="6762000" />
-      <workItem from="1682936863841" duration="9262000" />
+      <workItem from="1682936863841" duration="21553000" />
     </task>
     <servers />
   </component>

@@ -28,10 +28,13 @@ public class TargetClosestEnemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (Vector2.Distance(player.transform.position, other.transform.position) < player.distance)
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            player.target = other.gameObject;
-             
+            if (Vector2.Distance(player.transform.position, other.transform.position) < player.distance)
+            {
+                player.target = other.gameObject;
+
+            }
         }
     }
     

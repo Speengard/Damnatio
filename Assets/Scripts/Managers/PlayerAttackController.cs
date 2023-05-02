@@ -17,28 +17,33 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] public bool hasEnemy = false;
     public static PlayerAttackController Instance = null;
 
-    [SerializeField] private GameObject mace;
-    [SerializeField] private GameObject morningStar;
+    [SerializeField] private GameObject macePrefab;
+    [SerializeField] private GameObject morningStarPrefab;
+
+    private GameObject mace;
+    private GameObject morningStar;
+    
     private bool hasMace;
     
-    private void Awake()
+    private void Start()
     {
         if (Instance == null) Instance = this;
         hasMace = true;
         LoadWeapon();
     }
 
-    public void LoadWeapon()
+    private void LoadWeapon()
     {
         if (hasMace)
         {
             gameObject.GetComponent<HingeJoint2D>().enabled = true;
-            mace = Instantiate(mace).GetComponent<Mace>().player = gameObject;
+            macePrefab.GetComponent<Mace>().player = GetComponent<Player>();
+            mace = Instantiate(macePrefab);
         }
         else
         {
             gameObject.GetComponent<HingeJoint2D>().enabled = true;
-            morningStar = Instantiate(morningStar).GetComponent<MorningStar>().player = gameObject;
+            morningStar = Instantiate(morningStarPrefab).GetComponent<MorningStar>().player = gameObject;
         }
     }
 
