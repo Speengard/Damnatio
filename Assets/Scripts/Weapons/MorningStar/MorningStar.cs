@@ -6,7 +6,7 @@ using UnityEngine;
 public class MorningStar : Weapon
 {
 
-    public GameObject player;
+    public Player player;
     [SerializeField] private GameObject finalLink;
     
     public override void Attack()

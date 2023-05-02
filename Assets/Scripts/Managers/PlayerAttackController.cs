@@ -38,13 +38,31 @@ public class PlayerAttackController : MonoBehaviour
         {
             gameObject.GetComponent<HingeJoint2D>().enabled = true;
             macePrefab.GetComponent<Mace>().player = GetComponent<Player>();
-            mace = Instantiate(macePrefab);
+            mace = Instantiate(macePrefab,gameObject.transform);
         }
         else
         {
             gameObject.GetComponent<HingeJoint2D>().enabled = true;
-            morningStar = Instantiate(morningStarPrefab).GetComponent<MorningStar>().player = gameObject;
+            morningStarPrefab.GetComponent<MorningStar>().player = GetComponent<Player>();
+            morningStar = Instantiate(morningStarPrefab,gameObject.transform);
         }
+    }
+
+    public void switchWeapon()
+    {
+        if (hasMace)
+        {
+            gameObject.GetComponent<HingeJoint2D>().enabled = false;
+            mace.SetActive(false);
+        }
+        else
+        {gameObject.GetComponent<HingeJoint2D>().enabled = false;
+            morningStar.SetActive(false);
+        }
+
+        hasMace = !hasMace;
+        
+        LoadWeapon();
     }
 
     private void Update()

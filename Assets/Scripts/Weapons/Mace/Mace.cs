@@ -9,7 +9,7 @@ public class Mace : Weapon
     private PlayerAttackController aController;
     private bool hasSwung = false;
     private Animator anim;
-    
+
     public override void Attack()
     {
         Swing();
@@ -17,7 +17,7 @@ public class Mace : Weapon
 
     private void LeftToRight()
     {
-        print("leftToRight");
+        
         anim.SetBool("hasSwung", false);
         hasSwung = false;
         StartCoroutine(Wait());
@@ -25,7 +25,7 @@ public class Mace : Weapon
 
     private void RightToLeft()
     {
-        print("rightToLeft");
+        
         anim.SetBool("hasSwung", true);
         hasSwung = true;
         StartCoroutine(Wait());
