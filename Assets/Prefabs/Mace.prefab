@@ -115,7 +115,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 159662997246805083}
   m_Layer: 6
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Mace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 6818251823646561987}
   m_Layer: 6
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Mace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

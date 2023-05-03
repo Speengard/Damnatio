@@ -54,7 +54,11 @@ public class EnemyHealthController : MonoBehaviour
 
         if (col.gameObject.CompareTag("Mace"))
         {
-            
+            int damage = (int)col.rigidbody.angularVelocity;
+            if (damage < 0) damage *= -1;
+            print("damage: " + damage.ToString());
+            health -= damage;
+            UpdateHealthBar();
         }
     }
 

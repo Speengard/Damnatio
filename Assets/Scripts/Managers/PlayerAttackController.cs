@@ -72,7 +72,10 @@ public class PlayerAttackController : MonoBehaviour
         //get the direction and the distance from the current enemy
         direction = (target.transform.position - transform.position).normalized;
         distance = Vector2.Distance(target.transform.position,transform.position);
-    
+
+        Quaternion toRotate = Quaternion.LookRotation(Vector3.forward,direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, 1000 * Time.deltaTime);
+
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
         
