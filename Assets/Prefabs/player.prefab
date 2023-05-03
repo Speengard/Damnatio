@@ -326,7 +326,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   hasEnemy: 0
   macePrefab: {fileID: 4778458491132812291, guid: a563e0db49a894a65b29674c7dbe4373, type: 3}
-  morningStarPrefab: {fileID: 1268711592875907900, guid: 12a5c5726f8c445bcb3159359ed87624, type: 3}
+  morningStarPrefab: {fileID: 1494330176329635741, guid: 1718ce025b5194150878c326cf17a747, type: 3}
 --- !u!114 &-5337454889481875387
 MonoBehaviour:
   m_ObjectHideFlags: 0
