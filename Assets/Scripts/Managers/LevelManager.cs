@@ -43,6 +43,5 @@ public class LevelManager : MonoBehaviour
             SpawnEnemies();
             print("level:" + level);
         }
-
     
     }
