@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Biom1Level1.unity
+    guid: 8364b706052914db8971bf0b9f5dc9c6
+  - enabled: 1
+    path: Assets/Scenes/Biom1Level2.unity
+    guid: 745d356d38dde4ec287b091e268a4779
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: bf016141dc1564a6b84de34aae264a59, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 5880abd1d6bfe4417bd80edfaa13ff7f, type: 2}

@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
 
         public void SetupScene(int level)
         {
-            Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
+            //Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
             Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
             //Instantiate(borders, Vector3.zero, Quaternion.identity);
             SpawnEnemies();
