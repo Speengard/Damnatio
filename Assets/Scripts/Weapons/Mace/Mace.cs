@@ -33,7 +33,7 @@ public class Mace : Weapon
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.7f);
         Swing();
     }
 
