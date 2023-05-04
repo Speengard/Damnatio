@@ -93,6 +93,7 @@ public class PlayerAttackController : MonoBehaviour
         hasEnemy = false;
         //stops the animation of the mace
         maceScript.StopAnimation();
+        distance = 10f;
     }
 
     private void RotatePlayer()
@@ -106,8 +107,12 @@ public class PlayerAttackController : MonoBehaviour
     }
 
     private void Update()
-    {   
-        if(!hasEnemy) return;
+    {
+        if (!hasEnemy)
+        {
+            maceScript.PauseAnimation();
+            return;
+        }
         
         direction = (target.transform.position - transform.position).normalized;
         distance = Vector2.Distance(target.transform.position, transform.position);
@@ -115,5 +120,5 @@ public class PlayerAttackController : MonoBehaviour
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
     }
-    
+
 }

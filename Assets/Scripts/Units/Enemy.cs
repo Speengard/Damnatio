@@ -15,7 +15,8 @@ public class Enemy : MonoBehaviour
     public Transform target;
     [SerializeField] private float speed = 0.3f;
 
-    public AudioClip[] attackClips;
+    public int ID;
+
 
     private void Start()
     {

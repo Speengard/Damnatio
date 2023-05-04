@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TargetClosestEnemy : MonoBehaviour
 {
     [SerializeField] private PlayerAttackController player;
-    //this script is attached to a circle with a collider that handles when an enemy enters in the attack range
+
     
+    //this script is attached to a circle with a collider that handles when an enemy enters in the attack range
+
     //when an enemy enters the attack range
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -18,6 +21,7 @@ public class TargetClosestEnemy : MonoBehaviour
                     //this is the first enemy entered in the attack range
                     //has enemy
                     player.HasEnemy(col.gameObject);
+                    
                 }
                 else
                 {
@@ -26,7 +30,7 @@ public class TargetClosestEnemy : MonoBehaviour
                         //if this is not the first enemy in the range, then if it is the closest, it is the current enemy
                         //has enemy
                         player.HasEnemy(col.gameObject);
-                        
+
                     }
                 }
             }
@@ -46,10 +50,12 @@ public class TargetClosestEnemy : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         if (player.hasEnemy == false) return;
+        
         if (other.gameObject.CompareTag("Enemy") && player.hasEnemy)
         {
             //lost enemy
             player.LostEnemy();
         }
     }
+    
 }

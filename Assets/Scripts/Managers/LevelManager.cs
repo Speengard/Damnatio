@@ -20,13 +20,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private FloatingJoystick joystick;
 
     private Player player;
+    private int sequence = 0;
     
     private void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            print("Spawning");
-            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity);
+            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity).GetComponent<Enemy>().ID = sequence;
+            sequence++;
         }
     }
 
