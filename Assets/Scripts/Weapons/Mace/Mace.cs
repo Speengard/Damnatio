@@ -33,7 +33,7 @@ public class Mace : Weapon
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         Swing();
     }
 
@@ -48,19 +48,13 @@ public class Mace : Weapon
             RightToLeft();
         }
     }
-
-    private void GetDirection()
-    {
-        if(aController.hasEnemy) return;
-        Attack();
-    }
-
+    
     private void Start()
     {
         aController = player.attackController;
         anim = GetComponent<Animator>();
         LinkToPlayer();
-        GetDirection();
+        Attack();
     }
 
     public void LinkToPlayer()

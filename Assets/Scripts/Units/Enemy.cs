@@ -5,7 +5,7 @@ using UnityEngine;
 //using UnityEngine.UIElements;
 using UnityEngine.UI;
 
-public class Enemy : MovingObject
+public class Enemy : MonoBehaviour
 {
     public int damage; // damage that the enemy does on the player
     public Slider healthSlider;
@@ -13,7 +13,7 @@ public class Enemy : MovingObject
 
     private Animator animator;
     public Transform target;
-    private float speed = 1f;
+    [SerializeField] private float speed = 0.3f;
 
     public AudioClip[] attackClips;
 

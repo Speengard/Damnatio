@@ -21,7 +21,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
-    private Vector2 speed = new Vector2(1500, 1500);
+    [SerializeField] private Vector2 speed = new Vector2(1500, 1500);
 
     private void Awake()
     {
@@ -145,7 +145,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         Vector2 scaledMovement = speed * Time.deltaTime * new Vector2(MovementAmount.x,MovementAmount.y);
+        //Player.transform.Translate(scaledMovement);
         Player.velocity = scaledMovement;
-        
     }
 }

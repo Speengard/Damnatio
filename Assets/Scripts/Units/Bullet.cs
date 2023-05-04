@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 1f;
     public Vector2 direction;
 
     private void Start()

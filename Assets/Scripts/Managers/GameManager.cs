@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
 	public float levelStartDelay = 2f;
 	private LevelManager boardScript;
-	private bool doingSetup;
 	private int level = 0;
 	public List<Enemy> enemies;
 	private bool enemiesMoving;
@@ -55,8 +54,6 @@ public class GameManager : MonoBehaviour
 	
 	void InitGame()
 	{
-		doingSetup = true;
-		
 		enemies.Clear();
 		boardScript.SetupScene(level);
 	}
