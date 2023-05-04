@@ -37,7 +37,6 @@ public class PlayerAttackController : MonoBehaviour
 
         hasMace = true;
         mace = macePrefab;
-
         LoadWeapon();
     }
 
@@ -45,6 +44,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
+            print("bruh2");
             mace.gameObject.SetActive(true);
         }
         else
@@ -62,6 +62,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
+            print("bruh1");
+            maceScript.StopAnimation();
             mace.SetActive(false);
         }
         else
@@ -71,7 +73,6 @@ public class PlayerAttackController : MonoBehaviour
         }
 
         hasMace = !hasMace;
-
         LoadWeapon();
     }
 
@@ -81,7 +82,11 @@ public class PlayerAttackController : MonoBehaviour
     {
         hasEnemy = true;
         target = enemy;
-        RotatePlayer();
+        if (hasMace)
+        {
+            RotatePlayer();
+        }
+        
         maceScript.StartAnimation();
     }
 
@@ -113,10 +118,12 @@ public class PlayerAttackController : MonoBehaviour
             maceScript.PauseAnimation();
             return;
         }
-        
-        direction = (target.transform.position - transform.position).normalized;
-        distance = Vector2.Distance(target.transform.position, transform.position);
-        
+
+        if (target != null)
+        {
+            direction = (target.transform.position - transform.position).normalized;
+            distance = Vector2.Distance(target.transform.position, transform.position);
+        }
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
     }

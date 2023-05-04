@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5382754573532956852
 Transform:
   m_ObjectHideFlags: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 7583377657059185928}
   delay: 0.75
+  weaponDamage: 20
 --- !u!1 &3548906560961172228
 GameObject:
   m_ObjectHideFlags: 0
