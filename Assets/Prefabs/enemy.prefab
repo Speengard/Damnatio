@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 2905844426290271437}
   - component: {fileID: 8770359241752775546}
   - component: {fileID: 8376439859502695786}
-  - component: {fileID: -5314560719109162738}
   - component: {fileID: 7846289405324416563}
+  - component: {fileID: -5314560719109162738}
+  - component: {fileID: 4459905251144397746}
+  - component: {fileID: 4449945916227078303}
   m_Layer: 6
-  m_Name: enemy
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,29 +116,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.31, y: 0.31}
   m_EdgeRadius: 0
---- !u!114 &-5314560719109162738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8859796273946347583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ca88762aa4f439790486a534ac2172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveTime: 0.1
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerDamage: 20
-  damage: 0
-  health: 0
-  maxHealth: 100
-  healthSlider: {fileID: 2883189818936447263}
-  target: {fileID: 0}
-  attackClips: []
 --- !u!50 &7846289405324416563
 Rigidbody2D:
   serializedVersion: 4
@@ -149,15 +128,62 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 4
+  m_LinearDrag: 0.8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &-5314560719109162738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859796273946347583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ca88762aa4f439790486a534ac2172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  damage: 0
+  healthSlider: {fileID: 2883189818936447263}
+  healthController: {fileID: 4449945916227078303}
+  target: {fileID: 0}
+  attackClips: []
+--- !u!114 &4459905251144397746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859796273946347583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871503ddba076468ebbc4913c27b5a3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4449945916227078303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8859796273946347583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774c60e1071444a39b8cbb889fa67a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 2883189818936447263}
+  health: 0
+  maxHealth: 100
 --- !u!1001 &2654136794610564713
 PrefabInstance:
   m_ObjectHideFlags: 0

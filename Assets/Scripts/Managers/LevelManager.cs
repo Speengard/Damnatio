@@ -18,31 +18,35 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject borders;
     [SerializeField] private FloatingJoystick joystick;
+    public float roomWidth = 8;
+    public float roomHeight = 6;
 
     private Player player;
+    private int sequence = 0;
     
     private void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity);
+            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity).GetComponent<Enemy>().ID = sequence;
+            sequence++;
         }
     }
 
         private Vector2 RandomPointInScreen()
         {
-            Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
+            //Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
+            Vector2 randomPositionOnScreen = new Vector2(Random.Range(-roomWidth, roomWidth), Random.Range(-roomHeight, roomHeight));
             return randomPositionOnScreen;
         }
 
         public void SetupScene(int level)
         {
-            Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
+            //Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
             Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
-            Instantiate(borders, Vector3.zero, Quaternion.identity);
+            //Instantiate(borders, Vector3.zero, Quaternion.identity);
             SpawnEnemies();
             print("level:" + level);
         }
-
     
     }

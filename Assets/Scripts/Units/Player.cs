@@ -6,5 +6,6 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    
+    public PlayerAttackController attackController;
+    public PlayerMovementController movementController;
 }
