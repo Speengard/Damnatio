@@ -38,11 +38,13 @@ public class TargetClosestEnemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        if(other.gameObject.CompareTag("Enemy") ){
         if (Vector2.Distance(player.transform.position, other.transform.position) < player.distance)
         {
             //if this is not the first enemy in the range, then if it is the closest, it is the current enemy
             //has enemy
             player.HasEnemy(other.gameObject);
+        }
         }
     }
     

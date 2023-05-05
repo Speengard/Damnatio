@@ -103,6 +103,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void RotatePlayer()
     {
+        if(!hasEnemy) return;
         maceScript.PauseAnimation();
         
         Quaternion toRotate = Quaternion.LookRotation(Vector3.forward, direction);
