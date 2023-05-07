@@ -114,12 +114,6 @@ public class PlayerAttackController : MonoBehaviour
 
     private void Update()
     {
-        if (!hasEnemy)
-        {
-            maceScript.PauseAnimation();
-            return;
-        }
-
         if (target != null)
         {
             direction = (target.transform.position - transform.position).normalized;
