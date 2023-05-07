@@ -21,13 +21,10 @@ public class PlayerAttackController : MonoBehaviour
     //weapon prefabs
     [SerializeField] private GameObject macePrefab;
     [SerializeField] private GameObject morningStarPrefab;
-
     [SerializeField] private MaceTest maceScript;
-
     //weapon gameobjects
     private GameObject mace;
     private GameObject morningStar;
-
     private bool hasMace;
 
     private void Start()
@@ -44,7 +41,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
-            print("bruh2");
+
             mace.gameObject.SetActive(true);
         }
         else
@@ -81,12 +78,7 @@ public class PlayerAttackController : MonoBehaviour
     public void HasEnemy(GameObject enemy)
     {
         hasEnemy = true;
-        target = enemy;
-        if (hasMace)
-        {
-            RotatePlayer();
-        }
-        
+        ChangeTarget(enemy);
         maceScript.StartAnimation();
     }
 
@@ -94,31 +86,38 @@ public class PlayerAttackController : MonoBehaviour
     //on the script of the attack range
     public void LostEnemy()
     {
-        target = null;
         hasEnemy = false;
-        //stops the animation of the mace
+        target = null;
         maceScript.StopAnimation();
-        distance = 10f;
     }
 
     private void RotatePlayer()
     {
-        if(!hasEnemy) return;
         maceScript.PauseAnimation();
-        
+
         Quaternion toRotate = Quaternion.LookRotation(Vector3.forward, direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate , 3500 * Time.deltaTime);
-        
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate , 2000 * Time.deltaTime);
+
         maceScript.ResumeAnimation();
     }
 
+    public void ChangeTarget(GameObject newTarget)
+    {
+        target = newTarget;
+        RotatePlayer();
+    }
+    
     private void Update()
     {
-        if (target != null)
-        {
+        if(!hasEnemy){
+            if(maceScript.GetCurrentClipName() == "Idle") return;
+            maceScript.StopAnimation();
+            return;
+        }
+       
             direction = (target.transform.position - transform.position).normalized;
             distance = Vector2.Distance(target.transform.position, transform.position);
-        }
+
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
     }

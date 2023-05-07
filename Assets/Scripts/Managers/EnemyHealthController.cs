@@ -56,7 +56,6 @@ public class EnemyHealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        print(damage.ToString());
         health -= damage;
         UpdateHealthBar();
     }

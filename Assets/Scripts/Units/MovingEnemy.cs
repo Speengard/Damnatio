@@ -12,6 +12,8 @@ public abstract class MovingEnemy : MonoBehaviour
     [SerializeField] private float speed = 0.3f;
     private Vector3 direction;
     [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private EnemyHealthController healthController;
+    
 
     public Quaternion rotation;
 
@@ -19,6 +21,9 @@ public abstract class MovingEnemy : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        healthController.SetupHealthBar();
+       
     }
 
     private void Update() {
@@ -35,6 +40,7 @@ public abstract class MovingEnemy : MonoBehaviour
 
     private void FixAndSetAnimation(){
         //this function is used to snap the animator's blend tree to one fixed animation instead of interpolating between the two closest animations
+        //it gets the rotation in respect to the direction to the player and based on the rotation value along the z axis, it snaps to the unique value of each coordinate
         rotation = Quaternion.LookRotation(Vector3.forward, direction);
 
         switch(rotation.eulerAngles.z){

@@ -2864,9 +2864,9 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 1
   enemyAnimator: {fileID: 2799247336783001595}
+  healthController: {fileID: -817314349592084105}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   damage: 0
-  healthController: {fileID: -817314349592084105}
   ID: 0
 --- !u!114 &3033859544249929356
 MonoBehaviour:
@@ -5557,11 +5557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.04
+      value: 2.19
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
