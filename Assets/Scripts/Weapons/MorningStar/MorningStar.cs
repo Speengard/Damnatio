@@ -13,21 +13,6 @@ public class MorningStar : Weapon
     {
 
     }
-
-    private void Start()
-    {
-        LinkToPlayer();
-    }
-
-    public void LinkToPlayer()
-    {
-        player.GetComponent<HingeJoint2D>().connectedBody = finalLink.GetComponent<Rigidbody2D>();
-    }
-
-    private void OnDisable()
-    {
-        Destroy(gameObject);
-    }
     
     
 }

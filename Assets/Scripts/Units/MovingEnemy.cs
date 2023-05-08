@@ -7,13 +7,11 @@ public abstract class MovingEnemy : MonoBehaviour
     public LayerMask collisionLayer;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2d;
-
     public Transform target;
     [SerializeField] private float speed = 0.3f;
     private Vector3 direction;
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private EnemyHealthController healthController;
-    
 
     public Quaternion rotation;
 
@@ -23,7 +21,6 @@ public abstract class MovingEnemy : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         healthController.SetupHealthBar();
-       
     }
 
     private void Update() {

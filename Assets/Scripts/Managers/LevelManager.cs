@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity).GetComponent<Enemy>().ID = sequence;
+            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity).GetComponent<Enemy>().spawnId = sequence;
             sequence++;
         }
     }

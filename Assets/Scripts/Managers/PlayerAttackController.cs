@@ -32,8 +32,9 @@ public class PlayerAttackController : MonoBehaviour
         //singleton instantiating
         if (Instance == null) Instance = this;
 
-        hasMace = true;
+        hasMace = false;
         mace = macePrefab;
+        morningStar = morningStarPrefab; 
         LoadWeapon();
     }
 
@@ -50,8 +51,7 @@ public class PlayerAttackController : MonoBehaviour
             //to the morning star's rigid body
             //this probably is not the best way since the morning star freely rotates around the player and is not fixed to a position
             gameObject.GetComponent<HingeJoint2D>().enabled = true;
-            morningStarPrefab.GetComponent<MorningStar>().player = GetComponent<Player>();
-            morningStar = Instantiate(morningStarPrefab, gameObject.transform);
+            morningStar.SetActive(true);
         }
     }
 
@@ -59,33 +59,27 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
-            print("bruh1");
             maceScript.StopAnimation();
             mace.SetActive(false);
+            
         }
         else
         {
             gameObject.GetComponent<HingeJoint2D>().enabled = false;
             morningStar.SetActive(false);
+            
         }
 
         hasMace = !hasMace;
         LoadWeapon();
     }
 
-    //this function handles when an enemy enters the attack range of the player. this function is called
-    //on the script attached to the attack range
-    public void HasEnemy(GameObject enemy)
-    {
-        hasEnemy = true;
-        ChangeTarget(enemy);
+    public void FirstEnemy(GameObject firstEnemy){
+        ChangeTarget(firstEnemy);
         maceScript.StartAnimation();
     }
 
-    //this function handles when an enemy exits the attack range of the player. this function is called
-    //on the script of the attack range
-    public void LostEnemy()
-    {
+    public void LastEnemy(){
         hasEnemy = false;
         target = null;
         maceScript.StopAnimation();
@@ -104,19 +98,26 @@ public class PlayerAttackController : MonoBehaviour
     public void ChangeTarget(GameObject newTarget)
     {
         target = newTarget;
+        hasEnemy = true;
+
+        maceScript.PauseAnimation();
         RotatePlayer();
+        maceScript.ResumeAnimation();
     }
     
     private void Update()
     {
-        if(!hasEnemy){
-            if(maceScript.GetCurrentClipName() == "Idle") return;
-            maceScript.StopAnimation();
-            return;
+       if(hasEnemy){
+        if(target != null){
+                direction = (target.transform.position - transform.position).normalized;
+                distance = Vector2.Distance(target.transform.position, transform.position);
+
+                if (distance > 1f)
+                {
+                    RotatePlayer();
+                }
         }
-       
-            direction = (target.transform.position - transform.position).normalized;
-            distance = Vector2.Distance(target.transform.position, transform.position);
+       }    
 
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);

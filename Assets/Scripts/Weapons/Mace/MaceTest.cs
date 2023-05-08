@@ -35,20 +35,13 @@ public class MaceTest : MonoBehaviour
     public void StartAnimation()
     {
         print("StartAnimation");
-        anim.SetTrigger("Start");
-        Swing();   
+        anim.SetTrigger("Start");   
     }
 
     public void StopAnimation()
     {
         print("StopAnimation");
         anim.SetTrigger("Stop");
-    }
-
-    private void Swing()
-    {
-        print("Swing");
-        anim.SetTrigger("Swing");
     }
 
     public void PauseAnimation()
