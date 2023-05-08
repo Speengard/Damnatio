@@ -19,12 +19,10 @@ public class PlayerAttackController : MonoBehaviour
     public static PlayerAttackController Instance = null;
 
     //weapon prefabs
-    [SerializeField] private GameObject macePrefab;
-    [SerializeField] private GameObject morningStarPrefab;
     [SerializeField] private MaceTest maceScript;
     //weapon gameobjects
-    private GameObject mace;
-    private GameObject morningStar;
+    [SerializeField] private GameObject mace;
+    [SerializeField] private GameObject morningStar;
     private bool hasMace;
 
     private void Start()
@@ -33,8 +31,7 @@ public class PlayerAttackController : MonoBehaviour
         if (Instance == null) Instance = this;
 
         hasMace = false;
-        mace = macePrefab;
-        morningStar = morningStarPrefab; 
+
         LoadWeapon();
     }
 
@@ -42,7 +39,6 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
-
             mace.gameObject.SetActive(true);
         }
         else
@@ -74,17 +70,20 @@ public class PlayerAttackController : MonoBehaviour
         LoadWeapon();
     }
 
+    //this method is called when the player has no enemy in range and a first enemy enters in the range
     public void FirstEnemy(GameObject firstEnemy){
         ChangeTarget(firstEnemy);
         maceScript.StartAnimation();
     }
 
+    //this method is called when the last enemy exits the range
     public void LastEnemy(){
         hasEnemy = false;
         target = null;
         maceScript.StopAnimation();
     }
 
+    //this method is called when an enemy moves further away enough in order to rotate towards it or when the first enemy enters the range
     private void RotatePlayer()
     {
         maceScript.PauseAnimation();
@@ -95,6 +94,7 @@ public class PlayerAttackController : MonoBehaviour
         maceScript.ResumeAnimation();
     }
 
+    //this method is called when the player has an enemy in range and another enemy enters the range but is closer to the player
     public void ChangeTarget(GameObject newTarget)
     {
         target = newTarget;

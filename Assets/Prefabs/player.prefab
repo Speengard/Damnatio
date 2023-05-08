@@ -285,6 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackController: {fileID: 7953683686301474866}
   movementController: {fileID: -5337454889481875387}
+  stats: {fileID: 0}
+  runStats: {fileID: 0}
 --- !u!114 &7953683686301474866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,9 +303,9 @@ MonoBehaviour:
   distance: 0
   direction: {x: 0, y: 0, z: 0}
   hasEnemy: 0
-  macePrefab: {fileID: 878781279075912059}
-  morningStarPrefab: {fileID: 1915831160394366006}
   maceScript: {fileID: 5267700710050954673}
+  mace: {fileID: 878781279075912059}
+  morningStar: {fileID: 1915831160394366006}
 --- !u!114 &-5337454889481875387
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class MovingEnemy : MonoBehaviour
 {
+
+    //this class serves as a parent class to any enemy who attacks in melee and moves toward the player to attack him. Since the animation tree interpolates animations, a method is needed to fix the current animation to a single one. The blend tree uses two values Horizontalinput and Verticalinput to determine the direction of the enemy. The direction is calculated by the direction vector between the enemy and the player. The direction vector is normalized and then used to calculate the rotation of the enemy. Based on the rotation, the blend tree is snapped to a single animation instead of interpolating between the two closest animations.
+    
     public LayerMask collisionLayer;
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2d;
@@ -37,7 +40,8 @@ public abstract class MovingEnemy : MonoBehaviour
 
     private void FixAndSetAnimation(){
         //this function is used to snap the animator's blend tree to one fixed animation instead of interpolating between the two closest animations
-        //it gets the rotation in respect to the direction to the player and based on the rotation value along the z axis, it snaps to the unique value of each coordinate
+        //it gets the rotation in respect to the direction to the player and based on the rotation value along the z axis, it snaps to the unique value of each animation
+
         rotation = Quaternion.LookRotation(Vector3.forward, direction);
 
         switch(rotation.eulerAngles.z){

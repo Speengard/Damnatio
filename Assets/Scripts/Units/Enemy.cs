@@ -9,5 +9,4 @@ public class Enemy : MovingEnemy
 {
     public int damage; // damage that the enemy does on the player
     public int spawnId;
-
 }

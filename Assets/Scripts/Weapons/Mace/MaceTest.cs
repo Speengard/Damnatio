@@ -6,7 +6,6 @@ using UnityEngine;
 public class MaceTest : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private float delay = 0.75f;
     [SerializeField] private int weaponDamage = 20;
     private AnimatorClipInfo[] clipInfo;
     
