@@ -8,4 +8,12 @@ public class Player : MonoBehaviour
 {
     public PlayerAttackController attackController;
     public PlayerMovementController movementController;
+    
+    [SerializeField] private PlayerStatsScriptableObject stats;
+    [SerializeField] private PlayerStatsScriptableObject runStats;
+
+    void Start() {
+        runStats = ScriptableObject.CreateInstance<PlayerStatsScriptableObject>();
+    }
+
 }
