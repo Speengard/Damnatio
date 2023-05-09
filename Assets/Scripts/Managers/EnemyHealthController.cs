@@ -22,7 +22,7 @@ public class EnemyHealthController : MonoBehaviour
         maxHealth = value;
         health = maxHealth;
         healthSlider.maxValue = maxHealth;
-        healthSlider.value = health;
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar() {
