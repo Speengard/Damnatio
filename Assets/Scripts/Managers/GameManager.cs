@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
+    [SerializeField] private PlayerHealthController playerHealthController;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 	private int level = 0;
 	public List<Enemy> enemies;
 	private bool enemiesMoving;
-	[SerializeField] private int playerHealth = 100; // initial health; TODO: test the right value
 
 	void Awake()
 	{
@@ -29,6 +28,7 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 		enemies = new List<Enemy>();
 		boardScript = GetComponent<LevelManager>();
+		playerHealthController = GetComponent<PlayerHealthController>();
 	}
 	
 
@@ -63,17 +63,5 @@ public class GameManager : MonoBehaviour
 	{
 		level += 1;
 		InitGame();
-	}
-
-	public void AddHealth(int value) {
-		playerHealth += value;
-
-		// check if the player is dead
-		if (playerHealth <= 0) {
-			Debug.Log("Game Over!"); // TODO: Game over scene
-			playerHealth = 0;
-		}
-
-		Debug.Log("Health Bar = " + playerHealth);
 	}
 }
