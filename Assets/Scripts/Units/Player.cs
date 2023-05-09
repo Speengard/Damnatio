@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public PlayerMovementController movementController;
     
     [SerializeField] private PlayerStatsScriptableObject stats;
-    [SerializeField] private PlayerStatsScriptableObject runStats;
+    [SerializeField] public PlayerStatsScriptableObject runStats;
 
     void Start() {
         runStats = ScriptableObject.CreateInstance<PlayerStatsScriptableObject>();
