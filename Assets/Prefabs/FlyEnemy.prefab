@@ -2744,10 +2744,10 @@ GameObject:
   - component: {fileID: 281468658077634067}
   - component: {fileID: 3106357316061210511}
   - component: {fileID: 2799247336783001595}
-  - component: {fileID: -5529661672112573472}
   - component: {fileID: 3033859544249929356}
   - component: {fileID: -817314349592084105}
   - component: {fileID: 432178822464913616}
+  - component: {fileID: -2546458092221552865}
   m_Layer: 6
   m_Name: FlyEnemy
   m_TagString: Enemy
@@ -2846,28 +2846,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &-5529661672112573472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5359785769075411549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ca88762aa4f439790486a534ac2172, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  target: {fileID: 0}
-  speed: 1
-  enemyAnimator: {fileID: 2799247336783001595}
-  healthController: {fileID: -817314349592084105}
-  rotation: {x: 0, y: 0, z: 0, w: 0}
-  damage: 0
-  spawnId: 0
 --- !u!114 &3033859544249929356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2907,6 +2885,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903086e125f5d481ea11823c70d38270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2546458092221552865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5359785769075411549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d545bc77e8f426da56879c7f22a0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  target: {fileID: 0}
+  healthController: {fileID: -817314349592084105}
+  damage: 0
+  spawnId: 0
+  speed: 0.3
+  enemyAnimator: {fileID: 2799247336783001595}
+  rotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5429660223844329252
 GameObject:
   m_ObjectHideFlags: 0

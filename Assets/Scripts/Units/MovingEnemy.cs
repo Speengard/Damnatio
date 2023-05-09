@@ -2,29 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MovingEnemy : MonoBehaviour
+public class MovingEnemy : Enemy
 {
 
-    //this class serves as a parent class to any enemy who attacks in melee and moves toward the player to attack him. Since the animation tree interpolates animations, a method is needed to fix the current animation to a single one. The blend tree uses two values Horizontalinput and Verticalinput to determine the direction of the enemy. The direction is calculated by the direction vector between the enemy and the player. The direction vector is normalized and then used to calculate the rotation of the enemy. Based on the rotation, the blend tree is snapped to a single animation instead of interpolating between the two closest animations.
-    
-    public LayerMask collisionLayer;
-    private BoxCollider2D boxCollider;
-    private Rigidbody2D rb2d;
-    public Transform target;
+    //this class serves as a parent class to any enemy who attacks in melee and moves toward the player to attack him. Since the animation tree interpolates animations, a method is needed to fix the current animation to a single one. The blend tree uses two values Horizontalinput and Verticalinput to determine the direction of the enemy. The direction is calculated by the direction vector between the enemy and the player. The direction vector is normalized and then used to calculate the rotation of the enemy. Based on the rotation, the blend tree is snapped to a single animation instead of interpolating between the two closest animations.    
     [SerializeField] private float speed = 0.3f;
     private Vector3 direction;
     [SerializeField] private Animator enemyAnimator;
-    [SerializeField] private EnemyHealthController healthController;
 
     public Quaternion rotation;
-
-    protected virtual void Start()
-    {
-        boxCollider = GetComponent<BoxCollider2D>();
-        rb2d = GetComponent<Rigidbody2D>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        healthController.SetupHealthBar();
-    }
 
     private void Update() {
     
