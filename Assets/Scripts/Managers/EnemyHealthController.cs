@@ -40,20 +40,6 @@ public class EnemyHealthController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        
-        if (col.gameObject.CompareTag("MorningStar"))
-        {
-            int damage = (int)col.rigidbody.angularVelocity;
-            if (damage < 0) damage *= -1;
-            print("damage: " + damage.ToString());
-            health -= damage;
-            UpdateHealthBar();
-        }
-        
-    }
-
     public void TakeDamage(int damage)
     {
         health -= damage;
