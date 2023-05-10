@@ -13,7 +13,7 @@ public class EnemyHealthController : MonoBehaviour
     
     [SerializeField] private Slider healthSlider;
     public int health; // current health
-    public int maxHealth;// TODO: this needs to be different for each kind of enemy
+    public int maxHealth;
     
 
     // this function sets the health bar initially full
@@ -37,7 +37,7 @@ public class EnemyHealthController : MonoBehaviour
         if (health <= 0)
         {
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
-            Destroy(gameObject);
+            Destroy(gameObject, 3);
         }
     }
 

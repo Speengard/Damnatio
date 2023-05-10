@@ -2858,6 +2858,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871503ddba076468ebbc4913c27b5a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movingEnemy: {fileID: -2546458092221552865}
+  playerHealthController: {fileID: 0}
 --- !u!114 &-817314349592084105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,6 +2904,7 @@ MonoBehaviour:
     m_Bits: 0
   target: {fileID: 0}
   healthController: {fileID: -817314349592084105}
+  enemyStats: {fileID: 11400000, guid: d20ed43bc8fd6433cb7507802c2bdffa, type: 2}
   damage: 0
   spawnId: 0
   speed: 0.3

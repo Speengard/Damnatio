@@ -8,6 +8,10 @@ public class MorningStar : MonoBehaviour
 {
     [SerializeField] private int morningStarDamage;
     [SerializeField] private GameObject finalLink;
+
+    private void Start() {
+        morningStarDamage = gameObject.GetComponentInParent<Player>().runStats.morningStarDamage;
+    }
     
     private void OncollisionEnter2D(Collision2D other)
     {
