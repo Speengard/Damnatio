@@ -41,6 +41,7 @@ public class MaceTest : MonoBehaviour
     {
         print("StopAnimation");
         anim.SetTrigger("Stop");
+        gameObject.transform.rotation = Quaternion.identity;
     }
 
     public void PauseAnimation()

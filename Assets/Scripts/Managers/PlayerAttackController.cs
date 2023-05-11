@@ -17,21 +17,17 @@ public class PlayerAttackController : MonoBehaviour
     //these booleans are needed for detecting if the player is in the attack range
     [SerializeField] public bool hasEnemy = false;
     public static PlayerAttackController Instance = null;
-
     //weapon prefabs
     [SerializeField] private MaceTest maceScript;
     //weapon gameobjects
     [SerializeField] private GameObject mace;
     [SerializeField] private GameObject morningStar;
-    private bool hasMace;
+    [SerializeField]private bool hasMace;
 
     private void Start()
     {
         //singleton instantiating
         if (Instance == null) Instance = this;
-
-        hasMace = false;
-
         LoadWeapon();
     }
 
@@ -46,7 +42,7 @@ public class PlayerAttackController : MonoBehaviour
             //since the morningstar has to rotate around a hinge joint, we assign the player's hinge joint 
             //to the morning star's rigid body
             //this probably is not the best way since the morning star freely rotates around the player and is not fixed to a position
-            gameObject.GetComponent<HingeJoint2D>().enabled = true;
+            
             morningStar.SetActive(true);
         }
     }
@@ -61,7 +57,7 @@ public class PlayerAttackController : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<HingeJoint2D>().enabled = false;
+            
             morningStar.SetActive(false);
             
         }
@@ -83,6 +79,7 @@ public class PlayerAttackController : MonoBehaviour
         maceScript.StopAnimation();
     }
 
+#region maceLogic
     //this method is called when an enemy moves further away enough in order to rotate towards it or when the first enemy enters the range
     private void RotatePlayer()
     {
@@ -104,11 +101,13 @@ public class PlayerAttackController : MonoBehaviour
         RotatePlayer();
         maceScript.ResumeAnimation();
     }
+
+    #endregion
     
     private void Update()
     {
-       if(hasEnemy){
-        if(target != null){
+       if(hasEnemy){   
+        if(target != null && hasMace){
                 direction = (target.transform.position - transform.position).normalized;
                 distance = Vector2.Distance(target.transform.position, transform.position);
 
