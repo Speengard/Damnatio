@@ -9,8 +9,9 @@ public class MorningStar : MonoBehaviour
     [SerializeField] private int morningStarDamage;
     [SerializeField] private GameObject finalLink;
     
-    private void OncollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
+        print("contact");
         if (other.gameObject.CompareTag("Enemy"))
         {
             switch(Mathf.Abs(GetComponent<Rigidbody2D>().angularVelocity)){
