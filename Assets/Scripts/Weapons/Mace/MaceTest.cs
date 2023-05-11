@@ -6,7 +6,7 @@ using UnityEngine;
 public class MaceTest : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private int weaponDamage = 20;
+    [SerializeField] private int weaponDamage;
     private AnimatorClipInfo[] clipInfo;
     
     //this script handles the animator of the mace and the damage and the delay between swings.
@@ -16,6 +16,10 @@ public class MaceTest : MonoBehaviour
     //Swing is the state where the mace is swinging in a loop.
     //from Swing, it can go to idle with the stop trigger.
     //from Idle, it can go to Swing with the swing trigger.
+
+    private void Start() {
+        weaponDamage = gameObject.GetComponentInParent<Player>().runStats.maceDamage;
+    }
     
     public string GetCurrentClipName(){
         int layerIndex = 0;
