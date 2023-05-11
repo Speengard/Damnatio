@@ -37,7 +37,7 @@ public class EnemyHealthController : MonoBehaviour
         if (health <= 0)
         {
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
-            Destroy(gameObject, 3);
+            Destroy(gameObject);
         }
     }
 
