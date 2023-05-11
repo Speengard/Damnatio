@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 7953683686301474866}
   - component: {fileID: -5337454889481875387}
   - component: {fileID: 3228716214967613470}
+  - component: {fileID: 5400622148401295348}
   m_Layer: 6
   m_Name: player
   m_TagString: Player
@@ -259,8 +260,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackController: {fileID: 7953683686301474866}
+  healthController: {fileID: 5400622148401295348}
   movementController: {fileID: -5337454889481875387}
-  stats: {fileID: 0}
+  stats: {fileID: 11400000, guid: b573c273993824872a8dee0fb97a2af8, type: 2}
   runStats: {fileID: 0}
 --- !u!114 &7953683686301474866
 MonoBehaviour:
@@ -310,6 +312,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903086e125f5d481ea11823c70d38270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5400622148401295348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926458876681971923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae55ae5e160b4e089aba070dd2992c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  health: 0
 --- !u!1001 &1020781282313399211
 PrefabInstance:
   m_ObjectHideFlags: 0
