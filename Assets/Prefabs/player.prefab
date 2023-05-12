@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3229204677001204914, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4854176316840673322, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.016000021
