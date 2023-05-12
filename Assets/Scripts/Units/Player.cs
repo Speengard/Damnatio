@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public PlayerAttackController attackController;
-    public PlayerHealthController healthController;
+    //public PlayerHealthController healthController;
     public PlayerMovementController movementController;
     
     [SerializeField] private PlayerStatsScriptableObject stats;
