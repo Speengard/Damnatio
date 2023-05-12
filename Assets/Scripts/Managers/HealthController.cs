@@ -7,7 +7,7 @@ public abstract class HealthController : MonoBehaviour
 {
     [SerializeField] protected Slider healthSlider;
     public int health; // current health
-    public int maxHealth;
+    static public int maxHealth;
 
     protected abstract void CheckDeath();
     
@@ -17,12 +17,14 @@ public abstract class HealthController : MonoBehaviour
         maxHealth = value;
         health = maxHealth;
         healthSlider.maxValue = maxHealth;
-        UpdateHealthBar();
+        UpdateHealthBar(health);
     }
 
-    public void UpdateHealthBar() {
+    public void UpdateHealthBar(int value) {
         // updates how much the bar is filled
-        healthSlider.value = health;
+        
+        // healthSlider.value = health;
+        healthSlider.value = value;
         CheckDeath();
     }
 
@@ -39,13 +41,13 @@ public abstract class HealthController : MonoBehaviour
 
         // TODO: call function that updates health bar
 		Debug.Log("Health Bar = " + health);
-        UpdateHealthBar();
+        UpdateHealthBar(health);
 	}
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-        UpdateHealthBar();
+        UpdateHealthBar(health);
     }
 
 }

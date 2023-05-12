@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthController : HealthController
 {
-    [SerializeField] private Player player;
+    //[SerializeField] private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = player.runStats.health; // initialize player health based on the stats
-        health = maxHealth;
+        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        healthSlider = GameObject.Find("Canvas").GetComponentInChildren<Slider>();
+
+        maxHealth = GameManager.Instance.playerStats.health;
         SetupHealthBar(maxHealth);
         Debug.Log("Player initial health: " + maxHealth);
     }

@@ -21,8 +21,9 @@ public class LevelManager : MonoBehaviour
     public float roomWidth = 8;
     public float roomHeight = 6;
 
-    private Player player;
+    public Player player;
     private int sequence = 0;
+    public bool isPlayerInstantiated;
     
     private void SpawnEnemies()
     {
@@ -43,7 +44,9 @@ public class LevelManager : MonoBehaviour
     public void SetupScene(int level)
     {
         //Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
-        Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
+        if (!isPlayerInstantiated) {
+            Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
+        }
         //Instantiate(borders, Vector3.zero, Quaternion.identity);
         SpawnEnemies();
         print("level:" + level);

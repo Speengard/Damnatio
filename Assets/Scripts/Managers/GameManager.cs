@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerHealthController playerHealthController;
+	[SerializeField] private Player player;
+	[SerializeField] public PlayerStatsScriptableObject playerStats;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
@@ -28,10 +29,9 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 		enemies = new List<Enemy>();
 		boardScript = GetComponent<LevelManager>();
-		playerHealthController = GetComponent<PlayerHealthController>();
+		boardScript.isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 0) == 1;
 	}
 	
-
 	public void GameOver()
 	{
 		enabled = false;
