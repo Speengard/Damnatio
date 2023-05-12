@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
 		enemies.Clear();
 		boardScript.SetupScene(level);
 	}
-	
 
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{

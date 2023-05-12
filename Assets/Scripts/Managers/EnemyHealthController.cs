@@ -13,15 +13,16 @@ public class EnemyHealthController : MonoBehaviour
     
     [SerializeField] private Slider healthSlider;
     public int health; // current health
-    public int maxHealth = 100;// TODO: this needs to be different for each kind of enemy
+    public int maxHealth;
     
 
     // this function sets the health bar initially full
-    public void SetupHealthBar()
+    public void SetupHealthBar(int value)
     {
+        maxHealth = value;
         health = maxHealth;
         healthSlider.maxValue = maxHealth;
-        healthSlider.value = health;
+        UpdateHealthBar();
     }
 
     public void UpdateHealthBar() {
