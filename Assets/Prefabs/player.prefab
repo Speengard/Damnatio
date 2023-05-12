@@ -238,9 +238,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -299,7 +299,8 @@ MonoBehaviour:
   JoystickSize: {x: 0, y: 0}
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
-  speed: {x: 1000, y: 1000}
+  speed: {x: 1500, y: 1500}
+  playerAnimator: {fileID: 0}
 --- !u!114 &3228716214967613470
 MonoBehaviour:
   m_ObjectHideFlags: 0

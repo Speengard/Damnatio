@@ -17,12 +17,16 @@ public class Enemy : MonoBehaviour
     public int damage; // damage that the enemy does on the player
     public int spawnId;
 
-    private void Start()
+    public void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        healthController.SetupHealthBar(enemyStats.health);
-        damage = enemyStats.damage;
+
+        //problematic lines, put default value just to continue my tests
+        //healthController.SetupHealthBar(enemyStats.health);
+        //damage = enemyStats.damage;
+        healthController.SetupHealthBar(100);
+        damage = 10;
     }
 }
