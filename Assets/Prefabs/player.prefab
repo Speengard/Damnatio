@@ -198,7 +198,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 37ce3a4cb00e64d0d8a742757bc1cbe3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -337,9 +337,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 332894244270498930, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_TagString
+      value: MorningStarLink
+      objectReference: {fileID: 0}
     - target: {fileID: 443754038224724265, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 443754038224724265, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_TagString
+      value: MorningStarLink
       objectReference: {fileID: 0}
     - target: {fileID: 770767985872136639, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Layer
@@ -433,13 +441,25 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1602165775258973062, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_TagString
+      value: MorningStarLink
+      objectReference: {fileID: 0}
     - target: {fileID: 1627727551566216394, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1627727551566216394, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_TagString
+      value: MorningStarLink
+      objectReference: {fileID: 0}
     - target: {fileID: 2717209334606277928, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2717209334606277928, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_TagString
+      value: MorningStarLink
       objectReference: {fileID: 0}
     - target: {fileID: 3229204677001204914, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_GravityScale
@@ -460,6 +480,10 @@ PrefabInstance:
     - target: {fileID: 6512631442932465159, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6512631442932465159, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_TagString
+      value: MorningStarLink
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3803125744745527016, guid: 1718ce025b5194150878c326cf17a747, type: 3}
