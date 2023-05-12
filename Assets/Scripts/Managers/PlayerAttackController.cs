@@ -84,15 +84,13 @@ public class PlayerAttackController : MonoBehaviour
         maceScript.StopAnimation();
     }
     //this method is called when an enemy moves further away enough in order to rotate towards it or when the first enemy enters the range
-    private void RotatePlayer()
+    private void RotatePlayerTowardsEnemy()
     {
-        if (!hasMace) return;
-        maceScript.PauseAnimation();
-
+        if (hasMace) maceScript.PauseAnimation();
+        
         Quaternion toRotate = Quaternion.LookRotation(Vector3.forward, direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate , 2000 * Time.deltaTime);
-
-        maceScript.ResumeAnimation();
+        GetComponent<PlayerMovementController>().RotateTowards(toRotate);
+        if(hasMace) maceScript.ResumeAnimation();
     }
 
     //this method is called when the player has an enemy in range and another enemy enters the range but is closer to the player
@@ -103,7 +101,7 @@ public class PlayerAttackController : MonoBehaviour
         hasEnemy = true;
 
         maceScript.PauseAnimation();
-        RotatePlayer();
+        RotatePlayerTowardsEnemy();
         maceScript.ResumeAnimation();
     }
 
@@ -113,13 +111,14 @@ public class PlayerAttackController : MonoBehaviour
     {
        if(hasEnemy){   
 
-        if(target != null && hasMace){
+        if(target != null){
+
                 direction = (target.transform.position - transform.position).normalized;
                 distance = Vector2.Distance(target.transform.position, transform.position);
 
-                if (distance > 1f)
+                if (distance > 1.2f)
                 {
-                    RotatePlayer();
+                    RotatePlayerTowardsEnemy();
                 }
         }
 

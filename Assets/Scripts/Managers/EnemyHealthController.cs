@@ -19,6 +19,7 @@ public class EnemyHealthController : MonoBehaviour
     // this function sets the health bar initially full
     public void SetupHealthBar(int value)
     {
+        
         maxHealth = value;
         health = maxHealth;
         healthSlider.maxValue = maxHealth;

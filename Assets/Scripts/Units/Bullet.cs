@@ -6,23 +6,46 @@ using UnityEngine.UIElements;
 
 public class Bullet : MonoBehaviour
 {
-    public Vector2 direction;
+    [SerializeField] private float speed = 0.5f;
+    public Vector2 direction = new Vector2(0, 0);
+    public StaticEnemy unit;
 
-    private void Start()
+    [SerializeField] private GameObject bulletSprite;
+
+    void Start()
     {
-        StartCoroutine(SelfDestruct());
+        StartCoroutine(SelfDistruct());
+        direction = (unit.target.position - transform.position).normalized;
+
+
     }
-    
-    IEnumerator SelfDestruct()
+    void Update()
     {
-        yield return new WaitForSeconds(1.5f);
+
+        Vector2 scaledMovement = speed * Time.deltaTime * new Vector2(direction.x, direction.y);
+        transform.Translate(scaledMovement);
+        //rotate the bullet towards the player
+        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (unit.target.transform.position - transform.position).normalized);
+
+        bulletSprite.transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 3600 * Time.deltaTime);
+    }
+
+    private IEnumerator SelfDistruct()
+    {
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
     }
-    private void Update()
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (direction == null) return;
-        
-        transform.Translate(direction);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<PlayerHealthController>().AddHealth(-unit.damage);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-    
 }
