@@ -30,11 +30,11 @@ AnimationClip:
     - time: 1.3333334
       value: {fileID: 21300000, guid: 0697998468f344343b60ffbb21250c81, type: 3}
     - time: 1.6666666
-      value: {fileID: 21300000, guid: 0f8d249acfc574d739069e8304f996eb, type: 3}
+      value: {fileID: 21300000, guid: 0697998468f344343b60ffbb21250c81, type: 3}
     - time: 2
-      value: {fileID: 21300000, guid: 25ffe8c6822d54208b17e3ad27304729, type: 3}
+      value: {fileID: 21300000, guid: 0f8d249acfc574d739069e8304f996eb, type: 3}
     - time: 2.3333333
-      value: {fileID: 21300000, guid: 949af43ee423c4ece9ea86cbaeaa543c, type: 3}
+      value: {fileID: 21300000, guid: 3f9f87c9b225c44fdbb5e5e0ad730cc2, type: 3}
     - time: 2.6666667
       value: {fileID: 21300000, guid: a3018a90eef0c42908ef65884d16d78f, type: 3}
     - time: 3
@@ -63,9 +63,9 @@ AnimationClip:
     - {fileID: 21300000, guid: 949af43ee423c4ece9ea86cbaeaa543c, type: 3}
     - {fileID: 21300000, guid: 0f8d249acfc574d739069e8304f996eb, type: 3}
     - {fileID: 21300000, guid: 0697998468f344343b60ffbb21250c81, type: 3}
+    - {fileID: 21300000, guid: 0697998468f344343b60ffbb21250c81, type: 3}
     - {fileID: 21300000, guid: 0f8d249acfc574d739069e8304f996eb, type: 3}
-    - {fileID: 21300000, guid: 25ffe8c6822d54208b17e3ad27304729, type: 3}
-    - {fileID: 21300000, guid: 949af43ee423c4ece9ea86cbaeaa543c, type: 3}
+    - {fileID: 21300000, guid: 3f9f87c9b225c44fdbb5e5e0ad730cc2, type: 3}
     - {fileID: 21300000, guid: a3018a90eef0c42908ef65884d16d78f, type: 3}
     - {fileID: 21300000, guid: 3f9f87c9b225c44fdbb5e5e0ad730cc2, type: 3}
   m_AnimationClipSettings:
@@ -78,7 +78,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -92,4 +92,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.3333334
+    functionName: ShootBullet
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3
+    functionName: CloseAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

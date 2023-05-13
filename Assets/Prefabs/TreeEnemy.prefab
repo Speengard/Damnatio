@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8445436549512847998}
   - component: {fileID: 1646485282792232954}
   - component: {fileID: 2392000702368632478}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TreeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6919929725964525072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,9 +202,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6561690016184144791}
     m_Modifications:
+    - target: {fileID: 297957710620246577, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2241513443803271196, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2992062065530395034, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485431024719063932, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Pivot.x
@@ -236,11 +248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_LocalPosition.x
@@ -293,6 +305,18 @@ PrefabInstance:
     - target: {fileID: 5117547770006742264, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Name
       value: SliderCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117547770006742264, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5766481083932497016, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414593216222849920, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}

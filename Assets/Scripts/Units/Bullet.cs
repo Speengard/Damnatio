@@ -16,23 +16,21 @@ public class Bullet : MonoBehaviour
     {
         StartCoroutine(SelfDistruct());
         direction = (unit.target.position - transform.position).normalized;
-
-
-    }
-    void Update()
-    {
-
-        Vector2 scaledMovement = speed * Time.deltaTime * new Vector2(direction.x, direction.y);
-        transform.Translate(scaledMovement);
         //rotate the bullet towards the player
         Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (unit.target.transform.position - transform.position).normalized);
 
-        bulletSprite.transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 3600 * Time.deltaTime);
+        bulletSprite.transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 5000);
+        
+    }
+    void Update()
+    {
+        Vector2 scaledMovement = speed * Time.deltaTime * new Vector2(direction.x, direction.y);
+        transform.Translate(scaledMovement);
     }
 
     private IEnumerator SelfDistruct()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(9f);
         Destroy(gameObject);
     }
 
@@ -40,6 +38,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+          print("bullet hit player"); 
             other.gameObject.GetComponent<PlayerHealthController>().AddHealth(-unit.damage);
             Destroy(gameObject);
         }

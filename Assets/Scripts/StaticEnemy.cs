@@ -6,7 +6,7 @@ public class StaticEnemy : Enemy
 {
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Animator animator;
-    [Range(0, 3f)] float shootDelay = 4f;
+    [Range(0, 5f)] float shootDelay = 5f;
     [Range(0, 7f)] float firstDelay;
 
     [SerializeField] private Transform spawnPoint;
@@ -14,30 +14,30 @@ public class StaticEnemy : Enemy
     new void Start()
     {
         base.Start();
-        target = GameObject.FindObjectOfType<Player>().transform;
         firstDelay = Random.Range(0, 7f);
         StartCoroutine(WaitFirstDelay());
         StartCoroutine(ShootCoroutine());
     }
 
-    private void ShootToPlayer(){
+    private void StartAnimation(){
         animator.SetTrigger("Shoot");
-        StartCoroutine(WaitForAnimation());
+    
+    }
 
-        //rotate the bullet towards the player
-        Quaternion rotation = Quaternion.LookRotation(Vector3.forward, (target.transform.position - transform.position).normalized);
+    private void CloseAnimation(){
+        animator.SetTrigger("Shoot");
+    }
+
+    private void ShootBullet(){
         //instantiate bullet
-        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position,Quaternion.identity);
-        
-        bullet.GetComponent<Bullet>().unit = this;
-        
-        animator.SetTrigger("Shoot");
+        GameObject bullet = Instantiate(bulletPrefab, spawnPoint.position, Quaternion.identity);
 
+        bullet.GetComponent<Bullet>().unit = this;
     }
 
     IEnumerator ShootCoroutine(){
         while(true){
-            ShootToPlayer();
+            StartAnimation();
             yield return new WaitForSeconds(shootDelay);
         }
     }
@@ -47,7 +47,7 @@ public class StaticEnemy : Enemy
     }
 
     IEnumerator WaitForAnimation(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.2f);
     }
 
 }
