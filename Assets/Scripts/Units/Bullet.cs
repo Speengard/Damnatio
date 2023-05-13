@@ -42,9 +42,5 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<PlayerHealthController>().AddHealth(-unit.damage);
             Destroy(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }
