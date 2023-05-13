@@ -7,7 +7,7 @@ public abstract class HealthController : MonoBehaviour
 {
     [SerializeField] protected Slider healthSlider;
     public int health; // current health
-    static public int maxHealth;
+    public int maxHealth;
 
     protected abstract void CheckDeath();
     
@@ -17,13 +17,16 @@ public abstract class HealthController : MonoBehaviour
         maxHealth = value;
         health = maxHealth;
         healthSlider.maxValue = maxHealth;
+
+        if (gameObject.CompareTag("Player")) {
+            Debug.Log("Setting up health bar with value: " + value);
+        }
+
         UpdateHealthBar(health);
     }
 
     public void UpdateHealthBar(int value) {
         // updates how much the bar is filled
-        
-        // healthSlider.value = health;
         healthSlider.value = value;
         CheckDeath();
     }
@@ -31,22 +34,19 @@ public abstract class HealthController : MonoBehaviour
     public void AddHealth(int value) {
 		health += value;
 
-		// check if the player is dead
-		if (health <= 0) {
-			Debug.Log("Game Over!"); // TODO: Game over scene
-			health = 0;
-		} else if (health > maxHealth) {
-            health = maxHealth;
-        }
+		if (health > maxHealth) health = maxHealth;
 
-        // TODO: call function that updates health bar
 		Debug.Log("Health Bar = " + health);
+        PlayerPrefs.SetInt("PlayerHealth", health);
+
         UpdateHealthBar(health);
 	}
 
     public void TakeDamage(int damage)
     {
         health -= damage;
+        if (health <= 0)    health = 0;
+        PlayerPrefs.SetInt("PlayerHealth", health);
         UpdateHealthBar(health);
     }
 

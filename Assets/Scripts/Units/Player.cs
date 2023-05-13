@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] public PlayerStatsScriptableObject stats;
     [SerializeField] public PlayerStatsScriptableObject runStats;
 
+    void Awake() {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start() {
         runStats = ScriptableObject.CreateInstance<PlayerStatsScriptableObject>();
     }

@@ -6,16 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthController : HealthController
 {
-    //[SerializeField] private Player player;
-
     // Start is called before the first frame update
     void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-
         healthSlider = GameObject.Find("Canvas").GetComponentInChildren<Slider>();
 
         maxHealth = GameManager.Instance.playerStats.health;
+        health = PlayerPrefs.GetInt("PlayerHealth", maxHealth); // Get the player's health value from PlayerPrefs
+    
         SetupHealthBar(maxHealth);
         Debug.Log("Player initial health: " + maxHealth);
     }

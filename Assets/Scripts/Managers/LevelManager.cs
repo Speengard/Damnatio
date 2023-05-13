@@ -20,11 +20,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private FloatingJoystick joystick;
     public float roomWidth = 8;
     public float roomHeight = 6;
-
-    public Player player;
     private int sequence = 0;
     public bool isPlayerInstantiated;
-    
+
     private void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn; i++)
@@ -43,13 +41,17 @@ public class LevelManager : MonoBehaviour
 
     public void SetupScene(int level)
     {
-        //Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
-        if (!isPlayerInstantiated) {
+        // the player is instantiated only once
+        if (!GameManager.Instance.isPlayerInstantiated) {
             Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
+            PlayerPrefs.SetInt("isPlayerInstantiated", 1);
+        } else {
+            // reset player's position
+            GameManager.Instance.player.transform.position = Vector3.zero;
         }
-        //Instantiate(borders, Vector3.zero, Quaternion.identity);
+
         SpawnEnemies();
         print("level:" + level);
     }
-    
-    }
+
+}
