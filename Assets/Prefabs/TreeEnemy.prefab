@@ -127,7 +127,7 @@ MonoBehaviour:
     m_Bits: 64
   target: {fileID: 0}
   healthController: {fileID: 1646485282792232954}
-  enemyStats: {fileID: 0}
+  enemyStats: {fileID: 11400000, guid: 6cd09ae837d1d471ba351aead4dadf78, type: 2}
   damage: 20
   spawnId: 0
   bulletPrefab: {fileID: 1693975906328065251, guid: 6f5564bb7183541889def42b0482d721, type: 3}
