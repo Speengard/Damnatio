@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerHealthController playerHealthController;
+	[SerializeField] public Player player;
+	[SerializeField] public PlayerStatsScriptableObject playerStats;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 	private int level = 0;
 	public List<Enemy> enemies;
 	private bool enemiesMoving;
+	public bool isPlayerInstantiated = false;
 
 	void Awake()
 	{
@@ -28,10 +30,12 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 		enemies = new List<Enemy>();
 		boardScript = GetComponent<LevelManager>();
-		playerHealthController = GetComponent<PlayerHealthController>();
+	}
+
+	private void Start() {
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
 	
-
 	public void GameOver()
 	{
 		enabled = false;
@@ -56,6 +60,9 @@ public class GameManager : MonoBehaviour
 	{
 		enemies.Clear();
 		boardScript.SetupScene(level);
+
+		// mark the player as instantiated
+		isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
 	}
 
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)

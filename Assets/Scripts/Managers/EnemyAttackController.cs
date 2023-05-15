@@ -5,12 +5,12 @@ using UnityEngine;
 public class EnemyAttackController : MonoBehaviour
 {
     [SerializeField] private MovingEnemy movingEnemy;
-    [SerializeField] private PlayerHealthController playerHealthController;
+    [SerializeField] private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class EnemyAttackController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            playerHealthController.AddHealth(-movingEnemy.damage);
+            player.healthController.TakeDamage(movingEnemy.damage);
             Debug.Log("eheheh toccato il player");
         }
     }
