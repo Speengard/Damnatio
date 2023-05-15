@@ -23,10 +23,7 @@ public class Enemy : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        //problematic lines, put default value just to continue my tests
-        //healthController.SetupHealthBar(enemyStats.health);
-        //damage = enemyStats.damage;
-        healthController.SetupHealthBar(100);
-        damage = 10;
+        healthController.SetupHealthBar(enemyStats.health);
+        damage = enemyStats.damage;
     }
 }
