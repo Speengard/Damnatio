@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
-		level += 1;
 		InitGame();
+		level += 1;
 	}
 }

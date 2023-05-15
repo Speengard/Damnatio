@@ -6,7 +6,6 @@ public class StayInBounds : MonoBehaviour
 {
     private LevelManager levelManager;
 
-
     // Start is called before the first frame update
     void Start()
     {

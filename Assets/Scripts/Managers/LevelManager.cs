@@ -50,7 +50,8 @@ public class LevelManager : MonoBehaviour
             GameManager.Instance.player.transform.position = Vector3.zero;
         }
 
-        SpawnEnemies();
+        if (level > 0)  SpawnEnemies(); // spawn enemies only if you selected "start game"
+
         print("level:" + level);
     }
 
