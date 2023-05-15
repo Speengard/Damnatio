@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy3Stats
   m_EditorClassIdentifier: 
   enemyName: Type 3 Enemy
-  health: 3
+  health: 10
   damage: 6
   speed: 0
   dropChance: 20
