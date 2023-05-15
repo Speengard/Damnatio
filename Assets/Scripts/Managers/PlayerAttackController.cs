@@ -89,7 +89,11 @@ public class PlayerAttackController : MonoBehaviour
         if (hasMace) maceScript.PauseAnimation();
         
         Quaternion toRotate = Quaternion.LookRotation(Vector3.forward, direction);
-        GetComponent<PlayerMovementController>().RotateTowards(toRotate);
+
+        //this line below is used to fix the animator on one of the coordinates, the same way we used to fix the enemy's animation
+        //GetComponent<PlayerMovementController>().RotateTowards(toRotate);
+
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, 700 * Time.deltaTime);
         if(hasMace) maceScript.ResumeAnimation();
     }
 
