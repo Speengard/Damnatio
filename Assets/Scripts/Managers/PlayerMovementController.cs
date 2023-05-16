@@ -153,9 +153,9 @@ public class PlayerMovementController : MonoBehaviour
     {
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
         // Player.transform.Translate(scaledMovement);
-        // Player.velocity = scaledMovement;
+        Player.velocity = scaledMovement;
         
-        Player.AddForce(scaledMovement);
+        // Player.AddForce(scaledMovement);
 
         // Player.AddTorque(MovementAmount.x);
     }

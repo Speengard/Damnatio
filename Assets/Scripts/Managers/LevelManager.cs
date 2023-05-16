@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject borders;
     [SerializeField] private FloatingJoystick joystick;
+    [SerializeField] private RandomCardGenerator randomCardGenerator;
     public float roomWidth = 8;
     public float roomHeight = 6;
     private int sequence = 0;
@@ -50,9 +51,21 @@ public class LevelManager : MonoBehaviour
             GameManager.Instance.player.transform.position = Vector3.zero;
         }
 
-        if (level > 0)  SpawnEnemies(); // spawn enemies only if you selected "start game"
+        // level = 0 is considered the "Start scene" so we need to setup the scene only if level > 0
+        if (level > 0) {
+            SetupLevel(level);
+        }
+    }
+
+    private void SetupLevel(int level)
+    {
+        SpawnEnemies(); // spawn enemies only if you selected "start game"
 
         print("level:" + level);
+
+        if ((level % 2) == 0) {
+            randomCardGenerator.GenerateCards();
+        }
     }
 
 }
