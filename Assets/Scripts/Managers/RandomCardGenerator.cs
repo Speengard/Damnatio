@@ -6,7 +6,7 @@ using UnityEditor.UI;
 public class RandomCardGenerator : MonoBehaviour
 {
     [SerializeField] List<string> cardNames;
-    [SerializeField] Canvas cardMenu;
+    [SerializeField] GameObject cardMenu;
 
     void Start()
     {
@@ -16,6 +16,7 @@ public class RandomCardGenerator : MonoBehaviour
     }
 
     public void GenerateCards() {
+        Time.timeScale = 0;
         cardMenu.gameObject.SetActive(true);
         
         for(int i = 0; i < 2; i++) {
