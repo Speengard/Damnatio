@@ -13,6 +13,7 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] public GameObject target = null;
     [SerializeField] public float distance = 10f;
     [SerializeField] public Vector3 direction;
+    public bool bIsOnTheMove = false;
 
     //these booleans are needed for detecting if the player is in the attack range
     [SerializeField] public bool hasEnemy = false;
@@ -91,7 +92,8 @@ public class PlayerAttackController : MonoBehaviour
         //GetComponent<PlayerMovementController>().RotateTowards(toRotate);
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, 700 * Time.deltaTime);
 
-        if(target != null) rangedShoot.EnableLaser(target.GetComponent<Transform>());
+           
+        if(target != null && bIsOnTheMove) rangedShoot.EnableLaser(target.GetComponent<Transform>());
         
     }
 
@@ -110,7 +112,9 @@ public class PlayerAttackController : MonoBehaviour
     
     private void Update()
     {
-       if(hasEnemy){   
+
+        StartCoroutine(CheckMoving());
+       if(hasEnemy && target != null){   
 
                 direction = (target.transform.position - transform.position).normalized;
                 distance = Vector2.Distance(target.transform.position, transform.position);
@@ -118,6 +122,16 @@ public class PlayerAttackController : MonoBehaviour
 
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
+    }
+
+    private IEnumerator CheckMoving()
+    {
+        Vector3 startPos = transform.position;
+        yield return new WaitForSeconds(0.5f);
+        Vector3 finalPos = transform.position;
+        if (startPos.x != finalPos.x || startPos.y != finalPos.y
+            || startPos.z != finalPos.z)
+            bIsOnTheMove = true;
     }
 
 }

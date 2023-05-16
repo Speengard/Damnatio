@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Rigidbody2D rb2d;
     public Transform target;
-    [SerializeField] public EnemyHealthController healthController;
+    [SerializeField] private EnemyHealthController healthController;
     [SerializeField] private EnemyStatsScriptableObject enemyStats;
 
     public int damage; // damage that the enemy does on the player
@@ -26,4 +26,10 @@ public class Enemy : MonoBehaviour
         healthController.SetupHealthBar(enemyStats.health);
         damage = enemyStats.damage;
     }
+
+    public void TakeDamage(int damage)
+    {
+        healthController.TakeDamage(damage);
+    }
+
 }

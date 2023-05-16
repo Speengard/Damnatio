@@ -13,6 +13,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private Transform target;
     private Vector2 direction;
     private bool isShooting = false;
+    private bool hasHit = false;
 
     private void Start() {
         FillList();
@@ -24,6 +25,8 @@ public class Laser : MonoBehaviour
     }
 
     public void EnableLaser(Transform target){
+        if (target == null) return;
+
         this.target = target;
         StartCoroutine(EnableAfterDelay());
     }
@@ -32,6 +35,7 @@ public class Laser : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         
         lineRenderer.enabled = true;
+
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Play();
@@ -49,31 +53,40 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser(){
 
+        if(target == null) DisableLaser();
+
+        direction = (Vector2) target.position - (Vector2)firePoint.position;
+
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2) firePoint.position;
-        lineRenderer.SetPosition(1, target.position);
+        lineRenderer.SetPosition(1, firePoint.position * direction.normalized * 3f);
 
         //RotateLaser();
 
-        direction = (Vector2) lineRenderer.GetPosition(1) - (Vector2) firePoint.position;
-    /* 
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
 
         if(hit){
+            if(hit.collider.tag == "Enemy" && !hasHit){
+                hasHit = true;
+                hit.collider.GetComponent<Enemy>().TakeDamage(1);
+            }
+
             lineRenderer.SetPosition(1, hit.point);
         }
-         */
 
         endVFX.transform.position = lineRenderer.GetPosition(1);
     }
 
     void DisableLaser(){
         lineRenderer.enabled = false;
+        hasHit = false;
+        isShooting = false;
 
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
         }
+        StartCoroutine(WaitForDelayThenShoot());
     }
 
     void RotateLaser(){
@@ -98,6 +111,12 @@ public class Laser : MonoBehaviour
             {
                 particles.Add(ps);
             }
+        }   
     }
-}
+
+    IEnumerator WaitForDelayThenShoot()
+    {
+        yield return new WaitForSeconds(3f);
+        EnableLaser(target);
+    }
 }

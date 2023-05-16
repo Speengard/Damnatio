@@ -17,11 +17,6 @@ public abstract class HealthController : MonoBehaviour
         maxHealth = value;
         health = maxHealth;
         healthSlider.maxValue = maxHealth;
-
-        if (gameObject.CompareTag("Player")) {
-            Debug.Log("Setting up health bar with value: " + value);
-        }
-
         UpdateHealthBar(health);
     }
 
@@ -35,19 +30,27 @@ public abstract class HealthController : MonoBehaviour
 		health += value;
 
 		if (health > maxHealth) health = maxHealth;
-
-		Debug.Log("Health Bar = " + health);
         PlayerPrefs.SetInt("PlayerHealth", health);
 
         UpdateHealthBar(health);
 	}
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0)    health = 0;
-        PlayerPrefs.SetInt("PlayerHealth", health);
-        UpdateHealthBar(health);
+        if (health <= 0){
+            
+            health = 0;
+            UpdateHealthBar(health);
+
+        }else{
+
+            //MARK: - Warning, this line below gets executed on every call of this function from a class that doesn't provide its own implementation of this function, so be careful about implementing this in a class that inherits from this class and doesn't want this line to be executed (ex: EnemyHealthController.cs)
+
+            PlayerPrefs.SetInt("PlayerHealth", health);
+            UpdateHealthBar(health);
+            
+        }
     }
 
 }

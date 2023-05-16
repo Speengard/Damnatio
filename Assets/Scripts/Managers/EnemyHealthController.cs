@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyHealthController : HealthController
 {
-    //this script is used to manage the health of the enemy; since the health is lowered when contact happens with weapon,
-    //some functions of collisions will be handled here.
+    //this script is used to manage the health of the enemy;
     //this script also updates the HUD when damage is taken.
 
     // this function destroys the enemy when the health goes below 0
@@ -23,6 +22,13 @@ public class EnemyHealthController : HealthController
     private void OnCollisionExit(Collision other)
     {
         CheckDeath();
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) health = 0;
+        UpdateHealthBar(health);      
     }
 
 }
