@@ -30,8 +30,7 @@ public class TargetClosestEnemy : MonoBehaviour
         
         if(enemiesID.Count > 1){
             
-        if(Vector2.Distance(player.transform.position, other.transform.position) < player.distance && other.GetComponent<Enemy>().spawnId != player.target.GetComponent
-            <Enemy>().spawnId){
+        if(Vector2.Distance(player.transform.position, other.transform.position) < player.distance){
             player.ChangeTarget(other.gameObject);
         }
         }

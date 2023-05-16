@@ -246,7 +246,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &3985354816990493185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
   JoystickSize: {x: 0, y: 0}
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
-  speed: {x: 1500, y: 1500}
+  speedMovement: 1200
   playerAnimator: {fileID: 0}
 --- !u!114 &3228716214967613470
 MonoBehaviour:
