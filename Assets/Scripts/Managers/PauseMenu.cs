@@ -30,7 +30,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void GetHomeScene() {
+    public void GetStartScene() {
         SceneManager.LoadScene(0);
+        ResumeGame();
     }
 }

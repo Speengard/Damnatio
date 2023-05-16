@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -40,7 +41,7 @@ public class LevelManager : MonoBehaviour
         return randomPositionOnScreen;
     }
 
-    public void SetupScene(int level)
+    public void InstantiatePlayer()
     {
         // the player is instantiated only once
         if (!GameManager.Instance.isPlayerInstantiated) {
@@ -50,14 +51,9 @@ public class LevelManager : MonoBehaviour
             // reset player's position
             GameManager.Instance.player.transform.position = Vector3.zero;
         }
-
-        // level = 0 is considered the "Start scene" so we need to setup the scene only if level > 0
-        if (level > 0) {
-            SetupLevel(level);
-        }
     }
 
-    private void SetupLevel(int level)
+    public void SetupScene(int level)
     {
         SpawnEnemies(); // spawn enemies only if you selected "start game"
 

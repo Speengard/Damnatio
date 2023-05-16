@@ -16,27 +16,14 @@ public class StartSceneManager : MonoBehaviour
         // disable scripts that handle enemies and define the room size
         GameManager.Instance.GetComponent<LevelManager>().enabled = false;
         player = GameManager.Instance.player.GetComponent<Player>();
-        player.GetComponentInParent<StayInBounds>().enabled = false;
 
         // assign the health bar to the player
         player.healthController.healthSlider = healthSlider;
     }
 
-    void LateUpdate()
-    {
-        float xPos = player.gameObject.transform.position.x;
-        float yPos = player.gameObject.transform.position.y;
-
-        xPos = Mathf.Clamp(xPos, -roomWidth, roomWidth);
-        yPos = Mathf.Clamp(yPos, -roomHeight, roomHeight);
-
-        player.gameObject.transform.position = new Vector2(xPos, yPos);
-    }
-
     // when the player select "Start game" enable the script and the health bar
     private void OnDestroy() {
         GameManager.Instance.GetComponent<LevelManager>().enabled = true;
-        player.GetComponentInParent<StayInBounds>().enabled = true;
 
         SetupPlayerHealthBar();
     }
