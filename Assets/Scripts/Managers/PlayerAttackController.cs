@@ -18,7 +18,7 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] public bool hasEnemy = false;
     public static PlayerAttackController Instance = null;
     //weapon prefabs
-    [SerializeField] private RangedShoot rangedShoot;
+    [SerializeField] private Laser rangedShoot;
     //weapon gameobjects
     [SerializeField] private GameObject rangedWeapon;
     [SerializeField] private GameObject morningStar;
@@ -81,21 +81,18 @@ public class PlayerAttackController : MonoBehaviour
         if (!hasMace) return;
         hasEnemy = false;
         target = null;
-        rangedShoot.StopShooting();
-        
     }
     //this method is called when an enemy moves further away enough in order to rotate towards it or when the first enemy enters the range
     private void RotatePlayerTowardsEnemy()
     {
         Quaternion toRotate = Quaternion.LookRotation(Vector3.forward, direction);
+        
         //this line below is used to fix the animator on one of the coordinates, the same way we used to fix the enemy's animation
         //GetComponent<PlayerMovementController>().RotateTowards(toRotate);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, 700 * Time.deltaTime);
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, 700 * Time.deltaTime);
 
-    if(target != null){
-            rangedShoot.Shoot(target);
-    }
-
+        if(target != null) rangedShoot.EnableLaser(target.GetComponent<Transform>());
+        
     }
 
     //this method is called when the player has an enemy in range and another enemy enters the range but is closer to the player
@@ -117,11 +114,6 @@ public class PlayerAttackController : MonoBehaviour
 
                 direction = (target.transform.position - transform.position).normalized;
                 distance = Vector2.Distance(target.transform.position, transform.position);
-
-                if (distance > 1.2f)
-                {
-                    RotatePlayerTowardsEnemy();
-                }
        }    
 
         //draw the ray in the editor
