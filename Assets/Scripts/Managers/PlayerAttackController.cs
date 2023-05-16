@@ -18,9 +18,9 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] public bool hasEnemy = false;
     public static PlayerAttackController Instance = null;
     //weapon prefabs
-    [SerializeField] private MaceTest maceScript;
+    [SerializeField] private RangedShoot rangedShoot;
     //weapon gameobjects
-    [SerializeField] private GameObject mace;
+    [SerializeField] private GameObject rangedWeapon;
     [SerializeField] private GameObject morningStar;
     [SerializeField]private bool hasMace;
 
@@ -35,7 +35,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
-            mace.gameObject.SetActive(true);
+            rangedWeapon.gameObject.SetActive(true);
         }
         else
         {
@@ -51,8 +51,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasMace)
         {
-            maceScript.StopAnimation();
-            mace.SetActive(false);
+            
+            rangedWeapon.SetActive(false);
             
         }
         else
@@ -72,7 +72,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (!hasMace) return;
         ChangeTarget(firstEnemy);
-        maceScript.StartAnimation();
+        
     }
 
     //this method is called when the last enemy exits the range
@@ -81,32 +81,32 @@ public class PlayerAttackController : MonoBehaviour
         if (!hasMace) return;
         hasEnemy = false;
         target = null;
-        maceScript.StopAnimation();
+        rangedShoot.StopShooting();
+        
     }
     //this method is called when an enemy moves further away enough in order to rotate towards it or when the first enemy enters the range
     private void RotatePlayerTowardsEnemy()
     {
-        if (hasMace) maceScript.PauseAnimation();
-        
         Quaternion toRotate = Quaternion.LookRotation(Vector3.forward, direction);
-
         //this line below is used to fix the animator on one of the coordinates, the same way we used to fix the enemy's animation
         //GetComponent<PlayerMovementController>().RotateTowards(toRotate);
-
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, 700 * Time.deltaTime);
-        if(hasMace) maceScript.ResumeAnimation();
+
+    if(target != null){
+            rangedShoot.Shoot(target);
+    }
+
     }
 
     //this method is called when the player has an enemy in range and another enemy enters the range but is closer to the player
     public void ChangeTarget(GameObject newTarget)
     {
         if (!hasMace) return;
+
         target = newTarget;
         hasEnemy = true;
 
-        maceScript.PauseAnimation();
         RotatePlayerTowardsEnemy();
-        maceScript.ResumeAnimation();
     }
 
     #endregion
@@ -115,8 +115,6 @@ public class PlayerAttackController : MonoBehaviour
     {
        if(hasEnemy){   
 
-        if(target != null){
-
                 direction = (target.transform.position - transform.position).normalized;
                 distance = Vector2.Distance(target.transform.position, transform.position);
 
@@ -124,8 +122,6 @@ public class PlayerAttackController : MonoBehaviour
                 {
                     RotatePlayerTowardsEnemy();
                 }
-        }
-
        }    
 
         //draw the ray in the editor
