@@ -21,7 +21,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
-    [SerializeField] private Vector2 speed = new Vector2(1500, 1500);
+    [SerializeField] private float speedMovement = 1200f;
     [SerializeField] private Animator playerAnimator;
 
 
@@ -60,7 +60,7 @@ public class PlayerMovementController : MonoBehaviour
         if (MovedFinger == MovementFinger)
         {
             Vector2 knobPosition;
-            float maxMovement = JoystickSize.x / 2f; //max movement for the knob (since it's a square)
+            float maxMovement = JoystickSize.x / 4f; //max movement for the knob (since it's a square)
             ETouch.Touch currentTouch = MovedFinger.currentTouch;
 
             if (Vector2.Distance(
@@ -151,9 +151,13 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        Vector2 scaledMovement = speed * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
-        //Player.transform.Translate(scaledMovement);
-        Player.velocity = scaledMovement;
+        Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
+        // Player.transform.Translate(scaledMovement);
+        // Player.velocity = scaledMovement;
+        
+        Player.AddForce(scaledMovement);
+
+        // Player.AddTorque(MovementAmount.x);
     }
 
     public void RotateTowards(Quaternion enemyRotation)
