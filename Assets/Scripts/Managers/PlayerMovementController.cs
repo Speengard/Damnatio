@@ -51,6 +51,7 @@ public class PlayerMovementController : MonoBehaviour
         ETouch.Touch.onFingerDown -= HandleFingerDown;
         ETouch.Touch.onFingerUp -= HandleFingerUp;
         ETouch.Touch.onFingerMove -= HandleFingerMove;
+
         EnhancedTouchSupport.Disable();
     }
 
@@ -72,10 +73,7 @@ public class PlayerMovementController : MonoBehaviour
                 //equal to the normalization of the difference between the touch of the user and the current position
                 //of the joystick times the max movement
 
-                knobPosition = (
-                                   currentTouch.screenPosition - Joystick.RectTransform.anchoredPosition
-                               ).normalized
-                               * maxMovement;
+                knobPosition = (currentTouch.screenPosition - Joystick.RectTransform.anchoredPosition).normalized * maxMovement;
             }
             else
             {
