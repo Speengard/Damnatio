@@ -17,13 +17,23 @@ public class CardManager : MonoBehaviour
 
         player = GameManager.Instance.player; // get player
 
+        // list that helps keeping track of suits that have been already randomly selected
+        List<CardSuits> availableSuits = new List<CardSuits>((CardSuits[])Enum.GetValues(typeof(CardSuits)));
+
         // pause game and make the cards appear
         Time.timeScale = 0;
         cardMenu.gameObject.SetActive(true);
         
         for(int i = 0; i < numberOfCards; i++) {
-            // get a random suit from the CardSuits enum
-            CardSuits selectedSuit = (CardSuits) UnityEngine.Random.Range(0, Enum.GetValues(typeof(CardSuits)).Length);
+            // get a random index within the available suits list
+            int randomIndex = UnityEngine.Random.Range(0, availableSuits.Count);
+
+            // get the selected suit at the random index
+            CardSuits selectedSuit = availableSuits[randomIndex];
+
+            // remove the selected suit from the available suits list
+            availableSuits.RemoveAt(randomIndex);
+
             // get a value according to the current "run stats" of the player
             int selectedValue = GetStatsDifference(selectedSuit);
 
