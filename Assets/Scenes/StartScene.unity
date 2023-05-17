@@ -723,6 +723,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482215587}
   m_CullTransparentMesh: 1
+--- !u!1 &532697255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 539534086770803427, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+  m_PrefabInstance: {fileID: 932610931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &532697260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532697255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f46825e9704c4701b9fa903f0d51adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardMenu: {fileID: 952291054}
+  cardButtons:
+  - {fileID: 1936949265}
+  - {fileID: 1904438342}
+  player: {fileID: 0}
 --- !u!1 &663697606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1584,10 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 914656194}
+    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardManager
+      value: 
+      objectReference: {fileID: 532697260}
     - target: {fileID: 539534086770803427, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: m_Name
       value: Manager
@@ -1570,7 +1596,20 @@ PrefabInstance:
       propertyPath: cardMenu
       value: 
       objectReference: {fileID: 952291054}
-    m_RemovedComponents: []
+    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardButtons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1936949265}
+    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1904438342}
+    m_RemovedComponents:
+    - {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
 --- !u!1 &952291054
 GameObject:

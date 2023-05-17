@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject borders;
     [SerializeField] private FloatingJoystick joystick;
-    [SerializeField] private RandomCardGenerator randomCardGenerator;
+    [SerializeField] private CardManager cardManager;
     public float roomWidth = 8;
     public float roomHeight = 6;
     private int sequence = 0;
@@ -60,7 +60,7 @@ public class LevelManager : MonoBehaviour
         print("level:" + level);
 
         if ((level % 2) == 0) {
-            randomCardGenerator.GenerateCards();
+            cardManager.GenerateCards();
         }
     }
 
