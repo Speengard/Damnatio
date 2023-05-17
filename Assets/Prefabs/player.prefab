@@ -284,7 +284,7 @@ MonoBehaviour:
   rangedShoot: {fileID: 6581578067784383113}
   rangedWeapon: {fileID: 6581578067784383156}
   morningStar: {fileID: 1915831160394366006}
-  hasMace: 1
+  hasRanged: 0
 --- !u!114 &-5337454889481875387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   JoystickSize: {x: 0, y: 0}
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
-  speedMovement: 5.6
+  speedMovement: 30
   playerAnimator: {fileID: 0}
 --- !u!114 &3228716214967613470
 MonoBehaviour:
