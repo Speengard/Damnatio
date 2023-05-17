@@ -18,8 +18,9 @@ public class PlayerHealthController : HealthController
         healthSlider.gameObject.SetActive(false);
     }
 
-    override protected void CheckDeath() {
+    override public bool CheckDeath() {
         // TODO: Game over
+        return false;
     }
 
     // make the health bar appear

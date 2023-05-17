@@ -11,12 +11,16 @@ public class EnemyHealthController : HealthController
     //this script also updates the HUD when damage is taken.
 
     // this function destroys the enemy when the health goes below 0
-    override protected void CheckDeath() {
+    override public bool CheckDeath() {
         if (health <= 0)
         {
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
             Destroy(gameObject);
+            return true;
+        }else{
+            return false;
         }
+
     }
 
     private void OnCollisionExit(Collision other)

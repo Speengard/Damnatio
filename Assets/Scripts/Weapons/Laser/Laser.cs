@@ -53,7 +53,10 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser(){
 
-        if(target == null) DisableLaser();
+        if(target == null){
+            DisableLaser();
+            return;
+        } 
 
         direction = (Vector2) target.position - (Vector2)firePoint.position;
 
@@ -69,6 +72,11 @@ public class Laser : MonoBehaviour
             if(hit.collider.tag == "Enemy" && !hasHit){
                 hasHit = true;
                 hit.collider.GetComponent<Enemy>().TakeDamage(1);
+
+                if(hit.collider.GetComponent<HealthController>().CheckDeath()){
+                    print("Enemy is dead");
+                    target = null;
+                }
             }
 
             lineRenderer.SetPosition(1, hit.point);
