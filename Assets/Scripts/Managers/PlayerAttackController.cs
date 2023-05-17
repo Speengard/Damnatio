@@ -23,8 +23,7 @@ public class PlayerAttackController : MonoBehaviour
     //weapon gameobjects
     [SerializeField] private GameObject rangedWeapon;
     [SerializeField] private GameObject morningStar;
-    [SerializeField]private bool hasMace;
-
+    public bool hasRanged = false;
     private void Start()
     {
         //singleton instantiating
@@ -34,7 +33,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void LoadWeapon()
     {
-        if (hasMace)
+        if (hasRanged)
         {
             rangedWeapon.gameObject.SetActive(true);
         }
@@ -50,7 +49,7 @@ public class PlayerAttackController : MonoBehaviour
 
     public void switchWeapon()
     {
-        if (hasMace)
+        if (hasRanged)
         {
             
             rangedWeapon.SetActive(false);
@@ -61,7 +60,7 @@ public class PlayerAttackController : MonoBehaviour
             morningStar.SetActive(false);   
         }
 
-        hasMace = !hasMace;
+        hasRanged = !hasRanged;
         LoadWeapon();
     }
 
@@ -71,7 +70,7 @@ public class PlayerAttackController : MonoBehaviour
     //this method is called when the player has no enemy in range and a first enemy enters in the range
     public void FirstEnemy(GameObject firstEnemy)
     {
-        if (!hasMace) return;
+        if (!hasRanged) return;
         ChangeTarget(firstEnemy);
         
     }
@@ -79,7 +78,7 @@ public class PlayerAttackController : MonoBehaviour
     //this method is called when the last enemy exits the range
     public void LastEnemy()
     {
-        if (!hasMace) return;
+        if (!hasRanged) return;
         hasEnemy = false;
         target = null;
     }
@@ -100,7 +99,7 @@ public class PlayerAttackController : MonoBehaviour
     //this method is called when the player has an enemy in range and another enemy enters the range but is closer to the player
     public void ChangeTarget(GameObject newTarget)
     {
-        if (!hasMace) return;
+        if (!hasRanged) return;
 
         target = newTarget;
         hasEnemy = true;

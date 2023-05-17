@@ -15,6 +15,20 @@ public class Laser : MonoBehaviour
     private bool isShooting = false;
     private bool hasHit = false;
 
+    private void OnDisable() {
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+    }
+
+    private void OnEnable() {
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+    }
+
     private void Start() {
         FillList();
         DisableLaser();        
@@ -94,6 +108,7 @@ public class Laser : MonoBehaviour
         {
             particles[i].Stop();
         }
+
         StartCoroutine(WaitForDelayThenShoot());
     }
 
