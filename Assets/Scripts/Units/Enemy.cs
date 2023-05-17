@@ -21,8 +21,7 @@ public class Enemy : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         rb2d = GetComponent<Rigidbody2D>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-
+        
         healthController.SetupHealthBar(enemyStats.health);
         damage = enemyStats.damage;
     }

@@ -7,15 +7,19 @@ public class MovingEnemy : Enemy
 
     //this class serves as a parent class to any enemy who attacks in melee and moves toward the player to attack him. Since the animation tree interpolates animations, a method is needed to fix the current animation to a single one. The blend tree uses two values Horizontalinput and Verticalinput to determine the direction of the enemy. The direction is calculated by the direction vector between the enemy and the player. The direction vector is normalized and then used to calculate the rotation of the enemy. Based on the rotation, the blend tree is snapped to a single animation instead of interpolating between the two closest animations.    
     [SerializeField] private float speed = 0.3f;
-    private Vector3 direction;
+    private Vector2 oldDirection;
     [SerializeField] private Animator enemyAnimator;
-
     public Quaternion rotation;
-
     private void Update() {
     
-        direction = (target.position - transform.position).normalized;
-        FixAndSetAnimation();
+        Vector2 direction = (target.position - transform.position).normalized;
+
+        if(oldDirection != direction){
+            oldDirection = direction;
+            FixAndSetAnimation();
+        }
+
+        oldDirection = direction;
 
         if (Vector2.Distance(transform.position, target.position) > 0.3f)
         {
@@ -28,7 +32,7 @@ public class MovingEnemy : Enemy
         //this function is used to snap the animator's blend tree to one fixed animation instead of interpolating between the two closest animations
         //it gets the rotation in respect to the direction to the player and based on the rotation value along the z axis, it snaps to the unique value of each animation
 
-        rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        rotation = Quaternion.LookRotation(Vector3.forward, oldDirection);
 
         switch(rotation.eulerAngles.z){
             //N

@@ -14,20 +14,21 @@ public class LevelManager : MonoBehaviour
     //this class serves as a manager for the level (prefab spawning and entities spawning)
     [SerializeField] private int enemiesToSpawn;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private GameObject groundPrefab;
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject borders;
     [SerializeField] private FloatingJoystick joystick;
     public float roomWidth = 8;
     public float roomHeight = 6;
     private int sequence = 0;
     public bool isPlayerInstantiated;
+    private GameObject player;
 
     private void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity).GetComponent<Enemy>().spawnId = sequence;
+            enemyPrefab.GetComponent<Enemy>().spawnId = sequence;
+            enemyPrefab.GetComponent<Enemy>().target = player.transform;
+            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity);
             sequence++;
         }
     }
@@ -43,7 +44,8 @@ public class LevelManager : MonoBehaviour
     {
         // the player is instantiated only once
         if (!GameManager.Instance.isPlayerInstantiated) {
-            Instantiate(playerPrefab, Vector3.zero, Quaternion.identity).GetComponent<PlayerMovementController>().Joystick = joystick;
+            playerPrefab.GetComponent<PlayerMovementController>().Joystick = joystick;
+            player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
             PlayerPrefs.SetInt("isPlayerInstantiated", 1);
         } else {
             // reset player's position
