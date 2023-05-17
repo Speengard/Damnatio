@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private FloatingJoystick joystick;
+    [SerializeField] private CardManager cardManager;
     public float roomWidth = 8;
     public float roomHeight = 6;
     private int sequence = 0;
@@ -40,7 +42,7 @@ public class LevelManager : MonoBehaviour
         return randomPositionOnScreen;
     }
 
-    public void SetupScene(int level)
+    public void InstantiatePlayer()
     {
         // the player is instantiated only once
         if (!GameManager.Instance.isPlayerInstantiated) {
@@ -51,10 +53,17 @@ public class LevelManager : MonoBehaviour
             // reset player's position
             GameManager.Instance.player.transform.position = Vector3.zero;
         }
+    }
 
-        if (level > 0)  SpawnEnemies(); // spawn enemies only if you selected "start game"
+    public void SetupScene(int level)
+    {
+        SpawnEnemies(); // spawn enemies only if you selected "start game"
 
         print("level:" + level);
+
+        if ((level % 2) == 0) {
+            cardManager.GenerateCards();
+        }
     }
 
 }
