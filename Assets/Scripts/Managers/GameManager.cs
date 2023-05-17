@@ -59,15 +59,21 @@ public class GameManager : MonoBehaviour
 	void InitGame()
 	{
 		enemies.Clear();
-		boardScript.SetupScene(level);
+		boardScript.InstantiatePlayer(); // instantiate the player or reset the position in the scene
 
 		// mark the player as instantiated
 		isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
+
+		// increment the level only if the player isn't in the "start scene"
+		int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+		if (sceneIndex != 0) {
+			level += 1;
+			boardScript.SetupScene(level); // spawn enemies and enable the power-up system
+		}
 	}
 
 	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
 		InitGame();
-		level += 1;
 	}
 }

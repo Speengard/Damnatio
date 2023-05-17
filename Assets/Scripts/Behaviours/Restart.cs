@@ -17,7 +17,7 @@ public class Restart : MonoBehaviour
     }
 
 	private void LoadRandomScene() {
-		int index = Random.Range(0, 2);
+		int index = Random.Range(1, 3);
 		SceneManager.LoadScene(index);
 	}
 }
