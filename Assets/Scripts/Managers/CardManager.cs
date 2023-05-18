@@ -58,7 +58,7 @@ public class CardManager : MonoBehaviour
                 player.runStats.health += 1;
                 break;
             case CardSuits.Batons: // power up for ranged weapon
-                player.runStats.maceDamage += 1;
+                player.runStats.rangedDamage += 1;
                 break;
             case CardSuits.Swords: // power up for morning star
                 player.runStats.morningStarDamage += 1;
@@ -80,7 +80,7 @@ public class CardManager : MonoBehaviour
             case CardSuits.Cups: // power up for health points
                 return player.runStats.health - player.stats.health;
             case CardSuits.Batons: // power up for ranged weapon
-                return player.runStats.maceDamage - player.stats.maceDamage;
+                return player.runStats.rangedDamage - player.stats.rangedDamage;
             case CardSuits.Swords: // power up for morning star
                 return player.runStats.morningStarDamage - player.stats.morningStarDamage;
             case CardSuits.Coins: // power up for collectibles
