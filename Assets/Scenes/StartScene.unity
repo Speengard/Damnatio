@@ -1588,11 +1588,11 @@ PrefabInstance:
       objectReference: {fileID: 914656194}
     - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: roomWidth
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: roomHeight
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: cardManager

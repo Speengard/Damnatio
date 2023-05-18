@@ -18,8 +18,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private CardManager cardManager;
-    public float roomWidth = 20;
-    public float roomHeight = 12;
+    public float roomWidth = 16;
+    public float roomHeight = 10;
     private int sequence = 0;
     public bool isPlayerInstantiated;
     private GameObject player;
@@ -39,8 +39,13 @@ public class LevelManager : MonoBehaviour
 
     private Vector2 RandomPointInScreen()
     {
+        float halfDiamondSize = Mathf.Min(roomWidth / 2f, roomHeight / 2f);
+        float randomX = Random.Range(-1f, 1f) * halfDiamondSize;
+        float randomY = Random.Range(-1f, 1f) * halfDiamondSize;
+
+
         //Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
-        Vector2 randomPositionOnScreen = new Vector2(Random.Range(-roomWidth, roomWidth), Random.Range(-roomHeight, roomHeight));
+        Vector2 randomPositionOnScreen = new Vector2(randomX, randomY);
         return randomPositionOnScreen;
     }
 
