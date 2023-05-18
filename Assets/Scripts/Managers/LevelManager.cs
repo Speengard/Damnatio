@@ -14,32 +14,37 @@ public class LevelManager : MonoBehaviour
 {
     //this class serves as a manager for the level (prefab spawning and entities spawning)
     [SerializeField] private int enemiesToSpawn;
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private CardManager cardManager;
-    public float roomWidth = 8;
-    public float roomHeight = 6;
+    public float roomWidth = 16;
+    public float roomHeight = 10;
     private int sequence = 0;
     public bool isPlayerInstantiated;
     private GameObject player;
-    
+    private int numberOfEnemyType = 2;
 
     private void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            enemyPrefab.GetComponent<Enemy>().spawnId = sequence;
-            enemyPrefab.GetComponent<Enemy>().target = player.transform;
-            Instantiate(enemyPrefab, RandomPointInScreen(), Quaternion.identity);
+            int index = Random.Range(0, numberOfEnemyType); // get a random prefab
+            enemyPrefabs[index].GetComponent<Enemy>().spawnId = sequence;
+            enemyPrefabs[index].GetComponent<Enemy>().target = player.transform;
+            Instantiate(enemyPrefabs[index], RandomPointInScreen(), Quaternion.identity);
             sequence++;
         }
     }
 
     private Vector2 RandomPointInScreen()
     {
+        float halfDiamondSize = Mathf.Min(roomWidth / 2f, roomHeight / 2f);
+        float randomX = Random.Range(-1f, 1f) * halfDiamondSize;
+        float randomY = Random.Range(-1f, 1f) * halfDiamondSize;
+
         //Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
-        Vector2 randomPositionOnScreen = new Vector2(Random.Range(-roomWidth, roomWidth), Random.Range(-roomHeight, roomHeight));
+        Vector2 randomPositionOnScreen = new Vector2(randomX, randomY);
         return randomPositionOnScreen;
     }
 
@@ -58,6 +63,7 @@ public class LevelManager : MonoBehaviour
 
     public void SetupScene(int level)
     {
+        enemiesToSpawn = CalculateEnemiesToSpawn(level);
         SpawnEnemies(); // spawn enemies only if you selected "start game"
 
         print("level:" + level);
@@ -65,6 +71,10 @@ public class LevelManager : MonoBehaviour
         if ((level % 2) == 0) {
             cardManager.GenerateCards();
         }
+    }
+
+    private int CalculateEnemiesToSpawn(int level) {
+        return (10 * level / 3);
     }
 
 }
