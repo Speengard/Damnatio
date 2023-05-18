@@ -43,7 +43,6 @@ public class LevelManager : MonoBehaviour
         float randomX = Random.Range(-1f, 1f) * halfDiamondSize;
         float randomY = Random.Range(-1f, 1f) * halfDiamondSize;
 
-
         //Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
         Vector2 randomPositionOnScreen = new Vector2(randomX, randomY);
         return randomPositionOnScreen;
