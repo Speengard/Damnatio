@@ -150,14 +150,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
-        // Player.transform.Translate(scaledMovement);
-
         Player.MovePosition(Player.position + scaledMovement);
-
-        //Player.velocity = scaledMovement;
-        //Player.AddForce(scaledMovement);
-
-        // Player.AddTorque(MovementAmount.x);
     }
 
     public void RotateTowards(Quaternion enemyRotation)

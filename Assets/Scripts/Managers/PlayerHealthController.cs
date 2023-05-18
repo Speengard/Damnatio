@@ -28,4 +28,11 @@ public class PlayerHealthController : HealthController
         healthSlider.gameObject.SetActive(true);
     }
 
+    public override void TakeDamage(int damage)
+    {
+        print("arrived here");
+        GameManager.Instance.followPlayer.ShakeCamera();
+        base.TakeDamage(damage);
+    }
+
 }

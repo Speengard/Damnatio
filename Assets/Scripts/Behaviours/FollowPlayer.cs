@@ -12,13 +12,31 @@ public class FollowPlayer : MonoBehaviour
     private float smoothDelay = 0.3f;
     private Vector3 velocity = Vector3.zero;
 
+    // Camera Information
+    private Vector3 orignalCameraPos;
+
+    // Shake Parameters
+    public float shakeDuration = 0.2f;
+    public float shakeAmount = 0.1f;
+
+    private bool canShake = false;
+    private float _shakeTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         levelManager = GameObject.Find("Manager").GetComponent<LevelManager>();
+        orignalCameraPos = player.localPosition;
     }
+    private void Update() {
+        if (canShake)
+        {
+            StartCameraShakeEffect();
+        }
 
+        
+    }
     void LateUpdate()
     {   
         float cameraOffset = 2;
@@ -34,6 +52,27 @@ public class FollowPlayer : MonoBehaviour
 
         // smooth animation for the camera
         transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref velocity, smoothDelay);
+    }
+
+    public void ShakeCamera()
+    {
+        canShake = true;
+        _shakeTimer = shakeDuration;
+        
+    }
+
+    public void StartCameraShakeEffect()
+    {
+        if (_shakeTimer > 0)
+        {
+            transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
+            _shakeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            _shakeTimer = 0f;
+            canShake = false;
+        }
     }
 
 }

@@ -7,6 +7,15 @@ using UnityEngine.UI;
 
 public class EnemyHealthController : HealthController
 {
+
+    private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
+
+    private void Awake() {
+        foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
+        {
+            spriteRenderers.Add(spriteRenderer);
+        }
+    }
     //this script is used to manage the health of the enemy;
     //this script also updates the HUD when damage is taken.
 
@@ -31,8 +40,26 @@ public class EnemyHealthController : HealthController
     public override void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0) health = 0;
-        UpdateHealthBar(health);      
+        if (health <= 0){
+
+            health = 0;
+            CheckDeath();
+        } 
+        UpdateHealthBar(health);
+        StartCoroutine(GiveRedTint());      
+    }
+
+    IEnumerator GiveRedTint(){
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.color = Color.red;
+        }
+        yield return new WaitForSeconds(0.3f);
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.color = Color.white;
+        }
     }
 
 }

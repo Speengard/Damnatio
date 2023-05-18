@@ -2853,6 +2853,7 @@ MonoBehaviour:
   healthSlider: {fileID: 2343700006674093244}
   health: 0
   maxHealth: 100
+  spriteRenderers: []
 --- !u!114 &432178822464913616
 MonoBehaviour:
   m_ObjectHideFlags: 0
