@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     private int sequence = 0;
     public bool isPlayerInstantiated;
     private GameObject player;
+    
 
     private void SpawnEnemies()
     {

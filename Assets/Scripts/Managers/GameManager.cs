@@ -16,9 +16,11 @@ public class GameManager : MonoBehaviour
 	public List<Enemy> enemies;
 	private bool enemiesMoving;
 	public bool isPlayerInstantiated = false;
+    public FollowPlayer followPlayer;
 
 	void Awake()
 	{
+
 		if (Instance == null) Instance = this;
 		
 		if (Instance != this) 
@@ -34,6 +36,10 @@ public class GameManager : MonoBehaviour
 
 	private void Start() {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+	}
+
+	private void Update() {
+        if (followPlayer == null) followPlayer = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowPlayer>();
 	}
 	
 	public void GameOver()

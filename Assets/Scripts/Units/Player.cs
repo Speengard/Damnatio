@@ -12,9 +12,11 @@ public class Player : MonoBehaviour
     
     [SerializeField] public PlayerStatsScriptableObject stats;
     [SerializeField] public PlayerStatsScriptableObject runStats;
+    public GameManager gameManager;
 
     void Awake() {
         DontDestroyOnLoad(gameObject);
+        gameManager = GameManager.Instance;
     }
 
     void Start() {

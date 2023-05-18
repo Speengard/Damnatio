@@ -8,7 +8,6 @@ public abstract class HealthController : MonoBehaviour
     [SerializeField] public Slider healthSlider;
     public int health; // current health
     public int maxHealth;
-
     public abstract bool CheckDeath();
     
     // this function sets the health bar initially full
@@ -43,7 +42,7 @@ public abstract class HealthController : MonoBehaviour
             health = 0;
             UpdateHealthBar(health);
             CheckDeath();
-
+            
         }else{
 
             //MARK: - Warning, this line below gets executed on every call of this function from a class that doesn't provide its own implementation of this function, so be careful about implementing this in a class that inherits from this class and doesn't want this line to be executed (ex: EnemyHealthController.cs)
