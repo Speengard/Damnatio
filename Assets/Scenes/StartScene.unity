@@ -1040,7 +1040,6 @@ GameObject:
   - component: {fileID: 666898925}
   - component: {fileID: 666898924}
   - component: {fileID: 666898923}
-  - component: {fileID: 666898922}
   m_Layer: 5
   m_Name: SoundEffectsToggle
   m_TagString: Untagged
@@ -1068,20 +1067,6 @@ RectTransform:
   m_AnchoredPosition: {x: 380, y: 0}
   m_SizeDelta: {x: 240, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &666898922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666898920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4618e8e709c804f0a896cc18ce1052a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newButtonSprite: {fileID: 0}
-  button: {fileID: 666898924}
 --- !u!114 &666898923
 MonoBehaviour:
   m_ObjectHideFlags: 0
