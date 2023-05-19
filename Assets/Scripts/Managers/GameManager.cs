@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 	public float levelStartDelay = 2f;
 	private LevelManager boardScript;
-	private int level = 0;
+	public int level = 0;
 	public List<Enemy> enemies;
 	private bool enemiesMoving;
 	public bool isPlayerInstantiated = false;
@@ -39,7 +39,9 @@ public class GameManager : MonoBehaviour
 	}
 
 	private void Update() {
-        if (followPlayer == null) followPlayer = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowPlayer>();
+        if (level > 0) {
+			if (followPlayer == null) followPlayer = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowPlayer>();
+		}
 	}
 	
 	public void GameOver()

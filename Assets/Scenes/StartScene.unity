@@ -271,7 +271,6 @@ GameObject:
   - component: {fileID: 70099326}
   - component: {fileID: 70099328}
   - component: {fileID: 70099327}
-  - component: {fileID: 70099329}
   m_Layer: 0
   m_Name: Fixed Camera
   m_TagString: MainCamera
@@ -395,22 +394,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &70099329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70099322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbbe969448a0b4e61b289cd579248ccf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  levelManager: {fileID: 532697262}
-  shakeDuration: 0.5
-  shakeAmount: 0.1
 --- !u!1 &266387451
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,17 +745,6 @@ MonoBehaviour:
   - {fileID: 1936949265}
   - {fileID: 1904438342}
   player: {fileID: 0}
---- !u!114 &532697262 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-  m_PrefabInstance: {fileID: 932610931}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532697255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a1e04a0744d4f7fbba6af24830c2ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &663697606
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,15 +971,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871190, guid: 53cb764d39657476fa6863a16f741885, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451268333860, guid: 53cb764d39657476fa6863a16f741885, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451268333860, guid: 53cb764d39657476fa6863a16f741885, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53cb764d39657476fa6863a16f741885, type: 3}
@@ -1569,7 +1541,7 @@ PrefabInstance:
     - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: followPlayer
       value: 
-      objectReference: {fileID: 70099329}
+      objectReference: {fileID: 0}
     - target: {fileID: 539534086770803425, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1620,11 +1592,11 @@ PrefabInstance:
       objectReference: {fileID: 914656194}
     - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: roomWidth
-      value: 16
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: roomHeight
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: cardManager
@@ -1860,7 +1832,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.962, y: 0.962, z: 0}
+  m_ChunkCullingBounds: {x: 1.3274999, y: 1.3274999, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
@@ -2885,7 +2857,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.962, y: 0.962, z: 0}
+  m_ChunkCullingBounds: {x: 1.3274999, y: 1.3274999, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3

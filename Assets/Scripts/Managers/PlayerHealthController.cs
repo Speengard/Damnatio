@@ -11,11 +11,7 @@ public class PlayerHealthController : HealthController
         maxHealth = GameManager.Instance.playerStats.health;
         health = PlayerPrefs.GetInt("PlayerHealth", maxHealth); // Get the player's health value from PlayerPrefs
     
-        SetupHealthBar(maxHealth);
         Debug.Log("Player initial health: " + maxHealth);
-
-        // in start scene the health bar shouldn't appear
-        healthSlider.gameObject.SetActive(false);
     }
 
     override public bool CheckDeath() {

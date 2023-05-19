@@ -40,15 +40,13 @@ public class FollowPlayer : MonoBehaviour
     void LateUpdate()
     {   
         float cameraOffset = 2;
-        float width = 2 * levelManager.roomWidth;
-        float height = 2 * levelManager.roomHeight;
-        
+
         // set the camera position as the player position with an offset
         Vector3 cameraPosition = player.position + new Vector3(xOffset, yOffset, zOffset);
 
         // make the camera stay in bounds
-        cameraPosition.x = Mathf.Clamp(cameraPosition.x, (- width - cameraOffset) / 2 + Camera.main.orthographicSize * Camera.main.aspect, (width + cameraOffset) / 2 - Camera.main.orthographicSize * Camera.main.aspect);
-        cameraPosition.y = Mathf.Clamp(cameraPosition.y, (- height - cameraOffset) / 2 + Camera.main.orthographicSize, (height + cameraOffset) / 2 - Camera.main.orthographicSize);
+        cameraPosition.x = Mathf.Clamp(cameraPosition.x, -levelManager.roomWidth + Camera.main.orthographicSize * Camera.main.aspect + cameraOffset, levelManager.roomWidth - Camera.main.orthographicSize * Camera.main.aspect - cameraOffset);
+        cameraPosition.y = Mathf.Clamp(cameraPosition.y, -levelManager.roomHeight + Camera.main.orthographicSize + cameraOffset, levelManager.roomHeight - Camera.main.orthographicSize - cameraOffset);
 
         // smooth animation for the camera
         transform.position = Vector3.SmoothDamp(transform.position, cameraPosition, ref velocity, smoothDelay);

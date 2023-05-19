@@ -15,14 +15,15 @@ public class StartSceneManager : MonoBehaviour
     {
         // disable scripts that handle enemies and define the room size
         GameManager.Instance.GetComponent<LevelManager>().enabled = false;
-        player = GameManager.Instance.player.GetComponent<Player>();
-
-        // assign the health bar to the player
-        player.healthController.healthSlider = healthSlider;
     }
 
     // when the player select "Start game" enable the script and the health bar
     private void OnDestroy() {
+        player = GameManager.Instance.player;
+
+        // assign the health bar to the player
+        player.healthController.healthSlider = healthSlider;
+
         GameManager.Instance.GetComponent<LevelManager>().enabled = true;
 
         SetupPlayerHealthBar();
