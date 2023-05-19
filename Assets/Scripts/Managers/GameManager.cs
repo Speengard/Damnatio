@@ -49,11 +49,6 @@ public class GameManager : MonoBehaviour
 		enabled = false;
 	}
 
-	public void AddEnemyToList(Enemy enemy)
-	{
-		enemies.Add(enemy);
-	}
-
 	void OnEnable()
 	{	
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;

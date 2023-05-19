@@ -32,7 +32,8 @@ public class LevelManager : MonoBehaviour
             int index = Random.Range(0, numberOfEnemyType); // get a random prefab
             enemyPrefabs[index].GetComponent<Enemy>().spawnId = sequence;
             enemyPrefabs[index].GetComponent<Enemy>().target = player.transform;
-            Instantiate(enemyPrefabs[index], RandomPointInScreen(), Quaternion.identity);
+            GameObject enemyGameObject = Instantiate(enemyPrefabs[index], RandomPointInScreen(), Quaternion.identity);
+            AddEnemyToList(enemyGameObject.GetComponent<Enemy>());
             sequence++;
         }
     }
@@ -76,5 +77,10 @@ public class LevelManager : MonoBehaviour
     private int CalculateEnemiesToSpawn(int level) {
         return (10 * level / 3);
     }
+
+    public void AddEnemyToList(Enemy enemy)
+	{
+		GameManager.Instance.enemies.Add(enemy);
+	}
 
 }
