@@ -28,7 +28,11 @@ public class PlayerHealthController : HealthController
     {
         print("arrived here");
         GameManager.Instance.followPlayer.ShakeCamera();
+
         base.TakeDamage(damage);
+
+        PlayerPrefs.SetInt("PlayerHealth", health);
+        Debug.Log("player health: " + health);
     }
 
 }
