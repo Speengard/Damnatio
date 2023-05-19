@@ -264,6 +264,7 @@ MonoBehaviour:
   movementController: {fileID: -5337454889481875387}
   stats: {fileID: 11400000, guid: b573c273993824872a8dee0fb97a2af8, type: 2}
   runStats: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!114 &7953683686301474866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +301,6 @@ MonoBehaviour:
   JoystickSize: {x: 0, y: 0}
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
-  speedMovement: 30
   playerAnimator: {fileID: 0}
 --- !u!114 &3228716214967613470
 MonoBehaviour:
