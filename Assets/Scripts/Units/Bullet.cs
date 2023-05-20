@@ -38,7 +38,6 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-          print("bullet hit player"); 
             other.gameObject.GetComponent<PlayerHealthController>().TakeDamage(unit.damage);
             Destroy(gameObject);
         }

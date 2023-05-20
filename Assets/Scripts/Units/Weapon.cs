@@ -12,6 +12,6 @@ public abstract class Weapon : MonoBehaviour
     protected PlayerAttackController attackController;
     private void Awake()
     {
-        attackController = PlayerAttackController.Instance;
+        attackController = Player.Instance.attackController;
     }
 }

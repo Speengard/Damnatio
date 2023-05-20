@@ -2747,6 +2747,7 @@ GameObject:
   - component: {fileID: -817314349592084105}
   - component: {fileID: 432178822464913616}
   - component: {fileID: -2546458092221552865}
+  - component: {fileID: -4787796361823361200}
   m_Layer: 0
   m_Name: FlyEnemy
   m_TagString: Enemy
@@ -2853,7 +2854,6 @@ MonoBehaviour:
   healthSlider: {fileID: 2343700006674093244}
   health: 0
   maxHealth: 100
-  spriteRenderers: []
 --- !u!114 &432178822464913616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2885,10 +2885,23 @@ MonoBehaviour:
   healthController: {fileID: -817314349592084105}
   enemyStats: {fileID: 11400000, guid: d20ed43bc8fd6433cb7507802c2bdffa, type: 2}
   damage: 0
-  spawnId: 0
+  spawnId: 1
   speed: 0.3
-  enemyAnimator: {fileID: 2799247336783001595}
+  animationController: {fileID: -4787796361823361200}
   rotation: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &-4787796361823361200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5359785769075411549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f44403efe3184d47ad39e7eb657af31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2799247336783001595}
 --- !u!1 &5429660223844329252
 GameObject:
   m_ObjectHideFlags: 0

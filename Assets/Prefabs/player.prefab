@@ -133,8 +133,8 @@ GameObject:
   - component: {fileID: -5337454889481875387}
   - component: {fileID: 3228716214967613470}
   - component: {fileID: 5400622148401295348}
-  - component: {fileID: 3652341179267693591}
   - component: {fileID: 6510403480318258528}
+  - component: {fileID: 3652341179267693591}
   m_Layer: 2
   m_Name: player
   m_TagString: Player
@@ -263,7 +263,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackController: {fileID: 7953683686301474866}
   healthController: {fileID: 5400622148401295348}
+  animationController: {fileID: 6510403480318258528}
   movementController: {fileID: -5337454889481875387}
+  rb: {fileID: 1839378337}
   stats: {fileID: 11400000, guid: b573c273993824872a8dee0fb97a2af8, type: 2}
   runStats: {fileID: 0}
   gameManager: {fileID: 0}
@@ -331,6 +333,19 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   health: 0
   maxHealth: 0
+--- !u!114 &6510403480318258528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926458876681971923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15074f720bec44c66be935e89a9b2edc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3652341179267693591}
 --- !u!95 &3652341179267693591
 Animator:
   serializedVersion: 5
@@ -351,18 +366,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &6510403480318258528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926458876681971923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15074f720bec44c66be935e89a9b2edc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1020781282313399211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -707,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330063, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330097, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_RootOrder

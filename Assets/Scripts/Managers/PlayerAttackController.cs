@@ -16,8 +16,8 @@ public class PlayerAttackController : MonoBehaviour
     public bool bIsOnTheMove = false;
 
     //these booleans are needed for detecting if the player is in the attack range
-    [SerializeField] public bool hasEnemy = false;
-    public static PlayerAttackController Instance = null;
+    public bool hasEnemy = false;
+
     //weapon prefabs
     [SerializeField] private Laser rangedShoot;
     //weapon gameobjects
@@ -26,8 +26,7 @@ public class PlayerAttackController : MonoBehaviour
     public bool hasRanged = false;
     private void Start()
     {
-        //singleton instantiating
-        if (Instance == null) Instance = this;
+        
         LoadWeapon();
     }
 
@@ -45,7 +44,8 @@ public class PlayerAttackController : MonoBehaviour
 
     public void switchWeapon()
     {
-        
+        Player.Instance.animationController.switchWeapon();
+
         if (hasRanged)
         {  
             rangedWeapon.SetActive(false);   

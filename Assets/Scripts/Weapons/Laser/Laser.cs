@@ -16,24 +16,33 @@ public class Laser : MonoBehaviour
     private bool hasHit = false;
 
     private void OnDisable() {
-        DisableLaser();
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+        
     }
 
     private void OnEnable() {
-        DisableLaser();
+        print("enabled");
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+        StartCoroutine(DisableLaser());
     }
 
-    private void Start() {
+    private void Awake() {
         FillList();
         DisableLaser();        
     }
 
     private void Update() {
         
-        if(PlayerAttackController.Instance.target != null) target = PlayerAttackController.Instance.target.transform;
+        if(Player.Instance.attackController.target != null) target = Player.Instance.attackController.target.transform;
         else target = null;
 
-        if(isShooting) UpdateLaser();
+        if(isShooting && gameObject.activeSelf) UpdateLaser();
     }
 
     public void EnableLaser(){
@@ -61,7 +70,8 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser(){
 
-        if(lineRenderer.enabled == false && target == null){
+        if(lineRenderer.enabled == false || target == null){
+            StartCoroutine(DisableLaser());
             return;
         } 
 
@@ -90,7 +100,11 @@ public class Laser : MonoBehaviour
     }
 
     IEnumerator DisableLaser(){
-        StopAllCoroutines();
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+        
 
         lineRenderer.enabled = false;
         hasHit = false;
@@ -98,10 +112,6 @@ public class Laser : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         isShooting = false;
 
-        for (int i = 0; i < particles.Count; i++)
-        {
-            particles[i].Stop();
-        }
 
     }
 
