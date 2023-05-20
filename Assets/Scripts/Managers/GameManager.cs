@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] public Player player;
 	[SerializeField] public PlayerStatsScriptableObject playerStats;
+	[SerializeField] private GameObject gameOverScene;
+	[SerializeField] private StartSceneManager startSceneManager;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
@@ -46,7 +48,9 @@ public class GameManager : MonoBehaviour
 	
 	public void GameOver()
 	{
-		enabled = false;
+		Time.timeScale = 0;
+		followPlayer.enabled = false;
+		gameOverScene.gameObject.SetActive(true);
 	}
 
 	void OnEnable()
@@ -67,11 +71,17 @@ public class GameManager : MonoBehaviour
 		// mark the player as instantiated
 		isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
 
-		// increment the level only if the player isn't in the "start scene"
+		// get the index of the scene
 		int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+		// handle the level according to which kind of level the player is in
 		if (sceneIndex != 0) {
-			level += 1;
+			level += 1; // increment the level only if the player isn't in the "start scene"
+			startSceneManager.enabled = false; // disable the manager of the "start scene"
 			boardScript.SetupScene(level); // spawn enemies and enable the power-up system
+		} else {
+			// if we are the "start scene", enable its manager
+			startSceneManager.enabled = true;
 		}
 	}
 
