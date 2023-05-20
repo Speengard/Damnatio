@@ -55,7 +55,7 @@ public class Laser : MonoBehaviour
     
 
     IEnumerator DisableLaserAfterSeconds(){
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.8f);
         DisableLaser();
     }
 
@@ -89,14 +89,14 @@ public class Laser : MonoBehaviour
         endVFX.transform.position = lineRenderer.GetPosition(1);
     }
 
-    void DisableLaser(){
+    IEnumerator DisableLaser(){
         StopAllCoroutines();
 
         lineRenderer.enabled = false;
         hasHit = false;
-        isShooting = false;
 
-        print("disabling laser");
+        yield return new WaitForSeconds(1.2f);
+        isShooting = false;
 
         for (int i = 0; i < particles.Count; i++)
         {

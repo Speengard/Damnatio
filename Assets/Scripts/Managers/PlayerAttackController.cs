@@ -45,6 +45,7 @@ public class PlayerAttackController : MonoBehaviour
 
     public void switchWeapon()
     {
+        
         if (hasRanged)
         {  
             rangedWeapon.SetActive(false);   
@@ -60,7 +61,7 @@ public class PlayerAttackController : MonoBehaviour
 
 
 
-    #region maceLogic
+    #region RangedLogic
     //this method is called when the player has no enemy in range and a first enemy enters in the range
     public void FirstEnemy(GameObject firstEnemy)
     {
@@ -86,7 +87,6 @@ public class PlayerAttackController : MonoBehaviour
         rangedShoot.EnableLaser();
     }
 
-    #endregion
     
     private void Update()
     {
@@ -121,5 +121,6 @@ public class PlayerAttackController : MonoBehaviour
                 bIsOnTheMove = false;
             } 
     }
+    #endregion
 
 }

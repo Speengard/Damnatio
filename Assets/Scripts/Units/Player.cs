@@ -8,10 +8,11 @@ public class Player : MonoBehaviour
     public PlayerAttackController attackController;
     public PlayerHealthController healthController;
     public PlayerMovementController movementController;
-    
     [SerializeField] public PlayerStatsScriptableObject stats;
     [SerializeField] public PlayerStatsScriptableObject runStats;
     public GameManager gameManager;
+
+    
 
     void Awake() {
         DontDestroyOnLoad(gameObject);
