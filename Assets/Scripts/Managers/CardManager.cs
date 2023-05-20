@@ -35,7 +35,7 @@ public class CardManager : MonoBehaviour
             availableSuits.RemoveAt(randomIndex);
 
             // get a value according to the current "run stats" of the player
-            int selectedValue = GetStatsDifference(selectedSuit);
+            int selectedValue = GetStatsDifference(selectedSuit) + 1;
 
             // JUST FOR TEST: since we don't have other cards yet, force the value as 1
             selectedValue = 1;

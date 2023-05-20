@@ -15,7 +15,7 @@ public class PlayerHealthController : HealthController
     }
 
     override public bool CheckDeath() {
-        // TODO: Game over
+        GameManager.Instance.GameOver();
         return false;
     }
 
