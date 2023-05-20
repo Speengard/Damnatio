@@ -45,8 +45,10 @@ public class StaticEnemy : Enemy
         yield return new WaitForSeconds(firstDelay);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Player"){ 
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag == "Player")
+        {
+            
             Player.Instance.healthController.TakeDamage(damage);
         }
     }

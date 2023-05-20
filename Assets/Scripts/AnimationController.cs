@@ -10,7 +10,7 @@ public class AnimationController : MonoBehaviour
     /// 
     public Animator animator;
 
-    public virtual void FixAndSetAnimation(Vector2 movementdirection){
+    public virtual Quaternion FixAndSetAnimation(Vector2 movementdirection){
             //this function is used to snap the animator's blend tree to one fixed animation instead of interpolating between the two closest animations
             //it gets the rotation in respect to the direction of the the gameobject and based on that value along the z axis, it snaps to the unique value of each animation
 
@@ -28,7 +28,8 @@ public class AnimationController : MonoBehaviour
                 animator.SetFloat("Horizontal", 0);
                 animator.SetFloat("Vertical", 1);
 
-                break;
+                return rotation;
+            
 
             //NW
             case float f when f >= 22.5f && f < 67.5f:
@@ -39,7 +40,7 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", -1);
                 animator.SetFloat("Vertical", 1);
-                break;
+                return rotation;
             //W
             case float f when f >= 67.5f && f < 112.5f:
 
@@ -49,7 +50,7 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", -1);
                 animator.SetFloat("Vertical", 0);
-                break;
+                return rotation;
             //SW
             case float f when f >= 112.5f && f < 157.5f:
 
@@ -59,7 +60,8 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", -1);
                 animator.SetFloat("Vertical", -1);
-                break;
+                return rotation;
+
             //S
             case float f when f >= 157.5f && f < 202.5f:
 
@@ -69,7 +71,8 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", 0);
                 animator.SetFloat("Vertical", -1);
-                break;
+                return rotation;
+
             //SE
             case float f when f >= 202.5f && f < 247.5f:
 
@@ -79,7 +82,8 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", 1);
                 animator.SetFloat("Vertical", -1);
-                break;
+                return rotation;
+
             //E
             case float f when f >= 247.5f && f < 292.5f:
 
@@ -89,7 +93,8 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", 1);
                 animator.SetFloat("Vertical", 0);
-                break;
+                return rotation;
+
             //NE
             case float f when f >= 292.5f && f < 337.5f:
 
@@ -98,8 +103,12 @@ public class AnimationController : MonoBehaviour
 
                 animator.SetFloat("Horizontal", 1);
                 animator.SetFloat("Vertical", 1);
-                break;
+                return rotation;
+
+                default:
+                    return rotation;
             }
+            
         }
 
 
