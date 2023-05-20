@@ -8,7 +8,6 @@ public class StaticEnemy : Enemy
     [SerializeField] private Animator animator;
     [Range(0, 5f)] float shootDelay = 5f;
     [Range(0, 7f)] float firstDelay;
-
     [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
     new void Start()
@@ -46,8 +45,10 @@ public class StaticEnemy : Enemy
         yield return new WaitForSeconds(firstDelay);
     }
 
-    IEnumerator WaitForAnimation(){
-        yield return new WaitForSeconds(1.2f);
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Player"){ 
+            Player.Instance.healthController.TakeDamage(damage);
+        }
     }
 
 }
