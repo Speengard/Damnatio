@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ae808d3c27c4a1e97b313463c88e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openPortalTexture: {fileID: 2800000, guid: c7f593a3c87b447be83075a032524547, type: 3}
 --- !u!61 &1656399622
 BoxCollider2D:
   m_ObjectHideFlags: 0
