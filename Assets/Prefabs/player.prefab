@@ -306,6 +306,7 @@ MonoBehaviour:
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
   playerAnimator: {fileID: 3652341179267693591}
+  Handle: {fileID: 0}
 --- !u!114 &3228716214967613470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1494330176329635741, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1494330176329635742, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_RootOrder
