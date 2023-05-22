@@ -10,14 +10,17 @@ public class GameManager : MonoBehaviour
 	[SerializeField] public PlayerStatsScriptableObject playerStats;
 	[SerializeField] private GameObject gameOverScene;
 	[SerializeField] private StartSceneManager startSceneManager;
+	[SerializeField] private LootManager lootManager;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
 	private LevelManager boardScript;
 	public int level = 0;
 	public List<Enemy> enemies;
+	public List<GameObject> lootObjects;
 	private bool enemiesMoving;
 	public bool isPlayerInstantiated = false;
+	public bool playerIsCollecting = false;
     public FollowPlayer followPlayer;
 
 	void Awake()
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 		enemies = new List<Enemy>();
+		lootObjects = new List<GameObject>();
 		boardScript = GetComponent<LevelManager>();
 	}
 

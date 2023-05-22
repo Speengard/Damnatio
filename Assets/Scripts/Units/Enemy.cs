@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb2d;
     public Transform target;
     [SerializeField] private EnemyHealthController healthController;
-    [SerializeField] private EnemyStatsScriptableObject enemyStats;
+    [SerializeField] public EnemyStatsScriptableObject enemyStats;
 
     public int damage; // damage that the enemy does on the player
     public int spawnId;

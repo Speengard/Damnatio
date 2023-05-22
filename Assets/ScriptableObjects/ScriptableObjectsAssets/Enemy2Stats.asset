@@ -15,5 +15,5 @@ MonoBehaviour:
   enemyName: Type 2 Enemy
   health: 10
   damage: 4
-  speed: 0
   dropChance: 30
+  dropQuantity: 5
