@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 0;
 		followPlayer.enabled = false;
 		gameOverScene.gameObject.SetActive(true);
+
+		// update the value of Animae
+		int newAnimaeValue = PlayerPrefs.GetInt("Animae", 0) + player.collectedSouls;
+		PlayerPrefs.SetInt("Animae", newAnimaeValue);
 	}
 
 	void OnEnable()

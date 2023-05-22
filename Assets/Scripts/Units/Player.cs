@@ -36,38 +36,37 @@ public class Player : MonoBehaviour
         runStats = ScriptableObject.CreateInstance<PlayerStatsScriptableObject>();
     }
 
+#region LootManager
     public void EnableLoot() {
         Vector3 targetPosition = transform.position;
 
         for (int i = 0; i < GameManager.Instance.lootObjects.Count; i++)
         {
-            Debug.Log("Entro qua n. " + i);
-            
+            // make the objects move towards the player
             StartCoroutine(CollectObjects(GameManager.Instance.lootObjects[i]));
 
+            // update the number of collected objects
             collectedSouls += 1;
         }
     }
 
     private IEnumerator CollectObjects(GameObject objectToMove) {
         Vector2 startPosition = objectToMove.transform.position;
-        Vector2 targetPosition = transform.position;
 
-        float distance = Vector3.Distance(startPosition, targetPosition);
-        float duration = distance / 10;
+        float distance = Vector3.Distance(startPosition, transform.position);
+        float duration = distance / 10; // calculate the duration of the movement
         float elapsedTime = 0f;
 
-        Debug.Log("corout");
-
         while (elapsedTime < duration) {
-            objectToMove.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            objectToMove.transform.position = Vector3.Lerp(startPosition, transform.position, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        objectToMove.transform.position = targetPosition;
+        objectToMove.transform.position = transform.position;
 
-        // L'oggetto ha raggiunto la posizione target, puoi eseguire le azioni desiderate qui
-        Debug.Log("ok finito.");
+        // destroy the object
+        Destroy(objectToMove);
     }
+#endregion
 }
