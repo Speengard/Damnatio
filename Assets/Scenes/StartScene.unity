@@ -541,7 +541,7 @@ PrefabInstance:
     - target: {fileID: 7073769173442724426, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
       propertyPath: openPortalTexture
       value: 
-      objectReference: {fileID: 21300000, guid: c7f593a3c87b447be83075a032524547, type: 3}
+      objectReference: {fileID: 21300000, guid: e7d77c8a443ab4270a4a2e40ef1c7fb4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
 --- !u!1 &187301818
@@ -2182,7 +2182,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 0cec38136d5d04cd89f39761ebb00e9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
