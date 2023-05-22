@@ -2,23 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor.UI;
-
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private GameObject gameOverScene;
 
     public void PauseGame() {
         Time.timeScale = 0;
@@ -27,11 +14,21 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame() {
         pauseMenu.SetActive(false);
+        gameOverScene.SetActive(false);
+
+        // disable camera shake
+        if (GameManager.Instance.level > 0) GameManager.Instance.followPlayer.enabled = true;
+
         Time.timeScale = 1;
     }
 
     public void GetStartScene() {
-        SceneManager.LoadScene(0);
+        GameManager.Instance.level = 0; // reset the level number
+        SceneManager.LoadScene(0); // load the start scene
+
+        // reset player health
+        GameManager.Instance.player.healthController.healthSlider.gameObject.SetActive(false);
+        
         ResumeGame();
     }
 }

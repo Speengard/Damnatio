@@ -12,7 +12,7 @@ public class Laser : MonoBehaviour
     private List<ParticleSystem> particles = new List<ParticleSystem>();
     [SerializeField] private Transform target;
     private Vector2 direction;
-    private bool isShooting = false;
+    public bool isShooting = false;
     private bool hasHit = false;
 
     private void OnDisable() {
@@ -20,34 +20,38 @@ public class Laser : MonoBehaviour
         {
             particles[i].Stop();
         }
+        
     }
 
     private void OnEnable() {
+        print("enabled");
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
         }
+        StartCoroutine(DisableLaser());
     }
 
-    private void Start() {
+    private void Awake() {
         FillList();
         DisableLaser();        
     }
 
     private void Update() {
-        if(isShooting) UpdateLaser();
-    }
-
-    public void EnableLaser(Transform target){
-        if (target == null) return;
-
-        this.target = target;
-        StartCoroutine(EnableAfterDelay());
-    }
-    
-    IEnumerator EnableAfterDelay(){
-        yield return new WaitForSeconds(0.7f);
         
+        if(Player.Instance.attackController.target != null) target = Player.Instance.attackController.target.transform;
+        else target = null;
+
+        if(isShooting && gameObject.activeSelf) UpdateLaser();
+    }
+
+    public void EnableLaser(){
+        if(target == null) return;
+        if(isShooting) return;
+
+        print("enabling laser");
+
+        isShooting = true;
         lineRenderer.enabled = true;
 
         for (int i = 0; i < particles.Count; i++)
@@ -55,20 +59,19 @@ public class Laser : MonoBehaviour
             particles[i].Play();
         }
 
-        isShooting = true;
         StartCoroutine(DisableLaserAfterSeconds());
     }
+    
 
     IEnumerator DisableLaserAfterSeconds(){
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.8f);
         DisableLaser();
-        isShooting = false;
     }
 
     void UpdateLaser(){
 
-        if(target == null){
-            DisableLaser();
+        if(lineRenderer.enabled == false || target == null){
+            StartCoroutine(DisableLaser());
             return;
         } 
 
@@ -78,8 +81,6 @@ public class Laser : MonoBehaviour
         startVFX.transform.position = (Vector2) firePoint.position;
         lineRenderer.SetPosition(1, firePoint.position * direction.normalized * 3f);
 
-        //RotateLaser();
-
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
 
         if(hit){
@@ -87,8 +88,7 @@ public class Laser : MonoBehaviour
                 hasHit = true;
                 hit.collider.GetComponent<Enemy>().TakeDamage(1);
 
-                if(hit.collider.GetComponent<HealthController>().CheckDeath()){
-                    print("Enemy is dead");
+                if(hit.collider.GetComponent<HealthController>().CheckDeath()){ 
                     target = null;
                 }
             }
@@ -99,24 +99,22 @@ public class Laser : MonoBehaviour
         endVFX.transform.position = lineRenderer.GetPosition(1);
     }
 
-    void DisableLaser(){
-        lineRenderer.enabled = false;
-        hasHit = false;
-        isShooting = false;
-
+    IEnumerator DisableLaser(){
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
         }
+        
 
-        StartCoroutine(WaitForDelayThenShoot());
+        lineRenderer.enabled = false;
+        hasHit = false;
+
+        yield return new WaitForSeconds(1.2f);
+        isShooting = false;
+
+
     }
 
-    void RotateLaser(){
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rotation.eulerAngles = new Vector3(0, 0, angle);
-        transform.rotation = rotation;
-    }
 
     void FillList(){
 
@@ -137,9 +135,5 @@ public class Laser : MonoBehaviour
         }   
     }
 
-    IEnumerator WaitForDelayThenShoot()
-    {
-        yield return new WaitForSeconds(3f);
-        EnableLaser(target);
-    }
+    
 }

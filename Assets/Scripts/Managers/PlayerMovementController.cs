@@ -14,21 +14,22 @@ using Touch = UnityEngine.Touch;
 //I decided to use Unity's new input sistem
 public class PlayerMovementController : MonoBehaviour
 {
-
     [SerializeField] private Vector2 JoystickSize;//this just serves as a way to speed things up and not access the component every time
     [SerializeField] public FloatingJoystick Joystick;//our variable for the joystick
-    [SerializeField] private Rigidbody2D Player;//our variable for the player
+    [SerializeField] private Player Player;//our variable for the player
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
-    [SerializeField] private float speedMovement = 1200f;
+    private float speedMovement = 20f;
     [SerializeField] private Animator playerAnimator;
+
+    [SerializeField] private GameObject Handle;
 
 
     private void Awake()
     {
         JoystickSize = new Vector2(200, 200);
-        Player = GetComponent<Rigidbody2D>();
+        Player = GetComponent<Player>();
         playerAnimator = new Animator();
     }
 
@@ -150,104 +151,19 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
-        // Player.transform.Translate(scaledMovement);
 
-        Player.MovePosition(Player.position + scaledMovement);
+        if(MovementAmount != Vector2.zero){
+            //this gets executed when the movement is not zero, otherwise it would default to the 0,0 position in the blend tree, which right now does not have any animation clip attached
+            Player.animationController.animator.speed = 1;
+            //Player.animationController.FixAnimationAndRotate(MovementAmount.normalized,Handle.transform);
+            Player.animationController.FixAndSetAnimation(MovementAmount.normalized);
 
-        //Player.velocity = scaledMovement;
-        //Player.AddForce(scaledMovement);
-
-        // Player.AddTorque(MovementAmount.x);
-    }
-
-    public void RotateTowards(Quaternion enemyRotation)
-    {
-
-        Quaternion fixedRotation;
-
-        switch (enemyRotation.eulerAngles.z)
-        {
-            //N
-            case float f when f < 22.5f || f > 337.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 0);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", 0);
-                playerAnimator.SetFloat("Vertical", 1);
-
-                break;
-
-            //NW
-            case float f when f >= 22.5f && f < 67.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 45);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", -1);
-                playerAnimator.SetFloat("Vertical", 1);
-                break;
-            //W
-            case float f when f >= 67.5f && f < 112.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 90);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", -1);
-                playerAnimator.SetFloat("Vertical", 0);
-                break;
-            //SW
-            case float f when f >= 112.5f && f < 157.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 135);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", -1);
-                playerAnimator.SetFloat("Vertical", -1);
-                break;
-            //S
-            case float f when f >= 157.5f && f < 202.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 180);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", 0);
-                playerAnimator.SetFloat("Vertical", -1);
-                break;
-            //SE
-            case float f when f >= 202.5f && f < 247.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 225);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", 1);
-                playerAnimator.SetFloat("Vertical", -1);
-                break;
-            //E
-            case float f when f >= 247.5f && f < 292.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 270);
-
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", 1);
-                playerAnimator.SetFloat("Vertical", 0);
-                break;
-            //NE
-            case float f when f >= 292.5f && f < 337.5f:
-
-                fixedRotation = Quaternion.Euler(0, 0, 315);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, fixedRotation, 700 * Time.deltaTime);
-
-                playerAnimator.SetFloat("Horizontal", 1);
-                playerAnimator.SetFloat("Vertical", 1);
-                break;
+        }else{
+            //very stupid method to stop the animation, because right now we lack the idle animation clips
+            Player.animationController.animator.speed = 0;
         }
+        
+        Player.rb.MovePosition(Player.rb.position + scaledMovement);
     }
+
 }

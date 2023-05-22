@@ -8,17 +8,21 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField] public Player player;
 	[SerializeField] public PlayerStatsScriptableObject playerStats;
+	[SerializeField] private GameObject gameOverScene;
+	[SerializeField] private StartSceneManager startSceneManager;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
 	private LevelManager boardScript;
-	private int level = 0;
+	public int level = 0;
 	public List<Enemy> enemies;
 	private bool enemiesMoving;
 	public bool isPlayerInstantiated = false;
+    public FollowPlayer followPlayer;
 
 	void Awake()
 	{
+
 		if (Instance == null) Instance = this;
 		
 		if (Instance != this) 
@@ -35,15 +39,18 @@ public class GameManager : MonoBehaviour
 	private void Start() {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 	}
+
+	private void Update() {
+        if (level > 0) {
+			if (followPlayer == null) followPlayer = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<FollowPlayer>();
+		}
+	}
 	
 	public void GameOver()
 	{
-		enabled = false;
-	}
-
-	public void AddEnemyToList(Enemy enemy)
-	{
-		enemies.Add(enemy);
+		Time.timeScale = 0;
+		followPlayer.enabled = false;
+		gameOverScene.gameObject.SetActive(true);
 	}
 
 	void OnEnable()
@@ -64,11 +71,17 @@ public class GameManager : MonoBehaviour
 		// mark the player as instantiated
 		isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
 
-		// increment the level only if the player isn't in the "start scene"
+		// get the index of the scene
 		int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+		// handle the level according to which kind of level the player is in
 		if (sceneIndex != 0) {
-			level += 1;
+			level += 1; // increment the level only if the player isn't in the "start scene"
+			startSceneManager.enabled = false; // disable the manager of the "start scene"
 			boardScript.SetupScene(level); // spawn enemies and enable the power-up system
+		} else {
+			// if we are the "start scene", enable its manager
+			startSceneManager.enabled = true;
 		}
 	}
 

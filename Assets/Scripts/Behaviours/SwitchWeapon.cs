@@ -5,16 +5,20 @@ using UnityEngine.UI;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    private PlayerAttackController controller = null;
+    private Player player = null;
 
     [SerializeField] private Sprite morningStarSprite;
     [SerializeField] private Sprite rangedSprite;
     
     public void OnClick()
     {
-        if (controller == null) controller = PlayerAttackController.Instance;
-        controller.switchWeapon();
+        if (player == null)
+        {
+            player = Player.Instance;
+        }
 
-        GetComponent<Button>().image.overrideSprite = controller.hasRanged ? morningStarSprite : rangedSprite;
+        player.attackController.switchWeapon();
+
+        GetComponent<Button>().image.overrideSprite = player.attackController.hasRanged ? morningStarSprite : rangedSprite;
     }
 }
