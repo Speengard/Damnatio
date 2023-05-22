@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8445436549512847998}
   - component: {fileID: 1646485282792232954}
   - component: {fileID: 2392000702368632478}
-  m_Layer: 6
+  - component: {fileID: 8008073914339420339}
+  m_Layer: 7
   m_Name: TreeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3f9f87c9b225c44fdbb5e5e0ad730cc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -129,7 +130,7 @@ MonoBehaviour:
   healthController: {fileID: 1646485282792232954}
   enemyStats: {fileID: 11400000, guid: 6cd09ae837d1d471ba351aead4dadf78, type: 2}
   damage: 20
-  spawnId: 0
+  spawnId: 2
   bulletPrefab: {fileID: 1693975906328065251, guid: 6f5564bb7183541889def42b0482d721, type: 3}
   animator: {fileID: 3210796442344868599}
   spawnPoint: {fileID: 6919929725964525072}
@@ -164,6 +165,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.031190917, y: 0.024259627}
   m_Size: {x: 0.3100759, y: 1.1513525}
   m_Direction: 0
+--- !u!50 &8008073914339420339
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704657455127083575}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 3
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &8963209208596130089
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6919929725964525072}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 297957710620246577, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2241513443803271196, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_AnchorMax.y
@@ -212,11 +234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2992062065530395034, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3485431024719063932, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4872467107227660902, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Pivot.x
@@ -308,15 +330,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5117547770006742264, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5766481083932497016, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8414593216222849920, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c07eaf1444df64afba3297e56b2b9216, type: 3}

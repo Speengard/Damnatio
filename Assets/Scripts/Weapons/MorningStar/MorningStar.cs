@@ -18,6 +18,9 @@ public class MorningStar : MonoBehaviour
         print("contact");
         if (other.gameObject.CompareTag("Enemy"))
         {
+            
+            other.rigidbody.AddForce(transform.up * 5 );
+
             switch(Mathf.Abs(GetComponent<Rigidbody2D>().angularVelocity)){
                 case <50:
                     other.gameObject.GetComponent<EnemyHealthController>().TakeDamage(morningStarDamage);
