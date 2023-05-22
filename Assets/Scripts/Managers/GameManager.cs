@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField] public PlayerStatsScriptableObject playerStats;
 	[SerializeField] private GameObject gameOverScene;
 	[SerializeField] private StartSceneManager startSceneManager;
-	[SerializeField] private LootManager lootManager;
 	public static GameManager Instance { get; private set; }
 
 	public float levelStartDelay = 2f;
@@ -20,7 +19,6 @@ public class GameManager : MonoBehaviour
 	public List<GameObject> lootObjects;
 	private bool enemiesMoving;
 	public bool isPlayerInstantiated = false;
-	public bool playerIsCollecting = false;
     public FollowPlayer followPlayer;
 
 	void Awake()
@@ -70,6 +68,7 @@ public class GameManager : MonoBehaviour
 	void InitGame()
 	{
 		enemies.Clear();
+		lootObjects.Clear();
 		boardScript.InstantiatePlayer(); // instantiate the player or reset the position in the scene
 
 		// mark the player as instantiated

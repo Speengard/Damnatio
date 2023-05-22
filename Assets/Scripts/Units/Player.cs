@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     [SerializeField] public PlayerStatsScriptableObject stats;
     [SerializeField] public PlayerStatsScriptableObject runStats;
+    public int collectedSouls = 0;
 
     public static Player Instance { get; private set; }
     public GameManager gameManager;
@@ -33,5 +34,40 @@ public class Player : MonoBehaviour
 
     void Start() {
         runStats = ScriptableObject.CreateInstance<PlayerStatsScriptableObject>();
+    }
+
+    public void EnableLoot() {
+        Vector3 targetPosition = transform.position;
+
+        for (int i = 0; i < GameManager.Instance.lootObjects.Count; i++)
+        {
+            Debug.Log("Entro qua n. " + i);
+            
+            StartCoroutine(CollectObjects(GameManager.Instance.lootObjects[i]));
+
+            collectedSouls += 1;
+        }
+    }
+
+    private IEnumerator CollectObjects(GameObject objectToMove) {
+        Vector2 startPosition = objectToMove.transform.position;
+        Vector2 targetPosition = transform.position;
+
+        float distance = Vector3.Distance(startPosition, targetPosition);
+        float duration = distance / 10;
+        float elapsedTime = 0f;
+
+        Debug.Log("corout");
+
+        while (elapsedTime < duration) {
+            objectToMove.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        objectToMove.transform.position = targetPosition;
+
+        // L'oggetto ha raggiunto la posizione target, puoi eseguire le azioni desiderate qui
+        Debug.Log("ok finito.");
     }
 }
