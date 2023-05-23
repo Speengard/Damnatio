@@ -95,12 +95,13 @@ public class PlayerAttackController : MonoBehaviour
         //check if the player is moving
         if(!rangedShoot.isShooting)StartCoroutine(CheckMoving());
         
-
+        if(target != null){
         direction = (target.transform.position - transform.position).normalized;
         distance = Vector2.Distance(target.transform.position, transform.position);
 
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
+        }
 
         }
     }

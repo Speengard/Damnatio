@@ -15,15 +15,17 @@ public class Laser : MonoBehaviour
     public bool isShooting = false;
     private bool hasHit = false;
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
         }
-        
+
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         print("enabled");
         for (int i = 0; i < particles.Count; i++)
         {
@@ -32,24 +34,27 @@ public class Laser : MonoBehaviour
         StartCoroutine(DisableLaser());
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         FillList();
-        DisableLaser();        
+        DisableLaser();
     }
 
-    private void Update() {
-        
-        if(Player.Instance.attackController.target != null) target = Player.Instance.attackController.target.transform;
+    private void Update()
+    {
+
+        if (Player.Instance.attackController.target != null) target = Player.Instance.attackController.target.transform;
         else target = null;
 
-        if(isShooting && gameObject.activeSelf) UpdateLaser();
+        if (isShooting && gameObject.activeSelf) UpdateLaser();
     }
 
-    public void EnableLaser(){
-        if(target == null) return;
-        if(isShooting) return;
+    public void EnableLaser()
+    {
+        if (target == null) return;
+        if (isShooting) return;
 
-        print("enabling laser");
+
 
         isShooting = true;
         lineRenderer.enabled = true;
@@ -61,34 +66,40 @@ public class Laser : MonoBehaviour
 
         StartCoroutine(DisableLaserAfterSeconds());
     }
-    
 
-    IEnumerator DisableLaserAfterSeconds(){
+
+    IEnumerator DisableLaserAfterSeconds()
+    {
         yield return new WaitForSeconds(0.8f);
-        DisableLaser();
+        StartCoroutine(DisableLaser());
     }
 
-    void UpdateLaser(){
+    void UpdateLaser()
+    {
 
-        if(lineRenderer.enabled == false || target == null){
+        if (lineRenderer.enabled == false || target == null)
+        {
             StartCoroutine(DisableLaser());
             return;
-        } 
+        }
 
-        direction = (Vector2) target.position - (Vector2)firePoint.position;
+        direction = (Vector2)target.position - (Vector2)firePoint.position;
 
         lineRenderer.SetPosition(0, firePoint.position);
-        startVFX.transform.position = (Vector2) firePoint.position;
+        startVFX.transform.position = (Vector2)firePoint.position;
         lineRenderer.SetPosition(1, firePoint.position * direction.normalized * 3f);
 
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
 
-        if(hit){
-            if(hit.collider.tag == "Enemy" && !hasHit){
+        if (hit)
+        {
+            if (hit.collider.tag == "Enemy" && !hasHit)
+            {
                 hasHit = true;
                 hit.collider.GetComponent<Enemy>().TakeDamage(1);
 
-                if(hit.collider.GetComponent<HealthController>().CheckDeath()){ 
+                if (hit.collider.GetComponent<HealthController>().CheckDeath())
+                {
                     target = null;
                 }
             }
@@ -99,12 +110,13 @@ public class Laser : MonoBehaviour
         endVFX.transform.position = lineRenderer.GetPosition(1);
     }
 
-    IEnumerator DisableLaser(){
+    IEnumerator DisableLaser()
+    {
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
         }
-        
+
 
         lineRenderer.enabled = false;
         hasHit = false;
@@ -116,11 +128,14 @@ public class Laser : MonoBehaviour
     }
 
 
-    void FillList(){
+    void FillList()
+    {
 
-        for(int i = 0; i<startVFX.transform.childCount; i++){
+        for (int i = 0; i < startVFX.transform.childCount; i++)
+        {
             var ps = startVFX.transform.GetChild(i).GetComponent<ParticleSystem>();
-            if(ps != null){
+            if (ps != null)
+            {
                 particles.Add(ps);
             }
         }
@@ -132,8 +147,8 @@ public class Laser : MonoBehaviour
             {
                 particles.Add(ps);
             }
-        }   
+        }
     }
 
-    
+
 }

@@ -106,6 +106,7 @@ public class PlayerMovementController : MonoBehaviour
             //spawn the joystick active
             MovementFinger = TouchedFinger;
             MovementAmount = Vector2.zero;
+
             Joystick.gameObject.SetActive(true);
             Joystick.RectTransform.sizeDelta = JoystickSize;
 
@@ -151,6 +152,14 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
+        if(scaledMovement != Vector2.zero){
+
+        Player.rb.MovePosition(Player.rb.position + scaledMovement);
+        }else{
+            Player.rb.velocity = Vector2.zero;
+        }
+
+        
 
         if(MovementAmount != Vector2.zero){
             //this gets executed when the movement is not zero, otherwise it would default to the 0,0 position in the blend tree, which right now does not have any animation clip attached
@@ -163,7 +172,6 @@ public class PlayerMovementController : MonoBehaviour
             Player.animationController.animator.speed = 0;
         }
         
-        Player.rb.MovePosition(Player.rb.position + scaledMovement);
     }
 
 }
