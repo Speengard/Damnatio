@@ -23,8 +23,11 @@ public class EnemyHealthController : HealthController
     override public bool CheckDeath() {
         if (health <= 0)
         {
+
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
+
             Destroy(gameObject);
+            
             return true;
         }else{
             return false;

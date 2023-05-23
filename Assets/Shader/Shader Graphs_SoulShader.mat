@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_LaserShader
-  m_Shader: {fileID: -6465566751694194690, guid: 51d0e17a9bddb4595999741ccd45f748, type: 3}
+  m_Name: Shader Graphs_SoulShader
+  m_Shader: {fileID: -6465566751694194690, guid: 6223cbbe5744a4232a34c2a0acb5931f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -35,11 +35,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelPower: 1
-    - _LaserEdgeSmoothness: 6.78
-    - _LaserScale: 32.1
-    - _LaserThickness: 136.84
     m_Colors:
-    - _Color: {r: 47.117126, g: 908.07544, b: 877.4982, a: 0}
-    - _FresnelColor: {r: 0.2196078, g: 1.968627, b: 0.2352941, a: 0.3921569}
-    - _LaserTextureMovement: {r: 3, g: 0, b: 0, a: 0}
+    - _Color: {r: 26.36658, g: 19.7483, b: 0.870595, a: 0.3921569}
   m_BuildTextureStacks: []
