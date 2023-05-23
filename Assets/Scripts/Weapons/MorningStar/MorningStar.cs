@@ -15,11 +15,13 @@ public class MorningStar : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print("contact");
+
         if (other.gameObject.CompareTag("Enemy"))
         {
-            
-            other.rigidbody.AddForce(transform.up * 5 );
+            if(other.rigidbody != null){
+
+            other.rigidbody.AddForce(transform.up * 5);
+            }
 
             switch(Mathf.Abs(GetComponent<Rigidbody2D>().angularVelocity)){
                 case <50:
