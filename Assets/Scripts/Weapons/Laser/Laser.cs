@@ -10,7 +10,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private GameObject startVFX;
     [SerializeField] private GameObject endVFX;
     private List<ParticleSystem> particles = new List<ParticleSystem>();
-    [SerializeField] private Transform target;
+    [SerializeField] private Vector3 target;
     private Vector2 direction;
     public bool isShooting = false;
     private bool hasHit = false;
@@ -23,6 +23,7 @@ public class Laser : MonoBehaviour
             particles[i].Stop();
         }
 
+
     }
 
     private void OnEnable()
@@ -32,18 +33,19 @@ public class Laser : MonoBehaviour
         {
             particles[i].Stop();
         }
-        StartCoroutine(DisableLaser());
+
+
     }
 
     private void Awake()
     {
         FillList();
-        DisableLaser();
+       DisableLaser();
     }
 
     private void Update()
     {
-        if (isShooting && gameObject.activeSelf) UpdateLaser();
+        UpdateLaser();
     }
 
     public void EnableLaser( float laserWidth, GameObject target)
@@ -69,11 +71,11 @@ public class Laser : MonoBehaviour
                 break;
         }
 
-        this.target = target.transform;
+        this.target = target.transform.position;
+        
         lineRenderer.startWidth = laserWidth;
         lineRenderer.endWidth = laserWidth;
 
-        isShooting = true;
         lineRenderer.enabled = true;
 
         for (int i = 0; i < particles.Count; i++)
@@ -81,27 +83,23 @@ public class Laser : MonoBehaviour
             particles[i].Play();
         }
 
+        isShooting = true;
         StartCoroutine(DisableLaserAfterSeconds());
     }
 
 
     IEnumerator DisableLaserAfterSeconds()
     {
-        yield return new WaitForSeconds(0.8f);
-        StartCoroutine(DisableLaser());
+        yield return new WaitForSeconds(1f);
+        DisableLaser();
     }
 
     void UpdateLaser()
     {
-        if(target == null || !target.gameObject.activeSelf) {
-            stopLaser();
-            return;
-        }
-
-        direction = (Vector2)target.position - (Vector2)firePoint.position;
-
+        if(lineRenderer.enabled == false) return;
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2)firePoint.position;
+        direction = (Vector2)target - (Vector2)firePoint.position;
         lineRenderer.SetPosition(1, firePoint.position * direction.normalized * 3f);
 
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
@@ -110,14 +108,7 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
-                print("hit");
-                hasHit = true;
-                hit.collider.GetComponent<Enemy>().TakeDamage(rangedDamage);
-
-                if (hit.collider.GetComponent<HealthController>().CheckDeath())
-                {
-                    target = null;
-                }
+                print("has hit enemy");
             }
 
             lineRenderer.SetPosition(1, hit.point);
@@ -126,30 +117,39 @@ public class Laser : MonoBehaviour
         endVFX.transform.position = lineRenderer.GetPosition(1);
     }
 
-    IEnumerator DisableLaser()
+    private void DisableLaser()
     {
+        //stop particle effects
+        for(int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+
+        lineRenderer.enabled = false;
+        lineRenderer.startWidth = 0.5f;
+        lineRenderer.endWidth = 0.5f;
+
+        StartCoroutine(WaitCooldown());
+    }
+
+    IEnumerator WaitCooldown(){
+        yield return new WaitForSeconds(3f);
+        isShooting = false;
+    }
+
+    public bool StopEverything(){
+        StopAllCoroutines();
+        //stop particle effects
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
         }
 
-
         lineRenderer.enabled = false;
-        hasHit = false;
-
-        yield return new WaitForSeconds(1.2f);
-        stopLaser();
-    }
-
-    private void stopLaser()
-    {
-        isShooting = false;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;
-        StopAllCoroutines();
+        return true;
     }
-
-
     void FillList()
     {
 

@@ -36,10 +36,12 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasRanged)
         {
+            
             rangedWeapon.gameObject.SetActive(true);
         }
         else
-        {            
+        {
+                      
             morningStar.SetActive(true);
         }
     }
@@ -50,10 +52,10 @@ public class PlayerAttackController : MonoBehaviour
 
         if (hasRanged)
         {  
-            rangedWeapon.SetActive(false);   
+            rangedWeapon.SetActive(false);        
         }
         else
-        {
+        {   
             morningStar.SetActive(false);   
         }
 
@@ -116,12 +118,12 @@ public class PlayerAttackController : MonoBehaviour
         isChecking = true;
 
         Vector3 startPos = transform.position;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         Vector3 finalPos = transform.position;
 
         if (!startPos.Equals(finalPos)){
             
-            if (!rangedShoot.isShooting) shootLaser();
+            if (!rangedShoot.isShooting && rangedWeapon.activeSelf) shootLaser();
 
             laserWidth = 0.5f;
 
@@ -134,7 +136,7 @@ public class PlayerAttackController : MonoBehaviour
 
             if (laserWidth < 3.0f)
             {
-                laserWidth += 0.08f;
+                laserWidth += 1f;
             }
 
                 bIsOnTheMove = false;
