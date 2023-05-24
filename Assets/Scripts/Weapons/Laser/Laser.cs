@@ -14,6 +14,7 @@ public class Laser : MonoBehaviour
     private Vector2 direction;
     public bool isShooting = false;
     private bool hasHit = false;
+    private int rangedDamage = 5;
 
     private void OnDisable()
     {
@@ -26,7 +27,7 @@ public class Laser : MonoBehaviour
 
     private void OnEnable()
     {
-        print("enabled");
+
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
@@ -42,19 +43,35 @@ public class Laser : MonoBehaviour
 
     private void Update()
     {
-
-        if (Player.Instance.attackController.target != null) target = Player.Instance.attackController.target.transform;
-        else target = null;
-
         if (isShooting && gameObject.activeSelf) UpdateLaser();
     }
 
-    public void EnableLaser()
+    public void EnableLaser( float laserWidth, GameObject target)
     {
         if (target == null) return;
         if (isShooting) return;
 
+        switch(laserWidth){
+            case <= 0.5f:
+                rangedDamage = 5;
+                break;
+            case <= 1f:
+                rangedDamage = 7;
+                break;
+            case <= 1.5f:
+                rangedDamage = 9;
+                break;
+            case <= 2f:
+            rangedDamage = 15;
+                break;
+            default:
+                rangedDamage = 5;
+                break;
+        }
 
+        this.target = target.transform;
+        lineRenderer.startWidth = laserWidth;
+        lineRenderer.endWidth = laserWidth;
 
         isShooting = true;
         lineRenderer.enabled = true;
@@ -76,10 +93,8 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
-
-        if (lineRenderer.enabled == false || target == null)
-        {
-            StartCoroutine(DisableLaser());
+        if(target == null || !target.gameObject.activeSelf) {
+            stopLaser();
             return;
         }
 
@@ -95,8 +110,9 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
+                print("hit");
                 hasHit = true;
-                hit.collider.GetComponent<Enemy>().TakeDamage(1);
+                hit.collider.GetComponent<Enemy>().TakeDamage(rangedDamage);
 
                 if (hit.collider.GetComponent<HealthController>().CheckDeath())
                 {
@@ -122,9 +138,15 @@ public class Laser : MonoBehaviour
         hasHit = false;
 
         yield return new WaitForSeconds(1.2f);
+        stopLaser();
+    }
+
+    private void stopLaser()
+    {
         isShooting = false;
-
-
+        lineRenderer.startWidth = 0.5f;
+        lineRenderer.endWidth = 0.5f;
+        StopAllCoroutines();
     }
 
 

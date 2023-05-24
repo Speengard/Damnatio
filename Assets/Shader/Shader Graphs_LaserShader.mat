@@ -35,9 +35,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelPower: 1
-    - _LaserEdgeSmoothness: 6.78
-    - _LaserScale: 32.1
-    - _LaserThickness: 136.84
+    - _LaserEdgeSmoothness: 7.75
+    - _LaserScale: 42.9
+    - _LaserThickness: 137.8
     m_Colors:
     - _Color: {r: 47.117126, g: 908.07544, b: 877.4982, a: 0}
     - _FresnelColor: {r: 0.2196078, g: 1.968627, b: 0.2352941, a: 0.3921569}

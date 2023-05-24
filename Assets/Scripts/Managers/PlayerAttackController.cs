@@ -24,6 +24,8 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private GameObject rangedWeapon;
     [SerializeField] private GameObject morningStar;
     public bool hasRanged = false;
+    private float laserWidth = 0.5f;
+    private bool isChecking = false;
     private void Start()
     {
         
@@ -84,23 +86,25 @@ public class PlayerAttackController : MonoBehaviour
     }
 
     private void shootLaser(){
-        rangedShoot.EnableLaser();
+        rangedShoot.EnableLaser(laserWidth, target);
     }
 
     
     private void Update()
     {
 
-        if(hasEnemy && hasRanged){
+        if(hasRanged){
         //check if the player is moving
-        if(!rangedShoot.isShooting)StartCoroutine(CheckMoving());
+        if(!rangedShoot.isShooting && !isChecking) StartCoroutine(CheckMoving());
         
         if(target != null){
+
         direction = (target.transform.position - transform.position).normalized;
         distance = Vector2.Distance(target.transform.position, transform.position);
 
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
+
         }
 
         }
@@ -109,19 +113,35 @@ public class PlayerAttackController : MonoBehaviour
 
     private IEnumerator CheckMoving()
     {
+        isChecking = true;
+
         Vector3 startPos = transform.position;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.1f);
         Vector3 finalPos = transform.position;
 
-        if (startPos.x != finalPos.x || startPos.y != finalPos.y
-            || startPos.z != finalPos.z)
+        if (!startPos.Equals(finalPos)){
+            
+            if (!rangedShoot.isShooting) shootLaser();
+
+            laserWidth = 0.5f;
+
             bIsOnTheMove = true;
+            isChecking = false;
+
+            }
 
             else{
-                if (!rangedShoot.isShooting) shootLaser();
+
+            if (laserWidth < 3.0f)
+            {
+                laserWidth += 0.08f;
+            }
+
                 bIsOnTheMove = false;
+                isChecking = false;
             } 
     }
+    
     #endregion
 
 }
