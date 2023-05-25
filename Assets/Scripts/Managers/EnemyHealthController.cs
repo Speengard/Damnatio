@@ -8,25 +8,24 @@ using UnityEngine.UI;
 public class EnemyHealthController : HealthController
 {
 
-    public List<Material> materials;
+    public Material material;
     float fade = 1.0f;
     private Enemy enemy;
 
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
+    public List<GameObject> skeletons;
+
     private void Awake()
     {
-
-        foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
-        {
-            spriteRenderers.Add(spriteRenderer);
-            materials.Add(GetComponentInChildren<SpriteRenderer>().material);
+        foreach(GameObject skeleton in skeletons){
+            spriteRenderers.AddRange(skeleton.GetComponentsInChildren<SpriteRenderer>());
         }
-
-        foreach (Material material in materials)
-        {
-            material.SetFloat("_Fade", fade);
-        }
+        
+        /* 
+        foreach(SpriteRenderer s in spriteRenderers){
+            s.material.SetFloat("_Fade",fade);
+        }*/
 
         enemy = GetComponent<Enemy>();
     }
@@ -73,9 +72,9 @@ public class EnemyHealthController : HealthController
         {
             print("fading out");
             fade -= 0.1f;
-            foreach (Material material in materials)
+            foreach (SpriteRenderer s in spriteRenderers)
             {
-                material.SetFloat("_Fade", fade);
+                s.material.SetFloat("_Fade", fade);
             }
             yield return new WaitForSeconds(0.2f);
         }

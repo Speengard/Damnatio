@@ -2855,6 +2855,16 @@ MonoBehaviour:
   healthSlider: {fileID: 2343700006674093244}
   health: 0
   maxHealth: 100
+  material: {fileID: 2100000, guid: 40fa56a9295c140dd86e94272ab77f41, type: 2}
+  skeletons:
+  - {fileID: 1297812054917280110}
+  - {fileID: 1297812056592966048}
+  - {fileID: 7420588901671626465}
+  - {fileID: 356819870159851319}
+  - {fileID: 6566280658096999952}
+  - {fileID: 1998855174896969617}
+  - {fileID: 3783366549079194921}
+  - {fileID: 6645466553824844931}
 --- !u!114 &432178822464913616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5772,7 +5782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 1e7bb13f15282447f9bc21dcd72897a4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8240189966668733465, guid: 1e7bb13f15282447f9bc21dcd72897a4, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -6336,7 +6346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 1c28f27bd97994874a2b323a84bc6396, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7561113526181806574, guid: 1c28f27bd97994874a2b323a84bc6396, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8375,5 +8385,10 @@ PrefabInstance:
 --- !u!4 &201211610392111373 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8506105618079086950, guid: 46c7290152b0846328f4b299ca7568d7, type: 3}
+  m_PrefabInstance: {fileID: 8413033181746679915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1297812054917280110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7404999890969141509, guid: 46c7290152b0846328f4b299ca7568d7, type: 3}
   m_PrefabInstance: {fileID: 8413033181746679915}
   m_PrefabAsset: {fileID: 0}

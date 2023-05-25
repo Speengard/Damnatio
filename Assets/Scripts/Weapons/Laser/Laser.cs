@@ -140,7 +140,7 @@ public class Laser : MonoBehaviour
         isShooting = false;
     }
 
-    public bool StopEverything(){
+    public void StopEverything(){
         StopAllCoroutines();
         //stop particle effects
         for (int i = 0; i < particles.Count; i++)
@@ -151,7 +151,7 @@ public class Laser : MonoBehaviour
         lineRenderer.enabled = false;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;
-        return true;
+
     }
     void FillList()
     {
