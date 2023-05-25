@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	private LevelManager boardScript;
 	public int level = 0;
 	public List<Enemy> enemies;
+	public List<GameObject> lootObjects;
 	private bool enemiesMoving;
 	public bool isPlayerInstantiated = false;
     public FollowPlayer followPlayer;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 		enemies = new List<Enemy>();
+		lootObjects = new List<GameObject>();
 		boardScript = GetComponent<LevelManager>();
 	}
 
@@ -51,6 +53,10 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 0;
 		followPlayer.enabled = false;
 		gameOverScene.gameObject.SetActive(true);
+
+		// update the value of Animae
+		int newAnimaeValue = PlayerPrefs.GetInt("Animae", 0) + player.collectedSouls;
+		PlayerPrefs.SetInt("Animae", newAnimaeValue);
 	}
 
 	void OnEnable()
@@ -66,6 +72,7 @@ public class GameManager : MonoBehaviour
 	void InitGame()
 	{
 		enemies.Clear();
+		lootObjects.Clear();
 		boardScript.InstantiatePlayer(); // instantiate the player or reset the position in the scene
 
 		// mark the player as instantiated

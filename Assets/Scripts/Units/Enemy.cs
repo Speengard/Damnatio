@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +11,8 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb2d;
     public Transform target;
     [SerializeField] private EnemyHealthController healthController;
-    [SerializeField] private EnemyStatsScriptableObject enemyStats;
+    [SerializeField] public EnemyStatsScriptableObject enemyStats;
+    [SerializeField] public GameObject lootPrefab;
 
     public int damage; // damage that the enemy does on the player
     public int spawnId;
@@ -29,6 +29,19 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         healthController.TakeDamage(damage);
+    }
+
+    public void DropObjects() {
+        // calculate the probability
+        float randomVariable = Random.Range(0.0f, 1.0f);
+        if (randomVariable <= (enemyStats.dropChance / 100)) {
+            // generate as many loot objects as the enemy can drop 
+            for (int i = 0; i < enemyStats.dropQuantity; i++)
+            {
+                GameObject lootObject = Instantiate(lootPrefab, transform.position, Quaternion.identity);
+                GameManager.Instance.lootObjects.Add(lootObject);
+            }
+        }
     }
 
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyHealthController : HealthController
 {
-
+    private Enemy enemy;
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
     private void Awake() {
@@ -15,6 +15,8 @@ public class EnemyHealthController : HealthController
         {
             spriteRenderers.Add(spriteRenderer);
         }
+        
+        enemy = GetComponent<Enemy>();
     }
     //this script is used to manage the health of the enemy;
     //this script also updates the HUD when damage is taken.
@@ -25,6 +27,14 @@ public class EnemyHealthController : HealthController
         {
 
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
+
+            // make the enemy drop something when it dies
+            enemy.DropObjects();
+
+            if (GameManager.Instance.enemies.Count == 0) {
+                Debug.Log("last enemy");
+                GameManager.Instance.player.EnableLoot();
+            }
 
             Destroy(gameObject);
             
