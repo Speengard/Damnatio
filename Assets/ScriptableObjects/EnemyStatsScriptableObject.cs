@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyStatsScriptableObject : ScriptableObject
 {
     public string enemyName;
-    public int health = 3;
-    public int damage = 3;
-    public int speed;
-    public int dropChance; // chance for enemies to drop objects
+    public int health;
+    public int damage;
+    public float dropChance; // chance for enemies to dropQuantity objects
+    public float dropQuantity; // number of dropped objects
 }

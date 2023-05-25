@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef12e0f7d556451dbfbbf66661274ab, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  hp: 50
-  maceAttack: 2
-  morningStarAttack: 1
+  health: 50
+  rangedDamage: 2
+  morningStarDamage: 1
   speed: 0
   dropChance: 0

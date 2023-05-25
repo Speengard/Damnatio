@@ -10,11 +10,13 @@ public class EnemyHealthController : HealthController
 
     public List<Material> materials;
     float fade = 1.0f;
+    private Enemy enemy;
 
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
-    private void Awake() {
-        
+    private void Awake()
+    {
+
         foreach (SpriteRenderer spriteRenderer in GetComponentsInChildren<SpriteRenderer>())
         {
             spriteRenderers.Add(spriteRenderer);
@@ -25,29 +27,47 @@ public class EnemyHealthController : HealthController
         {
             material.SetFloat("_Fade", fade);
         }
+
+        enemy = GetComponent<Enemy>();
     }
     //this script is used to manage the health of the enemy;
     //this script also updates the HUD when damage is taken.
 
     // this function destroys the enemy when the health goes below 0
-    override public bool CheckDeath() {
+    override public bool CheckDeath()
+    {
         if (health <= 0)
         {
+
             UpdateHealthBar(health);
-            
-            StartCoroutine(FadeOut(fade, () => {
+
+            StartCoroutine(FadeOut(fade, () =>
+            {
                 print("destroying enemy");
                 GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
+                // make the enemy drop something when it dies
+                enemy.DropObjects();
+
                 Destroy(gameObject);
             }));
-            
+
+            if (GameManager.Instance.enemies.Count == 0)
+            {
+                Debug.Log("last enemy");
+                GameManager.Instance.player.EnableLoot();
+            }
+
+
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
 
     }
-    IEnumerator FadeOut(float fade, Action onComplete = null){
+    IEnumerator FadeOut(float fade, Action onComplete = null)
+    {
 
         while (fade > 0.0f)
         {
@@ -67,18 +87,20 @@ public class EnemyHealthController : HealthController
     {
         health -= damage;
 
-        if (health <= 0){
+        if (health <= 0)
+        {
 
             health = 0;
             CheckDeath();
             return;
-        } 
+        }
 
         UpdateHealthBar(health);
-        StartCoroutine(GiveRedTint());      
+        StartCoroutine(GiveRedTint());
     }
 
-    IEnumerator GiveRedTint(){
+    IEnumerator GiveRedTint()
+    {
 
         foreach (SpriteRenderer spriteRenderer in spriteRenderers)
         {

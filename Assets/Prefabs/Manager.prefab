@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 539534086770803425}
   - component: {fileID: 539534086770803426}
   - component: {fileID: 539534086770803424}
-  - component: {fileID: 5670462346723797275}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -47,12 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesToSpawn: 2
-  enemyPrefab: {fileID: 5359785769075411549, guid: 58ddd02e8873749e4b5a41746d8a49d7, type: 3}
-  groundPrefab: {fileID: 588642836625830483, guid: 4a086a8b4a458486a8eb0d6a26ef5369, type: 3}
+  enemyPrefabs: []
   playerPrefab: {fileID: 1926458876681971923, guid: fddf656ae8034469887cad17f185eb87, type: 3}
-  borders: {fileID: 6977294707024724437, guid: 77c40d0f3e4cc436ea71d7cdb6737dcc, type: 3}
   joystick: {fileID: 0}
-  randomCardGenerator: {fileID: 5670462346723797275}
+  cardManager: {fileID: 0}
   roomWidth: 8
   roomHeight: 6
   isPlayerInstantiated: 0
@@ -70,20 +67,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerStats: {fileID: 11400000, guid: b573c273993824872a8dee0fb97a2af8, type: 2}
+  gameOverScene: {fileID: 0}
+  startSceneManager: {fileID: 0}
   levelStartDelay: 2
+  level: 0
   enemies: []
+  lootObjects: []
   isPlayerInstantiated: 0
---- !u!114 &5670462346723797275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539534086770803427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42091bbcf13d64e8c9256e46d4a2b49e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardNames: []
-  cardMenu: {fileID: 0}
+  followPlayer: {fileID: 0}
