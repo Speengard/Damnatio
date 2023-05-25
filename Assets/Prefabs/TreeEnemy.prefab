@@ -128,7 +128,7 @@ MonoBehaviour:
   target: {fileID: 0}
   healthController: {fileID: 1646485282792232954}
   enemyStats: {fileID: 11400000, guid: 6cd09ae837d1d471ba351aead4dadf78, type: 2}
-  lootPrefab: {fileID: 7651935223885501774, guid: c607615e15f8a4988b9e2a3374abd68e, type: 3}
+  lootPrefab: {fileID: 6960023711730406667, guid: fd010997f2d9f4f73840a7c27e88c7f1, type: 3}
   damage: 20
   spawnId: 2
   bulletPrefab: {fileID: 1693975906328065251, guid: 6f5564bb7183541889def42b0482d721, type: 3}
