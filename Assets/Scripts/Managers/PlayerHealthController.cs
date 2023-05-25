@@ -11,7 +11,7 @@ public class PlayerHealthController : HealthController
         maxHealth = GameManager.Instance.playerStats.health;
         health = PlayerPrefs.GetInt("PlayerHealth", maxHealth); // Get the player's health value from PlayerPrefs
     
-        Debug.Log("Player initial health: " + maxHealth);
+
     }
 
     override public bool CheckDeath() {
@@ -26,13 +26,13 @@ public class PlayerHealthController : HealthController
 
     public override void TakeDamage(int damage)
     {
-        print("arrived here");
+
         GameManager.Instance.followPlayer.ShakeCamera();
 
         base.TakeDamage(damage);
 
         PlayerPrefs.SetInt("PlayerHealth", health);
-        Debug.Log("player health: " + health);
+
     }
 
 }

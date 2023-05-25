@@ -18,6 +18,7 @@ public class Laser : MonoBehaviour
 
     private void OnDisable()
     {
+        hasHit = false;
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
@@ -28,7 +29,7 @@ public class Laser : MonoBehaviour
 
     private void OnEnable()
     {
-
+        hasHit = false;
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
@@ -108,7 +109,8 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
-                print("has hit enemy");
+                hasHit = true;
+                hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
             }
 
             lineRenderer.SetPosition(1, hit.point);
@@ -128,6 +130,7 @@ public class Laser : MonoBehaviour
         lineRenderer.enabled = false;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;
+        hasHit = false;
 
         StartCoroutine(WaitCooldown());
     }
