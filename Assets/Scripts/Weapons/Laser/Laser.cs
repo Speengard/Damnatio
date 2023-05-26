@@ -46,7 +46,7 @@ public class Laser : MonoBehaviour
 
     private void Update()
     {
-        UpdateLaser();
+        if(lineRenderer.enabled) UpdateLaser();
     }
 
     public void EnableLaser( float laserWidth, GameObject target)
@@ -97,7 +97,13 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
+        if(target == null){
+            StopEverything();  
+            return;
+        } 
+
         if(lineRenderer.enabled == false) return;
+
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2)firePoint.position;
         direction = (Vector2)target - (Vector2)firePoint.position;
