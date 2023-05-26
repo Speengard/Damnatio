@@ -118,7 +118,7 @@ public class PlayerAttackController : MonoBehaviour
         isChecking = true;
 
         Vector3 startPos = transform.position;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         Vector3 finalPos = transform.position;
 
         if (!startPos.Equals(finalPos)){
@@ -129,6 +129,7 @@ public class PlayerAttackController : MonoBehaviour
 
             bIsOnTheMove = true;
             isChecking = false;
+            yield break;
 
             }
 
@@ -136,11 +137,12 @@ public class PlayerAttackController : MonoBehaviour
 
             if (laserWidth < 3.0f)
             {
-                laserWidth += 1f;
+                laserWidth += 0.1f;
             }
 
                 bIsOnTheMove = false;
                 isChecking = false;
+                yield break;
             } 
     }
     

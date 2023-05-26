@@ -8,11 +8,14 @@ public class Enemy : MonoBehaviour
 {
     public LayerMask collisionLayer;
     private BoxCollider2D boxCollider;
-    private Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     public Transform target;
     [SerializeField] private EnemyHealthController healthController;
     [SerializeField] public EnemyStatsScriptableObject enemyStats;
+
     [SerializeField] public GameObject lootPrefab;
+
+    public bool stopMoving = false;
 
     public int damage; // damage that the enemy does on the player
     public int spawnId;

@@ -10,6 +10,11 @@ public class MovingEnemy : Enemy
     private Vector2 oldDirection;
     [SerializeField] private AnimationController animationController;
     public Quaternion rotation;
+    private Enemy enemy;
+
+    private void Awake() {
+        enemy = GetComponent<Enemy>();
+    }
     private void Update() {
     
         Vector2 direction = (target.position - transform.position).normalized;
@@ -21,7 +26,7 @@ public class MovingEnemy : Enemy
 
         oldDirection = direction;
 
-        if (Vector2.Distance(transform.position, target.position) > 0.3f)
+        if (Vector2.Distance(transform.position, target.position) > 0.3f && !enemy.stopMoving)
         {
             //move if distance from target is greater than 0.3
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.position.x,target.position.y), speed * Time.deltaTime);

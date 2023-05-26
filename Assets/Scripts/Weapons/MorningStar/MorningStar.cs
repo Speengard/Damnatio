@@ -20,7 +20,7 @@ public class MorningStar : MonoBehaviour
         {
             if(other.rigidbody != null){
 
-            other.rigidbody.AddForce(transform.up * 5);
+            other.rigidbody.AddForce(transform.up * 2);
             }
 
             switch(Mathf.Abs(GetComponent<Rigidbody2D>().angularVelocity)){

@@ -96,7 +96,8 @@ GameObject:
   - component: {fileID: 3210796442344868599}
   - component: {fileID: 8445436549512847998}
   - component: {fileID: 1646485282792232954}
-  - component: {fileID: 2392000702368632478}
+  - component: {fileID: 5034525617443586853}
+  - component: {fileID: 5077335956518087320}
   m_Layer: 7
   m_Name: TreeEnemy
   m_TagString: Enemy
@@ -157,10 +158,12 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 64
+  rb2d: {fileID: 5034525617443586853}
   target: {fileID: 0}
   healthController: {fileID: 1646485282792232954}
   enemyStats: {fileID: 11400000, guid: 6cd09ae837d1d471ba351aead4dadf78, type: 2}
   lootPrefab: {fileID: 6960023711730406667, guid: fd010997f2d9f4f73840a7c27e88c7f1, type: 3}
+  stopMoving: 0
   damage: 20
   spawnId: 2
   bulletPrefab: {fileID: 1693975906328065251, guid: 6f5564bb7183541889def42b0482d721, type: 3}
@@ -184,8 +187,29 @@ MonoBehaviour:
   material: {fileID: 0}
   skeletons:
   - {fileID: 3433689440196247772}
---- !u!70 &2392000702368632478
-CapsuleCollider2D:
+--- !u!50 &5034525617443586853
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704657455127083575}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!61 &5077335956518087320
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -197,9 +221,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031190917, y: 0.024259627}
-  m_Size: {x: 0.3100759, y: 1.1513525}
-  m_Direction: 0
+  m_Offset: {x: 0.027156875, y: 0.19009852}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8913723, y: 1.6110315}
+  m_EdgeRadius: 0
 --- !u!1 &8963209208596130089
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class EnemyHealthController : HealthController
         foreach(GameObject skeleton in skeletons){
             spriteRenderers.AddRange(skeleton.GetComponentsInChildren<SpriteRenderer>());
         }
-        
+
         /* 
         foreach(SpriteRenderer s in spriteRenderers){
             s.material.SetFloat("_Fade",fade);
@@ -37,8 +37,12 @@ public class EnemyHealthController : HealthController
     {
         if (health <= 0)
         {
-
+            print("enemy died");
             UpdateHealthBar(health);
+
+            gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            gameObject.GetComponent<Enemy>().stopMoving = true;
 
             StartCoroutine(FadeOut(fade, () =>
             {
@@ -76,7 +80,7 @@ public class EnemyHealthController : HealthController
             {
                 s.material.SetFloat("_Fade", fade);
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
         }
 
         onComplete?.Invoke();

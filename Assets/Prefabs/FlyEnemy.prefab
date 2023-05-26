@@ -2892,10 +2892,12 @@ MonoBehaviour:
   collisionLayer:
     serializedVersion: 2
     m_Bits: 0
+  rb2d: {fileID: -8315583868615747123}
   target: {fileID: 0}
   healthController: {fileID: -817314349592084105}
   enemyStats: {fileID: 11400000, guid: d20ed43bc8fd6433cb7507802c2bdffa, type: 2}
   lootPrefab: {fileID: 6960023711730406667, guid: fd010997f2d9f4f73840a7c27e88c7f1, type: 3}
+  stopMoving: 0
   damage: 0
   spawnId: 2
   speed: 1

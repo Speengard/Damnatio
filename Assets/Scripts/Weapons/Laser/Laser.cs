@@ -19,6 +19,7 @@ public class Laser : MonoBehaviour
     private void OnDisable()
     {
         hasHit = false;
+
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
@@ -30,6 +31,7 @@ public class Laser : MonoBehaviour
     private void OnEnable()
     {
         hasHit = false;
+
         for (int i = 0; i < particles.Count; i++)
         {
             particles[i].Stop();
@@ -56,16 +58,16 @@ public class Laser : MonoBehaviour
 
         switch(laserWidth){
             case <= 0.5f:
-                rangedDamage = 5;
+                rangedDamage = 1;
                 break;
             case <= 1f:
-                rangedDamage = 7;
+                rangedDamage = 3;
                 break;
             case <= 1.5f:
-                rangedDamage = 9;
+                rangedDamage = 5;
                 break;
             case <= 2f:
-            rangedDamage = 15;
+            rangedDamage = 7;
                 break;
             default:
                 rangedDamage = 5;
