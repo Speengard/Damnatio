@@ -10,7 +10,7 @@ public class Laser : MonoBehaviour
     [SerializeField] private GameObject startVFX;
     [SerializeField] private GameObject endVFX;
     private List<ParticleSystem> particles = new List<ParticleSystem>();
-    [SerializeField] private Vector3 target;
+    [SerializeField] public GameObject target;
     private Vector2 direction;
     public bool isShooting = false;
     private bool hasHit = false;
@@ -43,7 +43,7 @@ public class Laser : MonoBehaviour
     private void Awake()
     {
         FillList();
-       DisableLaser();
+        DisableLaser();
     }
 
     private void Update()
@@ -74,7 +74,7 @@ public class Laser : MonoBehaviour
                 break;
         }
 
-        this.target = target.transform.position;
+        this.target = target;
         
         lineRenderer.startWidth = laserWidth;
         lineRenderer.endWidth = laserWidth;
@@ -108,7 +108,7 @@ public class Laser : MonoBehaviour
 
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2)firePoint.position;
-        direction = (Vector2)target - (Vector2)firePoint.position;
+        direction = (Vector2)target.transform.position - (Vector2)firePoint.position;
         lineRenderer.SetPosition(1, firePoint.position * direction.normalized * 3f);
 
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
@@ -145,7 +145,7 @@ public class Laser : MonoBehaviour
 
     IEnumerator WaitCooldown(){
         yield return new WaitForSeconds(3f);
-        isShooting = false;
+        StopEverything();
     }
 
     public void StopEverything(){
@@ -156,9 +156,11 @@ public class Laser : MonoBehaviour
             particles[i].Stop();
         }
 
+        target = null;
         lineRenderer.enabled = false;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;
+        isShooting = false;
 
     }
     void FillList()

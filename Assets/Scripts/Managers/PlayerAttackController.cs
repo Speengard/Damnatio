@@ -13,7 +13,7 @@ public class PlayerAttackController : MonoBehaviour
     public GameObject target = null;
     [SerializeField] public float distance = 10f;
     [SerializeField] public Vector3 direction;
-    public bool bIsOnTheMove = false;
+
 
     //these booleans are needed for detecting if the player is in the attack range
     public bool hasEnemy = false;
@@ -24,8 +24,12 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private GameObject rangedWeapon;
     [SerializeField] private GameObject morningStar;
     public bool hasRanged = false;
-    private float laserWidth = 0.5f;
+    public float laserWidth = 0.5f;
     private bool isChecking = false;
+
+    public float morningStarDamage;
+    public float rangedDamage;
+    
     private void Start()
     {
         
@@ -96,6 +100,7 @@ public class PlayerAttackController : MonoBehaviour
     {
 
         if(hasRanged){
+
         //check if the player is moving
         if(!rangedShoot.isShooting && !isChecking) StartCoroutine(CheckMoving());
         
@@ -122,12 +127,11 @@ public class PlayerAttackController : MonoBehaviour
         Vector3 finalPos = transform.position;
 
         if (!startPos.Equals(finalPos)){
-            
+
             if (!rangedShoot.isShooting && rangedWeapon.activeSelf) shootLaser();
 
             laserWidth = 0.5f;
 
-            bIsOnTheMove = true;
             isChecking = false;
             yield break;
 
@@ -137,10 +141,11 @@ public class PlayerAttackController : MonoBehaviour
 
             if (laserWidth < 3.0f)
             {
+
                 laserWidth += 0.1f;
+
             }
 
-                bIsOnTheMove = false;
                 isChecking = false;
                 yield break;
             } 

@@ -55,16 +55,16 @@ public class CardManager : MonoBehaviour
     private void AssignPowerUp(CardSuits suit) {
         switch (suit) {
             case CardSuits.Cups: // power up for health points
-                player.runStats.health += 1;
+                player.runStats.playerCurrentStats.health += 1;
                 break;
             case CardSuits.Batons: // power up for ranged weapon
-                player.runStats.rangedDamage += 1;
+                player.runStats.playerCurrentStats.rangedDamage += 1;
                 break;
             case CardSuits.Swords: // power up for morning star
-                player.runStats.morningStarDamage += 1;
+                player.runStats.playerCurrentStats.morningStarDamage += 1;
                 break;
             case CardSuits.Coins: // power up for collectibles
-                player.runStats.dropChance += 1;
+                player.runStats.playerCurrentStats.dropRate += 1;
                 break;
             default:
                 break;
@@ -78,13 +78,13 @@ public class CardManager : MonoBehaviour
     private int GetStatsDifference(CardSuits suit) {
         switch (suit) {
             case CardSuits.Cups: // power up for health points
-                return player.runStats.health - player.stats.health;
+                return player.runStats.playerCurrentStats.health - player.baseStats.playerCurrentStats.health;
             case CardSuits.Batons: // power up for ranged weapon
-                return player.runStats.rangedDamage - player.stats.rangedDamage;
+                return player.runStats.playerCurrentStats.rangedDamage - player.baseStats.playerCurrentStats.rangedDamage;
             case CardSuits.Swords: // power up for morning star
-                return player.runStats.morningStarDamage - player.stats.morningStarDamage;
+                return player.runStats.playerCurrentStats.morningStarDamage - player.baseStats.playerCurrentStats.morningStarDamage;
             case CardSuits.Coins: // power up for collectibles
-                return player.runStats.dropChance - player.stats.dropChance;
+                return player.runStats.playerCurrentStats.dropRate - player.baseStats.playerCurrentStats.dropRate;
             default:
                 return 0;
         }

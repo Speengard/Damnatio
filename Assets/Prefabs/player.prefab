@@ -5144,6 +5144,7 @@ MonoBehaviour:
   rangedWeapon: {fileID: 6581578067784383156}
   morningStar: {fileID: 1915831160394366006}
   hasRanged: 0
+  laserWidth: 0.5
 --- !u!114 &-5337454889481875387
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 539534086770803425}
   - component: {fileID: 539534086770803426}
   - component: {fileID: 539534086770803424}
+  - component: {fileID: 8637147488701471634}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -66,7 +67,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  playerStats: {fileID: 11400000, guid: b573c273993824872a8dee0fb97a2af8, type: 2}
   gameOverScene: {fileID: 0}
   startSceneManager: {fileID: 0}
   levelStartDelay: 2
@@ -75,3 +75,16 @@ MonoBehaviour:
   lootObjects: []
   isPlayerInstantiated: 0
   followPlayer: {fileID: 0}
+  gameDataManager: {fileID: 8637147488701471634}
+--- !u!114 &8637147488701471634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539534086770803427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09e2d29e9a9de4b56b45d5fe2c863005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
