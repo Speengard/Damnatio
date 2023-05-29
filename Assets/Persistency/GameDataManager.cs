@@ -5,8 +5,8 @@ using System.IO;
 
 public class GameDataManager : MonoBehaviour
 {
+    //this class is used to access IO for storing different files. right now since we just have to store the player data, just the playerfile string containing the path to the json. in the future, this implementation would have to be changed in order to choose which path to access.
     string playerFile;
-    // Start is called before the first frame update
     void Awake()
     {
         playerFile = Application.persistentDataPath + "/PlayerCurrentStats.json";

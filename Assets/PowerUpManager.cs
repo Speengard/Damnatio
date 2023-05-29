@@ -53,15 +53,15 @@ public class PowerUpManager : MonoBehaviour
         dropText.text = "Drop: - level " + playerStatsManager.playerCurrentStats.dropLevel;
         damageText.text = "Damage: - level " + playerStatsManager.playerCurrentStats.damageLevel;
 
-        for (int i = 0; i < playerStatsManager.playerCurrentStats.healthLevel-1; i++)
+        for (int i = 0; i < playerStatsManager.playerCurrentStats.healthLevel; i++)
         {
             healthCapsules[i].sprite = fullCapsule;
         }
-        for (int i = 0; i < playerStatsManager.playerCurrentStats.dropLevel-1; i++)
+        for (int i = 0; i < playerStatsManager.playerCurrentStats.dropLevel; i++)
         {
             dropCapsules[i].sprite = fullCapsule;
         }
-        for (int i = 0; i < playerStatsManager.playerCurrentStats.damageLevel-1; i++)
+        for (int i = 0; i < playerStatsManager.playerCurrentStats.damageLevel; i++)
         {
             damageCapsules[i].sprite = fullCapsule;
         }
@@ -107,18 +107,21 @@ public class PowerUpManager : MonoBehaviour
         print("touched health");
         playerStatsManager.playerCurrentStats.collectedSouls -= healthCosts[playerStatsManager.playerCurrentStats.healthLevel - 1];
         playerStatsManager.playerCurrentStats.healthLevel++;
+        playerStatsManager.BuyPowerUp("health");
         initScreen();
     }
 
     public void UpgradeDrop(){
         playerStatsManager.playerCurrentStats.collectedSouls -= dropcosts[playerStatsManager.playerCurrentStats.dropLevel - 1];
         playerStatsManager.playerCurrentStats.dropLevel++;
+        playerStatsManager.BuyPowerUp("drop");
         initScreen();
     }
 
     public void UpgradeDamage(){
         playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.damageLevel - 1];
         playerStatsManager.playerCurrentStats.damageLevel++;
+        playerStatsManager.BuyPowerUp("damage");
         initScreen();
     }
     
@@ -126,11 +129,5 @@ public class PowerUpManager : MonoBehaviour
 
         gameObject.SetActive(false);
     }
-
-}
-
-public class PowerUpDictionary{
-
-    
 
 }
