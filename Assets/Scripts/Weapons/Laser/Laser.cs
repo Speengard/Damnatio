@@ -160,6 +160,7 @@ public class Laser : MonoBehaviour
         }
 
         target = null;
+        rangedDamage = Player.Instance.runStats.playerCurrentStats.rangedDamage;
         lineRenderer.enabled = false;
         lineRenderer.startWidth = 0.5f;
         lineRenderer.endWidth = 0.5f;

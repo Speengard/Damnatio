@@ -24,9 +24,9 @@ public class PowerUpManager : MonoBehaviour
     PlayerStatsManager playerStatsManager;
     public Sprite fullCapsule;
 
-    public int[] healthCosts = { 150, 450, 750, 1050, 1500 };
-    public int[] damageCosts = { 150, 450, 750, 1050, 1500 };
-    public int[] dropcosts = { 150, 450, 750, 1500, 4000 };
+    public int[] healthCosts = { 0,150, 450, 750, 1050, 1500 };
+    public int[] damageCosts = { 0,150, 450, 750, 1050, 1500 };
+    public int[] dropcosts = { 0,150, 450, 750, 1500, 4000 };
 
     public GameObject pauseButton;
     public GameObject floatingJoystick;
@@ -70,7 +70,7 @@ public class PowerUpManager : MonoBehaviour
         dropCostText.text = dropcosts[playerStatsManager.playerCurrentStats.dropLevel].ToString();
         damageCostText.text = damageCosts[playerStatsManager.playerCurrentStats.damageLevel].ToString();
 
-        if(playerStatsManager.playerCurrentStats.collectedSouls > healthCosts[playerStatsManager.playerCurrentStats.healthLevel - 1]){
+        if(playerStatsManager.playerCurrentStats.collectedSouls > healthCosts[playerStatsManager.playerCurrentStats.healthLevel]){
             healthButton.interactable = true;
             healthButton.GetComponentInChildren<TMP_Text>().color = Color.green;
             }else{
@@ -78,7 +78,7 @@ public class PowerUpManager : MonoBehaviour
                 healthButton.GetComponentInChildren<TMP_Text>().color = Color.red;
             }
 
-        if (playerStatsManager.playerCurrentStats.collectedSouls > dropcosts[playerStatsManager.playerCurrentStats.dropLevel - 1])
+        if (playerStatsManager.playerCurrentStats.collectedSouls > dropcosts[playerStatsManager.playerCurrentStats.dropLevel])
         {
             dropButton.interactable = true;
             dropButton.GetComponentInChildren<TMP_Text>().color = Color.green;
@@ -89,7 +89,7 @@ public class PowerUpManager : MonoBehaviour
             dropButton.GetComponentInChildren<TMP_Text>().color = Color.red;
         }
 
-        if (playerStatsManager.playerCurrentStats.collectedSouls > damageCosts[playerStatsManager.playerCurrentStats.damageLevel - 1])
+        if (playerStatsManager.playerCurrentStats.collectedSouls > damageCosts[playerStatsManager.playerCurrentStats.damageLevel ])
         {
             damageButton.interactable = true;
             damageButton.GetComponentInChildren<TMP_Text>().color = Color.green;
@@ -105,21 +105,21 @@ public class PowerUpManager : MonoBehaviour
 
     public void UpgradeHealth(){    
         print("touched health");
-        playerStatsManager.playerCurrentStats.collectedSouls -= healthCosts[playerStatsManager.playerCurrentStats.healthLevel - 1];
+        playerStatsManager.playerCurrentStats.collectedSouls -= healthCosts[playerStatsManager.playerCurrentStats.healthLevel];
         playerStatsManager.playerCurrentStats.healthLevel++;
         playerStatsManager.BuyPowerUp("health");
         initScreen();
     }
 
     public void UpgradeDrop(){
-        playerStatsManager.playerCurrentStats.collectedSouls -= dropcosts[playerStatsManager.playerCurrentStats.dropLevel - 1];
+        playerStatsManager.playerCurrentStats.collectedSouls -= dropcosts[playerStatsManager.playerCurrentStats.dropLevel];
         playerStatsManager.playerCurrentStats.dropLevel++;
         playerStatsManager.BuyPowerUp("drop");
         initScreen();
     }
 
     public void UpgradeDamage(){
-        playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.damageLevel - 1];
+        playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.damageLevel];
         playerStatsManager.playerCurrentStats.damageLevel++;
         playerStatsManager.BuyPowerUp("damage");
         initScreen();
