@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerStatsManager {
 
-    public int[] healthIncrease = {0,5,15,30,45,55 };
+    public int[] healthIncrease = {0, 5, 15, 30, 45, 55 };
     public int[] dropIncrease = {0, 2, 2, 2, 4, 10 };
     public int[] damageIncrease = { 0,1, 1, 2, 2, 3 };
 
