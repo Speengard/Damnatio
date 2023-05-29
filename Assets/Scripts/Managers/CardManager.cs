@@ -38,7 +38,7 @@ public class CardManager : MonoBehaviour
             int selectedValue = GetStatsDifference(selectedSuit) + 1;
 
             // JUST FOR TEST: since we don't have other cards yet, force the value as 1
-            selectedValue = 1;
+            selectedValue = 1; 
 
             // build sprite path (Resources/Cards/valueOfSuit)
             spritePath = path + selectedValue + "Of" + selectedSuit;
