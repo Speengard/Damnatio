@@ -21,7 +21,7 @@ public class Restart : MonoBehaviour
         {
             if (!other.gameObject.CompareTag("Player")) return;
             if (GameManager.Instance.enemies.Count == 0)
-            {;
+            {
                 // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                 LoadRandomScene();
             }

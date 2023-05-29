@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public PlayerAnimationController animationController;
     public PlayerMovementController movementController;
     public Rigidbody2D rb;
-    [SerializeField] public PlayerStatsScriptableObject stats;
-    [SerializeField] public PlayerStatsScriptableObject runStats;
+    [SerializeField] public PlayerStatsManager baseStats;
+    [SerializeField] public PlayerStatsManager runStats;
     public int collectedSouls = 0;
 
     public static Player Instance { get; private set; }
@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
     }
 
     void Start() {
-        runStats = ScriptableObject.CreateInstance<PlayerStatsScriptableObject>();
+        //these two variables, are needed to keep track of the stats of the run compared to the base stats of the player
+        baseStats = gameManager.playerStatsManager;
+        runStats = new PlayerStatsManager(gameManager.playerStatsManager.playerCurrentStats);
     }
 
 #region LootManager

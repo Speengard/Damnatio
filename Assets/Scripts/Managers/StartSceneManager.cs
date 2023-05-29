@@ -10,7 +10,7 @@ public class StartSceneManager : MonoBehaviour
 
     // setup the health bar and make it visible
     private void SetupPlayerHealthBar() {
-        player.healthController.SetupHealthBar(player.stats.health);
+        player.healthController.SetupHealthBar(player.baseStats.playerCurrentStats.health);
         player.healthController.EnableHealthBar();
     }
 

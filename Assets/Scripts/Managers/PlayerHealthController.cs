@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthController : HealthController
 {
+
     void Start()
     {
-        maxHealth = GameManager.Instance.playerStats.health;
-        health = PlayerPrefs.GetInt("PlayerHealth", maxHealth); // Get the player's health value from PlayerPrefs
-    
-
+        maxHealth = GameManager.Instance.playerStatsManager.playerCurrentStats.maxHealth;
+        health = maxHealth;
     }
 
     override public bool CheckDeath() {
@@ -28,11 +27,7 @@ public class PlayerHealthController : HealthController
     {
 
         GameManager.Instance.followPlayer.ShakeCamera();
-
         base.TakeDamage(damage);
-
-        PlayerPrefs.SetInt("PlayerHealth", health);
-
     }
 
 }
