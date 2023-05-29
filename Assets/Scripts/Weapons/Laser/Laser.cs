@@ -14,8 +14,11 @@ public class Laser : MonoBehaviour
     private Vector2 direction;
     public bool isShooting = false;
     private bool hasHit = false;
-    private int rangedDamage = 5;
+    private int rangedDamage = 1;
 
+    private void Start() {
+        rangedDamage = Player.Instance.runStats.playerCurrentStats.rangedDamage;
+    }
     private void OnDisable()
     {
         hasHit = false;
@@ -58,19 +61,19 @@ public class Laser : MonoBehaviour
 
         switch(laserWidth){
             case <= 0.5f:
-                rangedDamage = 1;
+                rangedDamage += 0;
                 break;
             case <= 1f:
-                rangedDamage = 3;
+                rangedDamage += 3;
                 break;
             case <= 1.5f:
-                rangedDamage = 5;
+                rangedDamage += 5;
                 break;
             case <= 2f:
-            rangedDamage = 7;
+            rangedDamage += 7;
                 break;
             default:
-                rangedDamage = 5;
+                rangedDamage += 0;
                 break;
         }
 

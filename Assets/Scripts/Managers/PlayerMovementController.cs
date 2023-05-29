@@ -20,7 +20,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
-    private float speedMovement = 6f;
+    private float speedMovement;
     [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private GameObject Handle;
@@ -31,6 +31,10 @@ public class PlayerMovementController : MonoBehaviour
         JoystickSize = new Vector2(200, 200);
         Player = GetComponent<Player>();
         playerAnimator = new Animator();
+    }
+
+    private void Start() {
+        speedMovement = Player.runStats.playerCurrentStats.speed;
     }
 
     #region Joystick Logic
