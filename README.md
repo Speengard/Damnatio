@@ -2,7 +2,7 @@
 
 Damnatio is a rouguelike game where you are a priest trying to slay demons using a combo-like gameplay of matching words and achieving powerful combos from them.
 
-It is entirely developed in Unity and for IOS only at this point
+It is entirely developed in Unity and for IOS only at this point 
 
 Behance project profile (https://www.behance.net/gallery/166955007/Damnatio)
 
