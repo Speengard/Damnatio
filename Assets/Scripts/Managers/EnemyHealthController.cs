@@ -37,7 +37,7 @@ public class EnemyHealthController : HealthController
     {
         if (health <= 0)
         {
-            print("enemy died");
+
             UpdateHealthBar(health);
 
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -46,7 +46,7 @@ public class EnemyHealthController : HealthController
 
             StartCoroutine(FadeOut(fade, () =>
             {
-                print("destroying enemy");
+
                 GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
                 // make the enemy drop something when it dies
                 enemy.DropObjects();
@@ -56,7 +56,7 @@ public class EnemyHealthController : HealthController
 
             if (GameManager.Instance.enemies.Count == 0)
             {
-                Debug.Log("last enemy");
+
                 GameManager.Instance.player.EnableLoot();
             }
 
@@ -88,6 +88,8 @@ public class EnemyHealthController : HealthController
 
     public override void TakeDamage(int damage)
     {
+        print("health" + health);
+        print("took " + damage);
         health -= damage;
 
         if (health <= 0)

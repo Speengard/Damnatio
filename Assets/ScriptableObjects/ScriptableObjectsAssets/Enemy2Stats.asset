@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy2Stats
   m_EditorClassIdentifier: 
   enemyName: Type 2 Enemy
-  health: 10
+  health: 20
   damage: 4
   dropChance: 30
   dropQuantity: 5
