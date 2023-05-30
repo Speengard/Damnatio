@@ -27,6 +27,7 @@ public class Laser : MonoBehaviour
         {
             particles[i].Stop();
         }
+        StopEverything();
 
 
     }
@@ -39,7 +40,7 @@ public class Laser : MonoBehaviour
         {
             particles[i].Stop();
         }
-
+        StopEverything();
 
     }
 

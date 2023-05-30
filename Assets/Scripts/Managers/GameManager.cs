@@ -39,13 +39,16 @@ public class GameManager : MonoBehaviour
         if (gameDataManager.readPlayerFile() == null)
         {
             playerStatsManager = new PlayerStatsManager();
+            
             gameDataManager.writePlayerData(playerStatsManager);
+
         }else{
         //I create a copy of the player's stats so that I can modify them without modifying the original
         playerStatsManager = gameDataManager.readPlayerFile();
 
 		}
 
+        print("reading back:" + gameDataManager.readPlayerFile());
 
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
