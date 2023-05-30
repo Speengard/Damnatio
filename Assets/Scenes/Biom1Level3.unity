@@ -3581,13 +3581,13 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.022142828, y: 0.022142828, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &418061169
@@ -4858,6 +4858,7 @@ GameObject:
   - component: {fileID: 1135381730}
   - component: {fileID: 1135381729}
   - component: {fileID: 1135381731}
+  - component: {fileID: 1135381732}
   m_Layer: 0
   m_Name: Tronchi e Alberi
   m_TagString: Untagged
@@ -5129,6 +5130,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!114 &1135381732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135381727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755f884f2f0d841e2a435dc7585debc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1252585098
 GameObject:
   m_ObjectHideFlags: 0
@@ -12529,6 +12542,7 @@ GameObject:
   - component: {fileID: 1747751680}
   - component: {fileID: 1747751679}
   - component: {fileID: 1747751681}
+  - component: {fileID: 1747751682}
   m_Layer: 0
   m_Name: 'Contorno Alberi '
   m_TagString: Untagged
@@ -13048,6 +13062,18 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!114 &1747751682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747751677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755f884f2f0d841e2a435dc7585debc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1855321880
 GameObject:
   m_ObjectHideFlags: 0
