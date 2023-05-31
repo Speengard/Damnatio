@@ -5159,6 +5159,7 @@ MonoBehaviour:
   JoystickSize: {x: 0, y: 0}
   Joystick: {fileID: 0}
   Player: {fileID: 1839378337}
+  speedMovement: 0
   playerAnimator: {fileID: 3652341179267693591}
   Handle: {fileID: 0}
 --- !u!114 &3228716214967613470
@@ -24642,11 +24643,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 41752950686135748, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.0029998806
+      value: -0.0030000033
       objectReference: {fileID: 0}
     - target: {fileID: 41752950686135748, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.07569969
+      value: -0.07569999
       objectReference: {fileID: 0}
     - target: {fileID: 1170395535976759688, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -24654,7 +24655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1170395535976759688, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -1.057398
+      value: -1.057397
       objectReference: {fileID: 0}
     - target: {fileID: 1494330176329635741, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Name
@@ -24738,7 +24739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1997129597773501716, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance
-      value: 0.7213877
+      value: 0.72138774
       objectReference: {fileID: 0}
     - target: {fileID: 2462083704051330866, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Mass
@@ -24750,11 +24751,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3147802753474889747, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.00000013120537
+      value: -0.000000025810893
       objectReference: {fileID: 0}
     - target: {fileID: 3147802753474889747, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.07899987
+      value: -0.07900004
       objectReference: {fileID: 0}
     - target: {fileID: 3229204677001204914, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Mass
@@ -24762,11 +24763,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4627067601173715633, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.0000000021509077
+      value: -0.000000046244516
       objectReference: {fileID: 0}
     - target: {fileID: 4627067601173715633, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.07700004
+      value: -0.07699998
       objectReference: {fileID: 0}
     - target: {fileID: 4714662493971653201, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Mass
@@ -24774,15 +24775,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4854176316840673322, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.0074343565
+      value: -0.007434509
       objectReference: {fileID: 0}
     - target: {fileID: 4854176316840673322, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.102725334
+      value: -0.10272537
       objectReference: {fileID: 0}
     - target: {fileID: 4878260179158657811, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance
-      value: 0.566134
+      value: 0.56613415
       objectReference: {fileID: 0}
     - target: {fileID: 5364746677988220965, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Mass
@@ -24790,27 +24791,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649430296578107071, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.005999968
+      value: -0.00600006
       objectReference: {fileID: 0}
     - target: {fileID: 5649430296578107071, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.085999876
+      value: -0.0859999
       objectReference: {fileID: 0}
     - target: {fileID: 5749519765594425696, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance
-      value: 0.105738394
+      value: 0.105738424
       objectReference: {fileID: 0}
     - target: {fileID: 5835675001825708359, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.5176461
+      value: 0.5176489
       objectReference: {fileID: 0}
     - target: {fileID: 5835675001825708359, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.27826366
+      value: -0.27825814
       objectReference: {fileID: 0}
     - target: {fileID: 5869996909034372056, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance
-      value: 0.25616857
+      value: 0.25616848
       objectReference: {fileID: 0}
     - target: {fileID: 5869996909034372056, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedRigidBody
@@ -24822,15 +24823,15 @@ PrefabInstance:
       objectReference: {fileID: 1839378337}
     - target: {fileID: 6461848115435067235, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance
-      value: 0.25896463
+      value: 0.25896454
       objectReference: {fileID: 0}
     - target: {fileID: 7806809485758049029, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.0009997892
+      value: 0.0009999785
       objectReference: {fileID: 0}
     - target: {fileID: 7806809485758049029, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: -0.079300225
+      value: -0.07930011
       objectReference: {fileID: 0}
     - target: {fileID: 7936408163363049480, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance

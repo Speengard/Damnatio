@@ -33,7 +33,8 @@ public class PlayerMovementController : MonoBehaviour
         playerAnimator = new Animator();
     }
 
-    private void Start() {
+    private void Start()
+    {
         speedMovement = Player.runStats.playerCurrentStats.speed;
     }
 
@@ -153,29 +154,35 @@ public class PlayerMovementController : MonoBehaviour
         return StartPosition;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
-        if(scaledMovement != Vector2.zero){
+        if (scaledMovement != Vector2.zero)
+        {
 
-        Player.rb.MovePosition(Player.rb.position + scaledMovement);
-        }else{
+            Player.rb.MovePosition(Player.rb.position + scaledMovement);
+        }
+        else
+        {
             Player.rb.velocity = Vector2.zero;
         }
 
-        
 
-        if(MovementAmount != Vector2.zero){
+
+        if (MovementAmount != Vector2.zero)
+        {
             //this gets executed when the movement is not zero, otherwise it would default to the 0,0 position in the blend tree, which right now does not have any animation clip attached
             Player.animationController.animator.speed = 1;
             //Player.animationController.FixAnimationAndRotate(MovementAmount.normalized,Handle.transform);
             Player.animationController.FixAndSetAnimation(MovementAmount.normalized);
 
-        }else{
+        }
+        else
+        {
             //very stupid method to stop the animation, because right now we lack the idle animation clips
             Player.animationController.animator.speed = 0;
         }
-        
+
     }
 
 }
