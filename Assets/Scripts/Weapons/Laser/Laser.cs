@@ -15,6 +15,7 @@ public class Laser : MonoBehaviour
     public bool isShooting = false;
     private bool hasHit = false;
     private int rangedDamage = 1;
+    [SerializeField] private Material laserMaterial;
 
     private void Start() {
         rangedDamage = Player.Instance.runStats.playerCurrentStats.rangedDamage;
@@ -71,6 +72,7 @@ public class Laser : MonoBehaviour
                 rangedDamage += 5;
                 break;
             case <= 2f:
+            laserMaterial.SetFloat("_LaserEdgeThickness",7.6f);
             rangedDamage += 7;
                 break;
             default:
@@ -80,9 +82,6 @@ public class Laser : MonoBehaviour
 
         this.target = target;
         
-        lineRenderer.startWidth = laserWidth;
-        lineRenderer.endWidth = laserWidth;
-
         lineRenderer.enabled = true;
 
         for (int i = 0; i < particles.Count; i++)
@@ -140,9 +139,8 @@ public class Laser : MonoBehaviour
         }
 
         lineRenderer.enabled = false;
-        lineRenderer.startWidth = 0.5f;
-        lineRenderer.endWidth = 0.5f;
         hasHit = false;
+        laserMaterial.SetFloat("_LaserEdgeThickness", 7.4f);
 
         StartCoroutine(WaitCooldown());
     }
@@ -163,8 +161,8 @@ public class Laser : MonoBehaviour
         target = null;
         rangedDamage = Player.Instance.runStats.playerCurrentStats.rangedDamage;
         lineRenderer.enabled = false;
-        lineRenderer.startWidth = 0.5f;
-        lineRenderer.endWidth = 0.5f;
+
+        laserMaterial.SetFloat("_LaserEdgeThickness", 7.6f);
         isShooting = false;
 
     }

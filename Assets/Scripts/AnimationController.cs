@@ -16,6 +16,8 @@ public class AnimationController : MonoBehaviour
 
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, movementdirection);
 
+            
+
             switch (rotation.eulerAngles.z)
             {
             //N

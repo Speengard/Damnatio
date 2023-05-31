@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_LaserShader
-  m_Shader: {fileID: -6465566751694194690, guid: 51d0e17a9bddb4595999741ccd45f748, type: 3}
+  m_Name: OutlineMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 6bd8de54d793e45b298d34cce0d5a49d, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e52a0b5d8de41486fa9d70084df88374, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -33,13 +37,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _FresnelPower: 1
-    - _LaserEdgeSmoothness: 7.4
-    - _LaserScale: 0
-    - _LaserThickness: 156
-    m_Colors:
-    - _Color: {r: 78.803505, g: 1198.9391, b: 776.77747, a: 0}
-    - _FresnelColor: {r: 0.2196078, g: 1.968627, b: 0.2352941, a: 0.3921569}
-    - _LaserTextureMovement: {r: 1.8, g: 0, b: 0, a: 0}
+    m_Floats: []
+    m_Colors: []
   m_BuildTextureStacks: []

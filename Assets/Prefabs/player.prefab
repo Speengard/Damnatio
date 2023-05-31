@@ -5033,7 +5033,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 41a0989cb48fe4a63888ae36b184578a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24661,6 +24661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MorningStarShort
       objectReference: {fileID: 0}
+    - target: {fileID: 1494330176329635741, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1494330176329635742, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -25038,7 +25042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330063, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330097, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_RootOrder
@@ -25084,6 +25088,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8822519453827330098, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
+      propertyPath: laserMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 92c0a6ba2185f4b6081e0ce6b73b76e6, type: 2}
     - target: {fileID: 8822519453827330099, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -25106,7 +25114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330099, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 2.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330099, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_Parameters.numCornerVertices
@@ -25118,7 +25126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8822519453827330099, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.27075282
+      value: 0.22726995
       objectReference: {fileID: 0}
     - target: {fileID: 8822519454121636274, guid: f9f13299333de49c3b577b6b02ad943a, type: 3}
       propertyPath: m_Layer
