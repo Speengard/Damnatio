@@ -14,7 +14,7 @@ public class Laser : MonoBehaviour
     private Vector2 direction;
     public bool isShooting = false;
     private bool hasHit = false;
-    private int rangedDamage = 1;
+    private int rangedDamage = 3;
     [SerializeField] private Material laserMaterial;
 
     private void Start() {
@@ -106,13 +106,13 @@ public class Laser : MonoBehaviour
             StopEverything();  
             return;
         } 
+        direction = (Vector2)target.transform.position - (Vector2)firePoint.position;
 
         if(lineRenderer.enabled == false) return;
-
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2)firePoint.position;
-        direction = (Vector2)target.transform.position - (Vector2)firePoint.position;
-        lineRenderer.SetPosition(1, firePoint.position * direction.normalized * 3f);
+        Debug.DrawLine(direction, firePoint.position, Color.yellow);
+        lineRenderer.SetPosition(1, direction.normalized * 20);
 
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
 
@@ -120,6 +120,8 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
+                print("hit enemy");
+                print(rangedDamage);
                 hasHit = true;
                 hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
             }

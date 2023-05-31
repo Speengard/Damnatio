@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 //this class serves as a controller for the logic of the player attacking. 
 public class PlayerAttackController : MonoBehaviour
@@ -29,10 +29,14 @@ public class PlayerAttackController : MonoBehaviour
 
     public float morningStarDamage;
     public float rangedDamage;
+
+    public GameObject laserSlider;
+
+    private float counter = 0.0f;
     
     private void Start()
     {
-        
+        laserSlider = GameManager.Instance.laserSlider;
         LoadWeapon();
     }
 
@@ -40,12 +44,12 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasRanged)
         {
-            
+            laserSlider.SetActive(true);
             rangedWeapon.gameObject.SetActive(true);
         }
         else
         {
-                      
+            laserSlider.SetActive(false);
             morningStar.SetActive(true);
         }
     }
@@ -75,7 +79,6 @@ public class PlayerAttackController : MonoBehaviour
     {
         hasEnemy = true;
         ChangeTarget(firstEnemy);
-        
     }
 
     //this method is called when the last enemy exits the range
@@ -92,7 +95,7 @@ public class PlayerAttackController : MonoBehaviour
     }
 
     private void shootLaser(){
-        rangedShoot.EnableLaser(laserWidth, target);
+        rangedShoot.EnableLaser(counter, target);
     }
 
     
@@ -100,9 +103,9 @@ public class PlayerAttackController : MonoBehaviour
     {
 
         if(hasRanged){
-
         //check if the player is moving
         if(!rangedShoot.isShooting && !isChecking) StartCoroutine(CheckMoving());
+        laserSlider.GetComponent<Slider>().value = counter;
         
         if(target != null){
 
@@ -120,6 +123,8 @@ public class PlayerAttackController : MonoBehaviour
 
     private IEnumerator CheckMoving()
     {
+        print("checking");
+
         isChecking = true;
 
         Vector3 startPos = transform.position;
@@ -129,9 +134,7 @@ public class PlayerAttackController : MonoBehaviour
         if (!startPos.Equals(finalPos)){
 
             if (!rangedShoot.isShooting && rangedWeapon.activeSelf) shootLaser();
-
-            laserWidth = 0.5f;
-
+            counter = 0.0f;
             isChecking = false;
             yield break;
 
@@ -139,11 +142,9 @@ public class PlayerAttackController : MonoBehaviour
 
             else{
 
-            if (laserWidth < 3.0f)
+            if (counter < 2.0f)
             {
-
-                laserWidth += 0.1f;
-
+                counter += 0.1f;
             }
 
                 isChecking = false;

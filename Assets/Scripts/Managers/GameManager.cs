@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> lootObjects;
     public bool isPlayerInstantiated = false;
     public FollowPlayer followPlayer;
+    public GameObject laserSlider;
 
     [SerializeField] private GameDataManager gameDataManager;
     public PlayerStatsManager playerStatsManager;
