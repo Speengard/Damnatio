@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
         enemiesToSpawn = CalculateEnemiesToSpawn(level);
         SpawnEnemies(); // spawn enemies only if you selected "start game"
 
-        print("level:" + level);
+
 
         if ((level % 2) == 0) {
             cardManager.GenerateCards();

@@ -120,8 +120,6 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
-                print("hit enemy");
-                print(rangedDamage);
                 hasHit = true;
                 hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
             }

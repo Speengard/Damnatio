@@ -11,9 +11,7 @@ public class EnemyHealthController : HealthController
     public Material material;
     float fade = 1.0f;
     private Enemy enemy;
-
     private List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
-
     public List<GameObject> skeletons;
 
     private void Awake()
@@ -88,8 +86,7 @@ public class EnemyHealthController : HealthController
 
     public override void TakeDamage(int damage)
     {
-        print("health" + health);
-        print("took " + damage);
+
         health -= damage;
 
         if (health <= 0)
