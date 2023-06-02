@@ -28,11 +28,14 @@ public class TargetClosestEnemy : MonoBehaviour
     {
         if(other.tag != "Enemy") return;
         
-        if(enemiesID.Count > 1){
+        if(enemiesID.Count >= 1){
             
         if(Vector2.Distance(player.transform.position, other.transform.position) < player.distance){
             player.ChangeTarget(other.gameObject);
+        }else if(player.target == null){
+            player.ChangeTarget(other.gameObject);
         }
+
         }
     }
     

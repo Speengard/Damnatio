@@ -66,14 +66,18 @@ public class Laser : MonoBehaviour
                 rangedDamage += 0;
                 break;
             case <= 1f:
-                rangedDamage += 3;
+                rangedDamage += 5;
                 break;
             case <= 1.5f:
-                rangedDamage += 5;
+                rangedDamage += 7;
                 break;
             case <= 2f:
             laserMaterial.SetFloat("_LaserEdgeThickness",7.6f);
-            rangedDamage += 7;
+            rangedDamage += 10;
+                break;
+            case > 2f:
+                laserMaterial.SetFloat("_LaserEdgeThickness", 7.6f);
+                rangedDamage += 10;
                 break;
             default:
                 rangedDamage += 0;
@@ -82,6 +86,10 @@ public class Laser : MonoBehaviour
 
         this.target = target;
         
+        direction = (Vector2)target.transform.position - (Vector2)firePoint.position;
+
+        lineRenderer.SetPosition(0, firePoint.position);
+        lineRenderer.SetPosition(1, direction.normalized);
         lineRenderer.enabled = true;
 
         for (int i = 0; i < particles.Count; i++)
@@ -102,18 +110,14 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
-        if(target == null){
-            StopEverything();  
-            return;
-        } 
         direction = (Vector2)target.transform.position - (Vector2)firePoint.position;
 
         if(lineRenderer.enabled == false) return;
+
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2)firePoint.position;
         Debug.DrawLine(direction, firePoint.position, Color.yellow);
         lineRenderer.SetPosition(1, direction.normalized * 20);
-
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
 
         if (hit)
@@ -122,6 +126,10 @@ public class Laser : MonoBehaviour
             {
                 hasHit = true;
                 hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
+                if(target == null){
+                    StopEverything();  
+                    return;
+                }
             }
 
             lineRenderer.SetPosition(1, hit.point);
@@ -146,7 +154,7 @@ public class Laser : MonoBehaviour
     }
 
     IEnumerator WaitCooldown(){
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         StopEverything();
     }
 

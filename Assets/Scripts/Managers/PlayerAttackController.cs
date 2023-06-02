@@ -123,7 +123,6 @@ public class PlayerAttackController : MonoBehaviour
 
     private IEnumerator CheckMoving()
     {
-        print("checking");
 
         isChecking = true;
 

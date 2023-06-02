@@ -20,8 +20,10 @@ public class MovingEnemy : Enemy
         Vector2 direction = (target.position - transform.position).normalized;
 
         if(oldDirection != direction){
+
             oldDirection = direction;
             animationController.FixAndSetAnimation(direction);
+            
         }
 
         oldDirection = direction;
