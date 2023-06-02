@@ -18,8 +18,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField] private CardManager cardManager;
-    public float roomWidth = 20;
-    public float roomHeight = 12;
+    public float roomWidth = 7;
+    public float roomHeight = 3;
     private int sequence = 0;
     public bool isPlayerInstantiated;
     private GameObject player;

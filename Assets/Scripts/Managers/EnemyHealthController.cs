@@ -35,22 +35,18 @@ public class EnemyHealthController : HealthController
     {
         if (health <= 0)
         {
-
             UpdateHealthBar(health);
 
             gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<Enemy>().stopMoving = true;
 
-            StartCoroutine(FadeOut(fade, () =>
-            {
+            StartCoroutine(FadeOut(fade));
 
-                GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
-                // make the enemy drop something when it dies
-                enemy.DropObjects();
-
-                Destroy(gameObject);
-            }));
+            // handle the death of the enemy
+            GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
+            enemy.DropObjects(); // make the enemy drop something when it dies
+            Destroy(gameObject); // destroy enemy
 
             if (GameManager.Instance.enemies.Count == 0)
             {
@@ -58,18 +54,16 @@ public class EnemyHealthController : HealthController
                 GameManager.Instance.player.EnableLoot();
             }
 
-
             return true;
         }
         else
         {
             return false;
         }
-
     }
-    IEnumerator FadeOut(float fade, Action onComplete = null)
-    {
 
+    IEnumerator FadeOut(float fade)
+    {
         while (fade > 0.0f)
         {
             print("fading out");
@@ -80,8 +74,6 @@ public class EnemyHealthController : HealthController
             }
             yield return new WaitForSeconds(0.3f);
         }
-
-        onComplete?.Invoke();
     }
 
     public override void TakeDamage(int damage)
