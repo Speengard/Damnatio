@@ -41,16 +41,16 @@ public class EnemyHealthController : HealthController
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
             gameObject.GetComponent<Enemy>().stopMoving = true;
 
-            StartCoroutine(FadeOut(fade));
+            StartCoroutine(FadeOut(fade, () => Destroy(gameObject)));
 
             // handle the death of the enemy
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
+
             enemy.DropObjects(); // make the enemy drop something when it dies
-            Destroy(gameObject); // destroy enemy
+            //Destroy(gameObject); // destroy enemy
 
             if (GameManager.Instance.enemies.Count == 0)
             {
-
                 GameManager.Instance.player.EnableLoot();
             }
 
@@ -62,18 +62,21 @@ public class EnemyHealthController : HealthController
         }
     }
 
-    IEnumerator FadeOut(float fade)
+    IEnumerator FadeOut(float fade, Action callback = null)
     {
         while (fade > 0.0f)
         {
             print("fading out");
             fade -= 0.1f;
+
             foreach (SpriteRenderer s in spriteRenderers)
             {
                 s.material.SetFloat("_Fade", fade);
             }
-            yield return new WaitForSeconds(0.3f);
+
+            yield return new WaitForSeconds(0.1f);
         }
+        callback?.Invoke();
     }
 
     public override void TakeDamage(int damage)

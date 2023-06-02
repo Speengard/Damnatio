@@ -154,7 +154,7 @@ public class PlayerMovementController : MonoBehaviour
         return StartPosition;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
         if (scaledMovement != Vector2.zero)

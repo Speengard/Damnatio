@@ -25,7 +25,6 @@ public class PlayerHealthController : HealthController
 
     public override void TakeDamage(int damage)
     {
-
         GameManager.Instance.followPlayer.ShakeCamera();
         base.TakeDamage(damage);
     }
