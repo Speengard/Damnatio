@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3507112043467097864}
   m_Layer: 6
   m_Name: N_PS
-  m_TagString: Untagged
+  m_TagString: MorningStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5225,7 +5225,7 @@ GameObject:
   - component: {fileID: 6646524012038685607}
   m_Layer: 6
   m_Name: NE_PS
-  m_TagString: Untagged
+  m_TagString: MorningStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10078,7 +10078,7 @@ GameObject:
   - component: {fileID: 5599849834558478973}
   m_Layer: 6
   m_Name: S_PS
-  m_TagString: Untagged
+  m_TagString: MorningStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14931,7 +14931,7 @@ GameObject:
   - component: {fileID: 3807232283308494935}
   m_Layer: 6
   m_Name: SE_PS
-  m_TagString: Untagged
+  m_TagString: MorningStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19784,7 +19784,7 @@ GameObject:
   - component: {fileID: 2418743191114896105}
   m_Layer: 6
   m_Name: E_PS
-  m_TagString: Untagged
+  m_TagString: MorningStar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

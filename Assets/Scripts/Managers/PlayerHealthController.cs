@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityCoreHaptics;
 
 public class PlayerHealthController : HealthController
 {
@@ -26,6 +27,12 @@ public class PlayerHealthController : HealthController
     public override void TakeDamage(int damage)
     {
         GameManager.Instance.followPlayer.ShakeCamera();
+
+        if(UnityCoreHaptics.UnityCoreHapticsProxy.SupportsCoreHaptics()){
+
+            UnityCoreHaptics.UnityCoreHapticsProxy.PlayTransientHaptics(0.3f,1);
+        }
+        
         base.TakeDamage(damage);
     }
 
