@@ -12,8 +12,6 @@ public class GameDataManager : MonoBehaviour
     void Awake()
     {
         playerFile = Application.persistentDataPath + "/PlayerCurrentStats.json";
-
-        Debug.Log("Playerfile" + playerFile);
     }
 
     public PlayerStatsManager readPlayerFile()
@@ -22,12 +20,11 @@ public class GameDataManager : MonoBehaviour
 
         if (File.Exists(playerFile))
         {
-            Debug.Log("File exists");
+
             string fileContents = System.IO.File.ReadAllText(playerFile);
 
             playerStats playerCurrentStats = JsonConvert.DeserializeObject<playerStats>(fileContents);  
 
-            Debug.Log("Health" + playerCurrentStats.healthLevel);
             return new PlayerStatsManager(playerCurrentStats);
 
         }
@@ -37,11 +34,9 @@ public class GameDataManager : MonoBehaviour
 
     public void writePlayerData(PlayerStatsManager playerCurrentStats)
     {
-        print("before json");
+        
         string json = JsonConvert.SerializeObject(playerCurrentStats.playerCurrentStats);
 
-        Debug.Log("json:" + json);
-        JsonConvert.SerializeObject(json);
-        print("reading back json:" + readPlayerFile());
+        File.WriteAllText(playerFile, json);
     }
 }

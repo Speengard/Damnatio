@@ -124,6 +124,7 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
+                print("hit enemy");
                 hasHit = true;
                 hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
                 if(target == null){
@@ -154,7 +155,7 @@ public class Laser : MonoBehaviour
     }
 
     IEnumerator WaitCooldown(){
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.7f);
         StopEverything();
     }
 

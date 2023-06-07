@@ -8,19 +8,23 @@ public class PowerUpManager : MonoBehaviour
 {
     public List<SpriteRenderer> healthCapsules = new List<SpriteRenderer>();
     public List<SpriteRenderer> dropCapsules = new List<SpriteRenderer>();
-    public List<SpriteRenderer> damageCapsules = new List<SpriteRenderer>();
+    public List<SpriteRenderer> meleeCapsules = new List<SpriteRenderer>();
+    public List<SpriteRenderer> rangedCapsules = new List<SpriteRenderer>();
 
     public TMP_Text healthText;
     public TMP_Text dropText;
-    public TMP_Text damageText;
+    public TMP_Text meleeText;
+    public TMP_Text rangedText;
 
     public TMP_Text healthCostText;
     public TMP_Text dropCostText;
-    public TMP_Text damageCostText;
+    public TMP_Text meleeCostText;
+    public TMP_Text rangedCostText;
 
     public Button healthButton;
     public Button dropButton;
-    public Button damageButton;
+    public Button meleeButton;
+    public Button rangedButton;
     PlayerStatsManager playerStatsManager;
     public Sprite fullCapsule;
 
@@ -30,10 +34,12 @@ public class PowerUpManager : MonoBehaviour
 
     public GameObject pauseButton;
     public GameObject floatingJoystick;
+    public ShowPowerUp showPowerUp;
 
     private void OnEnable() {
         playerStatsManager = GameManager.Instance.playerStatsManager;
         Player.Instance.movementController.enabled = false;
+        showPowerUp.canShow = false;
         pauseButton.SetActive(false);
         floatingJoystick.SetActive(false);
         initScreen();
@@ -51,7 +57,8 @@ public class PowerUpManager : MonoBehaviour
     private void initScreen(){
         healthText.text = "Health: - level " + playerStatsManager.playerCurrentStats.healthLevel;
         dropText.text = "Drop: - level " + playerStatsManager.playerCurrentStats.dropLevel;
-        damageText.text = "Damage: - level " + playerStatsManager.playerCurrentStats.damageLevel;
+        meleeText.text = "Melee: - level " + playerStatsManager.playerCurrentStats.meleeLevel;
+        rangedText.text = "Ranged: - level " + playerStatsManager.playerCurrentStats.rangedLevel;
 
         for (int i = 0; i < playerStatsManager.playerCurrentStats.healthLevel; i++)
         {
@@ -61,14 +68,19 @@ public class PowerUpManager : MonoBehaviour
         {
             dropCapsules[i].sprite = fullCapsule;
         }
-        for (int i = 0; i < playerStatsManager.playerCurrentStats.damageLevel; i++)
+        for (int i = 0; i < playerStatsManager.playerCurrentStats.meleeLevel; i++)
         {
-            damageCapsules[i].sprite = fullCapsule;
+            meleeCapsules[i].sprite = fullCapsule;
+        }
+        for (int i = 0; i < playerStatsManager.playerCurrentStats.rangedLevel; i++)
+        {
+            rangedCapsules[i].sprite = fullCapsule;
         }
 
         healthCostText.text = healthCosts[playerStatsManager.playerCurrentStats.healthLevel].ToString();
         dropCostText.text = dropcosts[playerStatsManager.playerCurrentStats.dropLevel].ToString();
-        damageCostText.text = damageCosts[playerStatsManager.playerCurrentStats.damageLevel].ToString();
+        meleeCostText.text = damageCosts[playerStatsManager.playerCurrentStats.meleeLevel].ToString();
+        rangedCostText.text = damageCosts[playerStatsManager.playerCurrentStats.rangedLevel].ToString();
 
         if(playerStatsManager.playerCurrentStats.collectedSouls > healthCosts[playerStatsManager.playerCurrentStats.healthLevel]){
             healthButton.interactable = true;
@@ -89,22 +101,33 @@ public class PowerUpManager : MonoBehaviour
             dropButton.GetComponentInChildren<TMP_Text>().color = Color.red;
         }
 
-        if (playerStatsManager.playerCurrentStats.collectedSouls > damageCosts[playerStatsManager.playerCurrentStats.damageLevel ])
+        if (playerStatsManager.playerCurrentStats.collectedSouls > damageCosts[playerStatsManager.playerCurrentStats.meleeLevel])
         {
-            damageButton.interactable = true;
-            damageButton.GetComponentInChildren<TMP_Text>().color = Color.green;
+            meleeButton.interactable = true;
+            meleeButton.GetComponentInChildren<TMP_Text>().color = Color.green;
         }
         else
         {
-            damageButton.interactable = false;
-            damageButton.GetComponentInChildren<TMP_Text>().color = Color.red;
+            meleeButton.interactable = false;
+            meleeButton.GetComponentInChildren<TMP_Text>().color = Color.red;
+        }
+
+        if (playerStatsManager.playerCurrentStats.collectedSouls > damageCosts[playerStatsManager.playerCurrentStats.rangedLevel])
+        {
+            rangedButton.interactable = true;
+            rangedButton.GetComponentInChildren<TMP_Text>().color = Color.green;
+        }
+        else
+        {
+            rangedButton.interactable = false;
+            rangedButton.GetComponentInChildren<TMP_Text>().color = Color.red;
         }
 
         }
 
 
     public void UpgradeHealth(){    
-        print("touched health");
+
         playerStatsManager.playerCurrentStats.collectedSouls -= healthCosts[playerStatsManager.playerCurrentStats.healthLevel];
         playerStatsManager.playerCurrentStats.healthLevel++;
         playerStatsManager.BuyPowerUp("health");
@@ -118,10 +141,18 @@ public class PowerUpManager : MonoBehaviour
         initScreen();
     }
 
-    public void UpgradeDamage(){
-        playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.damageLevel];
-        playerStatsManager.playerCurrentStats.damageLevel++;
-        playerStatsManager.BuyPowerUp("damage");
+    public void UpgradeMeleeDamage(){
+        playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.meleeLevel];
+        playerStatsManager.playerCurrentStats.meleeLevel++;
+        playerStatsManager.BuyPowerUp("melee");
+        initScreen();
+    }
+
+    public void UpgradeRangedDamage()
+    {
+        playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.rangedLevel];
+        playerStatsManager.playerCurrentStats.rangedLevel++;
+        playerStatsManager.BuyPowerUp("ranged");
         initScreen();
     }
     

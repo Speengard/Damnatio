@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         //checks if this is the first time the game is being played and if so, initializes the player's stats to a new file
         if (gameDataManager.readPlayerFile() == null)
         {
+
             playerStatsManager = new PlayerStatsManager();
             
             gameDataManager.writePlayerData(playerStatsManager);

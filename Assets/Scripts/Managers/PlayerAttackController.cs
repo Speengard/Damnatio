@@ -37,6 +37,7 @@ public class PlayerAttackController : MonoBehaviour
     private void Start()
     {
         laserSlider = GameManager.Instance.laserSlider;
+        laserSlider.SetActive(true);
         LoadWeapon();
     }
 
@@ -44,12 +45,11 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasRanged)
         {
-            laserSlider.SetActive(true);
+
             rangedWeapon.gameObject.SetActive(true);
         }
         else
         {
-            laserSlider.SetActive(false);
             morningStar.SetActive(true);
         }
     }
@@ -101,10 +101,8 @@ public class PlayerAttackController : MonoBehaviour
     
     private void Update()
     {
-
-        if(hasRanged){
         //check if the player is moving
-        if(!rangedShoot.isShooting && !isChecking) StartCoroutine(CheckMoving());
+        if(!isChecking) StartCoroutine(CheckMoving());
         laserSlider.GetComponent<Slider>().value = counter;
         
         if(target != null){
@@ -114,8 +112,6 @@ public class PlayerAttackController : MonoBehaviour
 
         //draw the ray in the editor
         Debug.DrawRay(transform.position,direction*distance,Color.red);
-
-        }
 
         }
     }
