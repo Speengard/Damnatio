@@ -30,7 +30,7 @@ public class PlayerHealthController : HealthController
 
         if(UnityCoreHaptics.UnityCoreHapticsProxy.SupportsCoreHaptics()){
 
-            UnityCoreHaptics.UnityCoreHapticsProxy.PlayTransientHaptics(0.3f,1);
+            UnityCoreHaptics.UnityCoreHapticsProxy.PlayTransientHaptics(0.5f,1);
         }
         
         base.TakeDamage(damage);

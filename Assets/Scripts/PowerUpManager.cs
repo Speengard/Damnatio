@@ -28,15 +28,16 @@ public class PowerUpManager : MonoBehaviour
     PlayerStatsManager playerStatsManager;
     public Sprite fullCapsule;
 
-    public int[] healthCosts = { 0,150, 450, 750, 1050, 1500 };
-    public int[] damageCosts = { 0,150, 450, 750, 1050, 1500 };
-    public int[] dropcosts = { 0,150, 450, 750, 1500, 4000 };
+    public int[] healthCosts = { 0, 150, 450, 750, 1050, 1500 };
+    public int[] damageCosts = { 0, 150, 450, 750, 1050, 1500 };
+    public int[] dropcosts = { 0, 150, 450, 750, 1500, 4000 };
 
     public GameObject pauseButton;
     public GameObject floatingJoystick;
     public ShowPowerUp showPowerUp;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         playerStatsManager = GameManager.Instance.playerStatsManager;
         Player.Instance.movementController.enabled = false;
         showPowerUp.canShow = false;
@@ -45,16 +46,18 @@ public class PowerUpManager : MonoBehaviour
         initScreen();
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         Player.Instance.movementController.enabled = true;
-        pauseButton.SetActive(false);
+
         floatingJoystick.SetActive(false);
         Time.timeScale = 1;
         GameManager.Instance.saveStats();
     }
 
 
-    private void initScreen(){
+    private void initScreen()
+    {
         healthText.text = "Health: - level " + playerStatsManager.playerCurrentStats.healthLevel;
         dropText.text = "Drop: - level " + playerStatsManager.playerCurrentStats.dropLevel;
         meleeText.text = "Melee: - level " + playerStatsManager.playerCurrentStats.meleeLevel;
@@ -82,13 +85,16 @@ public class PowerUpManager : MonoBehaviour
         meleeCostText.text = damageCosts[playerStatsManager.playerCurrentStats.meleeLevel].ToString();
         rangedCostText.text = damageCosts[playerStatsManager.playerCurrentStats.rangedLevel].ToString();
 
-        if(playerStatsManager.playerCurrentStats.collectedSouls > healthCosts[playerStatsManager.playerCurrentStats.healthLevel]){
+        if (playerStatsManager.playerCurrentStats.collectedSouls > healthCosts[playerStatsManager.playerCurrentStats.healthLevel])
+        {
             healthButton.interactable = true;
             healthButton.GetComponentInChildren<TMP_Text>().color = Color.green;
-            }else{
-                healthButton.interactable = false;
-                healthButton.GetComponentInChildren<TMP_Text>().color = Color.red;
-            }
+        }
+        else
+        {
+            healthButton.interactable = false;
+            healthButton.GetComponentInChildren<TMP_Text>().color = Color.red;
+        }
 
         if (playerStatsManager.playerCurrentStats.collectedSouls > dropcosts[playerStatsManager.playerCurrentStats.dropLevel])
         {
@@ -123,10 +129,11 @@ public class PowerUpManager : MonoBehaviour
             rangedButton.GetComponentInChildren<TMP_Text>().color = Color.red;
         }
 
-        }
+    }
 
 
-    public void UpgradeHealth(){    
+    public void UpgradeHealth()
+    {
 
         playerStatsManager.playerCurrentStats.collectedSouls -= healthCosts[playerStatsManager.playerCurrentStats.healthLevel];
         playerStatsManager.playerCurrentStats.healthLevel++;
@@ -134,14 +141,16 @@ public class PowerUpManager : MonoBehaviour
         initScreen();
     }
 
-    public void UpgradeDrop(){
+    public void UpgradeDrop()
+    {
         playerStatsManager.playerCurrentStats.collectedSouls -= dropcosts[playerStatsManager.playerCurrentStats.dropLevel];
         playerStatsManager.playerCurrentStats.dropLevel++;
         playerStatsManager.BuyPowerUp("drop");
         initScreen();
     }
 
-    public void UpgradeMeleeDamage(){
+    public void UpgradeMeleeDamage()
+    {
         playerStatsManager.playerCurrentStats.collectedSouls -= damageCosts[playerStatsManager.playerCurrentStats.meleeLevel];
         playerStatsManager.playerCurrentStats.meleeLevel++;
         playerStatsManager.BuyPowerUp("melee");
@@ -155,9 +164,10 @@ public class PowerUpManager : MonoBehaviour
         playerStatsManager.BuyPowerUp("ranged");
         initScreen();
     }
-    
-    public void CloseView(){
 
+    public void CloseView()
+    {
+        pauseButton.SetActive(true);
         gameObject.SetActive(false);
     }
 

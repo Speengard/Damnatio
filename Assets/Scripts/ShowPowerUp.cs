@@ -11,6 +11,7 @@ public class ShowPowerUp : MonoBehaviour
         cd = GetComponent<CircleCollider2D>();
         canShow = true;
     }
+
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player") && canShow){
             Time.timeScale = 0;

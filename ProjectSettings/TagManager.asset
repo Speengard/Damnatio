@@ -9,6 +9,7 @@ TagManager:
   - MorningStar
   - Mace
   - MorningStarLink
+  - PowerUp
   layers:
   - Default
   - TransparentFX
