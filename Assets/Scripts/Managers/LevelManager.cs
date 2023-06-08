@@ -9,6 +9,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
+using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class LevelManager : MonoBehaviour
     public bool isPlayerInstantiated;
     private GameObject player;
     private int numberOfEnemyType = 2;
+    public GameObject countDown;
+    public TMP_Text countDownText;
 
     private void SpawnEnemies()
     {
@@ -52,11 +55,14 @@ public class LevelManager : MonoBehaviour
     public void InstantiatePlayer()
     {
         // the player is instantiated only once
-        if (!GameManager.Instance.isPlayerInstantiated) {
+        if (!GameManager.Instance.isPlayerInstantiated)
+        {
             playerPrefab.GetComponent<PlayerMovementController>().Joystick = joystick;
             player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
             PlayerPrefs.SetInt("isPlayerInstantiated", 1);
-        } else {
+        }
+        else
+        {
             // reset player's position
             GameManager.Instance.player.transform.position = Vector3.zero;
         }
@@ -67,20 +73,60 @@ public class LevelManager : MonoBehaviour
         enemiesToSpawn = CalculateEnemiesToSpawn(level);
         SpawnEnemies(); // spawn enemies only if you selected "start game"
 
+        StartCoroutine(SpawnCards(level));
 
+        
 
-        if ((level % 2) == 0) {
-            cardManager.GenerateCards();
-        }
     }
 
-    private int CalculateEnemiesToSpawn(int level) {
+    private int CalculateEnemiesToSpawn(int level)
+    {
         return (10 * level / 3);
     }
 
     public void AddEnemyToList(Enemy enemy)
-	{
-		GameManager.Instance.enemies.Add(enemy);
-	}
+    {
+        GameManager.Instance.enemies.Add(enemy);
+    }
+
+    IEnumerator SpawnCards(int level)
+    {
+        if ((level % 2) == 0)
+        {
+            StartCoroutine(cardManager.GenerateCards(() =>
+            {
+                Time.timeScale = 0;
+                StartCoroutine(WaitBeforeStart(() =>
+                {
+                    Player.Instance.enabled = false;
+                    Time.timeScale = 1;
+                }));
+            }));
+            yield return 0;
+        }else{
+                Time.timeScale = 0;
+                StartCoroutine(WaitBeforeStart(() =>
+                {
+                    Player.Instance.enabled = false;
+                    Time.timeScale = 1;
+                }));
+        }
+
+    }
+
+    IEnumerator WaitBeforeStart(Action callback)
+    {
+        countDown.SetActive(true);
+        countDownText.text = "3";
+        yield return new WaitForSecondsRealtime(1f);
+        countDownText.text = "2";
+        yield return new WaitForSecondsRealtime(1f);
+        countDownText.text = "1";
+        yield return new WaitForSecondsRealtime(1f);
+        countDownText.text = "GO!";
+        yield return new WaitForSecondsRealtime(1f);
+        countDown.SetActive(false);
+        callback.Invoke();
+    }
 
 }

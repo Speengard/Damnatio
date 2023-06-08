@@ -12,7 +12,9 @@ public class CardManager : MonoBehaviour
     private string path = "Cards/";
     private int numberOfCards = 2;
 
-    public void GenerateCards() {
+    private bool hasChosen = false;
+
+    public IEnumerator GenerateCards(Action callback) {
         string spritePath;
 
         player = GameManager.Instance.player; // get player
@@ -24,7 +26,9 @@ public class CardManager : MonoBehaviour
         Time.timeScale = 0;
         cardMenu.gameObject.SetActive(true);
         
+        //selecting the cards
         for(int i = 0; i < numberOfCards; i++) {
+
             // get a random index within the available suits list
             int randomIndex = UnityEngine.Random.Range(0, availableSuits.Count);
 
@@ -50,6 +54,13 @@ public class CardManager : MonoBehaviour
             cardButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
             cardButtons[i].GetComponent<Button>().onClick.AddListener(() => AssignPowerUp(selectedSuit));
         }
+
+        while(!hasChosen) {
+            yield return 0;
+        }
+
+        callback.Invoke();
+
     }
 
     private void AssignPowerUp(CardSuits suit) {
@@ -92,6 +103,7 @@ public class CardManager : MonoBehaviour
 
     private void CloseCardMenu() {
         cardMenu.gameObject.SetActive(false);
+        hasChosen = true;
         Time.timeScale = 1;
     }
 }
