@@ -22,7 +22,7 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private Laser rangedShoot;
     //weapon gameobjects
     [SerializeField] private GameObject rangedWeapon;
-    [SerializeField] private GameObject morningStar;
+    public GameObject morningStar;
     public bool hasRanged = false;
     public float laserWidth = 0.5f;
     private bool isChecking = false;
