@@ -59,6 +59,8 @@ public class OnboardingManager : MonoBehaviour
 
         LoadSteps();
 
+        panel.SetActive(true);
+
         LoadCurrentStep();
     }
 
@@ -86,7 +88,6 @@ public class OnboardingManager : MonoBehaviour
     private void CheckStepIsCompleted() {
         // activate next step
         if (stepIsActive && currentStep < steps.Count && steps[currentStep].completionCondition()) {
-            Debug.Log("OK MANDATO");
             stepIsActive = false;
             StartCoroutine(DelayNextStep());
         }
@@ -104,6 +105,7 @@ public class OnboardingManager : MonoBehaviour
             LoadCurrentStep();
         } else {
             Debug.Log("finished onboarding");
+            PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
         }
     }
 

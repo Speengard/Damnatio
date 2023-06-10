@@ -1993,7 +1993,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Instructions
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1f1b0125a423e4304838a11964adf536, type: 2}
   m_sharedMaterial: {fileID: -5496338078450925988, guid: 1f1b0125a423e4304838a11964adf536, type: 2}
@@ -3198,6 +3198,10 @@ PrefabInstance:
       propertyPath: gameOverScene
       value: 
       objectReference: {fileID: 1757050170}
+    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: onboardingScreen
+      value: 
+      objectReference: {fileID: 1617098645}
     - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: startSceneManager
       value: 
@@ -4467,7 +4471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 220, y: -100}
+  m_AnchoredPosition: {x: 220, y: -200}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1289881125
@@ -5132,8 +5136,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 110
-  m_fontSizeBase: 110
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5337,19 +5341,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
-      propertyPath: m_AnchorMin.y
+      propertyPath: m_AnchorMin.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5389,11 +5393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 915
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2028
+      value: 470
       objectReference: {fileID: 0}
     - target: {fileID: 5124791451125871185, guid: e7059f9f5dfe24f3c86bd866ab51667b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6506,7 +6510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1617098646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10053,7 +10057,7 @@ GameObject:
   - component: {fileID: 595663383094990185}
   - component: {fileID: 9033091404516787655}
   m_Layer: 7
-  m_Name: TreeEnemy
+  m_Name: Mannequin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
