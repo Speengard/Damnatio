@@ -23,11 +23,8 @@ public class OnboardingManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ExecuteAfterDelay());
-
-        LoadSteps();
-
-        LoadCurrentStep();
+        // wait a moment to load all the references and load the first step
+        StartCoroutine(InitOnboarding());
     }
 
     private void Update() {
@@ -49,23 +46,20 @@ public class OnboardingManager : MonoBehaviour
 
         #endif
 
-        // activate next step
-        if (stepIsActive && currentStep < steps.Count && steps[currentStep].completionCondition()) {
-            Debug.Log("OK MANDATO");
-            StartCoroutine(DelayNextStep());
-        }
+        CheckStepIsCompleted();
 
     }
 
-    IEnumerator ExecuteAfterDelay()
+    IEnumerator InitOnboarding()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); // wait a moment to load all the references
 
         player = GameManager.Instance.player.gameObject;
         morningStar = player.GetComponent<PlayerAttackController>().morningStar.GetComponentInChildren<MorningStar>();
 
-        InstantiateHighlightedCircle(player.transform);
+        LoadSteps();
 
+        LoadCurrentStep();
     }
 
     // this coroutine allows the player to test the latest instruction before going to the next step
@@ -83,6 +77,19 @@ public class OnboardingManager : MonoBehaviour
     // this function load the instructions text for the current step and highlights the needed object
     private void LoadCurrentStep() {
         instructionsText.text = steps[currentStep].instructions;
+
+        if (steps[currentStep].objectToHighlight != null) {
+            InstantiateHighlightedCircle(steps[currentStep].objectToHighlight.transform);
+        }
+    }
+
+    private void CheckStepIsCompleted() {
+        // activate next step
+        if (stepIsActive && currentStep < steps.Count && steps[currentStep].completionCondition()) {
+            Debug.Log("OK MANDATO");
+            stepIsActive = false;
+            StartCoroutine(DelayNextStep());
+        }
     }
 
     // this functions increments the step index and checks if there are steps left
@@ -117,31 +124,31 @@ public class OnboardingManager : MonoBehaviour
         steps.Add(new OnboardingStep(
             "Click on the button to switch to the ranged weapon",
             switchButton,
-            () => false) // click the switch button to continue
+            () => player.GetComponent<PlayerAttackController>().hasRanged) // click the switch button to continue
         );
 
         steps.Add(new OnboardingStep(
             "Stand still to allow the weapon to load",
             loadingWeaponBar,
-            () => false) // tap to continue
+            () => true) // tap to continue
         );
 
         steps.Add(new OnboardingStep(
             "When the weapon is loaded, it will automatically hit the closest enemy",
             mannequin,
-            () => false) // hit enemy with the ranged weapon to continue
+            () => player.GetComponentInChildren<Laser>().hasHit) // hit enemy with the ranged weapon to continue
         );
 
         steps.Add(new OnboardingStep(
             "Now that you know how to fight the demons, look for the altar to upgrade your skills",
             null,
-            () => false) // touch altar to continue
+            () => true) // touch altar to continue
         );
 
         steps.Add(new OnboardingStep(
         "You are ready to fight! Get to the gate and take on this dangerous journey!",
             null,
-            () => false) // tap to continue
+            () => true) // tap to continue
         );
     }
 

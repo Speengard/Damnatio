@@ -13,7 +13,7 @@ public class Laser : MonoBehaviour
     [SerializeField] public GameObject target;
     private Vector2 direction;
     public bool isShooting = false;
-    private bool hasHit = false;
+    public bool hasHit = false;
     private int rangedDamage = 3;
     [SerializeField] private Material laserMaterial;
 
