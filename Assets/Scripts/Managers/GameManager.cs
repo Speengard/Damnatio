@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Player player;
     [SerializeField] private GameObject gameOverScene;
     [SerializeField] private StartSceneManager startSceneManager;
+    [SerializeField] private GameObject onboardingScreen;
     public static GameManager Instance { get; private set; }
     public float levelStartDelay = 2f;
     private LevelManager boardScript;
@@ -45,12 +46,17 @@ public class GameManager : MonoBehaviour
             gameDataManager.writePlayerData(playerStatsManager);
 
         }else{
-        //I create a copy of the player's stats so that I can modify them without modifying the original
-        playerStatsManager = gameDataManager.readPlayerFile();
+            //I create a copy of the player's stats so that I can modify them without modifying the original
+            playerStatsManager = gameDataManager.readPlayerFile();
 
 		}
 
         print("reading back:" + gameDataManager.readPlayerFile());
+
+        // init the onboarding by enabling the canvas object
+        if (!PlayerPrefs.HasKey("isFirstLaunch")) {
+            onboardingScreen.SetActive(true);
+        }
 
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();

@@ -10,6 +10,7 @@ public class MorningStar : MonoBehaviour
     [SerializeField] private GameObject finalLink;
     public float angularVelocity;
     public float damage;
+    public bool hasHit = false;
 
     private void Update() {
         angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
@@ -21,8 +22,13 @@ public class MorningStar : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
+        EnemyHealthController enemyHealthController = other.gameObject.GetComponent<EnemyHealthController>();
 
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy")) {
+            hasHit = true;
+        }
+
+        if (other.gameObject.CompareTag("Enemy") && enemyHealthController != null)
         {
             if(other.rigidbody != null){
 
@@ -53,6 +59,14 @@ public class MorningStar : MonoBehaviour
                     break;
             }
         }
+
+        StartCoroutine(ResetHitFlag());
+    }
+
+    private IEnumerator ResetHitFlag()
+    {
+        yield return new WaitForSeconds(0.5f);
+        hasHit = false;
     }
     
 }
