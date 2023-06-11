@@ -54,9 +54,9 @@ public class GameManager : MonoBehaviour
         print("reading back:" + gameDataManager.readPlayerFile());
 
         // init the onboarding by enabling the canvas object
-        if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-            onboardingScreen.SetActive(true);
-        }
+        // if (!PlayerPrefs.HasKey("isFirstLaunch")) {
+            // onboardingScreen.SetActive(true);
+        // }
 
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
