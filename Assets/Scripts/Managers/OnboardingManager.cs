@@ -12,6 +12,8 @@ public class OnboardingManager : MonoBehaviour
     [SerializeField] private GameObject mannequin;
     [SerializeField] private GameObject loadingWeaponBar;
     [SerializeField] private MorningStar morningStar;
+    [SerializeField] private Laser laser;
+    [SerializeField] private PlayerAttackController playerAttackController;
     [SerializeField] private TextMeshProUGUI instructionsText;
     private float scaleDifference = 260f; // the highlighted circle has a bigger scale than the objects on screen
     private GameObject instantiatedHighlightPrefab;
@@ -49,7 +51,7 @@ public class OnboardingManager : MonoBehaviour
 
         #endif
 
-        if (morningStar.hasHit) {
+        if (morningStar != null && morningStar.hasHit) {
             mannequinHasBeenHit = true;
         }
 
@@ -130,13 +132,13 @@ public class OnboardingManager : MonoBehaviour
         );
         
         steps.Add(new OnboardingStep(
-            "Hit enemies with the morning star by moving in circles. Look around for the mannequin to train",
+            "Move in circles to use the morning star. Look around for the mannequin to train",
             null,
             () => mannequinHasBeenHit) // hit the mannequin to continue
         );
 
         steps.Add(new OnboardingStep(
-            "Click on the button to switch to the ranged weapon",
+            "Click to switch to the ranged weapon",
             switchButton,
             () => player.GetComponent<PlayerAttackController>().hasRanged) // click the switch button to continue
         );
@@ -148,13 +150,13 @@ public class OnboardingManager : MonoBehaviour
         );
 
         steps.Add(new OnboardingStep(
-            "When the weapon is loaded, it will automatically hit the closest enemy",
+            "When it's loaded, start moving to hit the closest enemy",
             mannequin,
             () => player.GetComponentInChildren<Laser>().hasHit) // hit enemy with the ranged weapon to continue
         );
 
         steps.Add(new OnboardingStep(
-            "Now that you know how to fight the demons, look for the altar to upgrade your skills",
+            "Now that you know how to fight, look for the altar to upgrade your skills",
             null,
             () => true) // touch altar to continue
         );

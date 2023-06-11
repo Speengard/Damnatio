@@ -2020,8 +2020,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6551,8 +6551,9 @@ MonoBehaviour:
   mannequin: {fileID: 9033091404516787654}
   loadingWeaponBar: {fileID: 2131563865}
   morningStar: {fileID: 0}
+  laser: {fileID: 0}
+  playerAttackController: {fileID: 0}
   instructionsText: {fileID: 552075654}
-  stepIsActive: 0
 --- !u!1 &1664298145
 GameObject:
   m_ObjectHideFlags: 0
