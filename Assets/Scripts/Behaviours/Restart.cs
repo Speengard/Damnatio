@@ -10,22 +10,12 @@ public class Restart : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
     {
         if (!other.gameObject.CompareTag("Player")) return;
-        if (GameManager.Instance.enemies.Count == 0 && PlayerPrefs.HasKey("isFirstLaunch"))
+        if (GameManager.Instance.enemies.Count == 0)
         {
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             LoadRandomScene();
         }
     }
-    }
-    private void OnTriggerEnter2D(Collider2D other) {    
-        {
-            if (!other.gameObject.CompareTag("Player")) return;
-            if (GameManager.Instance.enemies.Count == 0 && PlayerPrefs.HasKey("isFirstLaunch"))
-            {
-                // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                LoadRandomScene();
-            }
-        }
     }
 
 	private void LoadRandomScene() {
@@ -34,7 +24,7 @@ public class Restart : MonoBehaviour
 	}
 
     private void Update() {
-        if(GameManager.Instance.enemies.Count == 0 && PlayerPrefs.HasKey("isFirstLaunch")) {
+        if(GameManager.Instance.enemies.Count == 0) {
             GetComponentInParent<SpriteRenderer>().sprite = openPortalTexture;
         }
     }

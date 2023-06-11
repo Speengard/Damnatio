@@ -73,10 +73,7 @@ public class LevelManager : MonoBehaviour
         enemiesToSpawn = CalculateEnemiesToSpawn(level);
         SpawnEnemies(); // spawn enemies only if you selected "start game"
 
-        StartCoroutine(SpawnCards(level));
-
-        
-
+        SpawnCards(level); 
     }
 
     private int CalculateEnemiesToSpawn(int level)
@@ -89,10 +86,12 @@ public class LevelManager : MonoBehaviour
         GameManager.Instance.enemies.Add(enemy);
     }
 
-    IEnumerator SpawnCards(int level)
+    private void SpawnCards(int level)
     {
         if ((level % 2) == 0)
         {
+            print("level is even, cards");
+
             StartCoroutine(cardManager.GenerateCards(() =>
             {
                 Time.timeScale = 0;
@@ -102,14 +101,16 @@ public class LevelManager : MonoBehaviour
                     Time.timeScale = 1;
                 }));
             }));
-            yield return 0;
+
         }else{
+            print("level is odd, no cards");
                 Time.timeScale = 0;
                 StartCoroutine(WaitBeforeStart(() =>
                 {
                     Player.Instance.enabled = false;
                     Time.timeScale = 1;
                 }));
+
         }
 
     }

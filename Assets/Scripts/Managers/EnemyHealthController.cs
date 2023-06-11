@@ -68,7 +68,6 @@ public class EnemyHealthController : HealthController
     {
         while (fade > 0.0f)
         {
-            print("fading out");
             fade -= 0.1f;
 
             foreach (SpriteRenderer s in spriteRenderers)

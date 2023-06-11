@@ -60,9 +60,8 @@ public class CardManager : MonoBehaviour
         while(!hasChosen) {
             yield return 0;
         }
-
+        hasChosen = false;
         callback.Invoke();
-
     }
 
     private void SetText(GameObject card, CardSuits suit, int value) {

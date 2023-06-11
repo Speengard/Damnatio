@@ -37,6 +37,6 @@ public class GameDataManager : MonoBehaviour
         
         string json = JsonConvert.SerializeObject(playerCurrentStats.playerCurrentStats);
 
-        File.WriteAllText(playerFile, json);
+        JsonConvert.SerializeObject(json);
     }
 }

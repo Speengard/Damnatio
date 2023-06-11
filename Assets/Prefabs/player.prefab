@@ -5092,7 +5092,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 4
+  m_Mass: 2
   m_LinearDrag: 0.07
   m_AngularDrag: 0.07
   m_GravityScale: 0
@@ -24629,6 +24629,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7635736290668141512}
     m_Modifications:
+    - target: {fileID: 24775052173718967, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 41752950686135748, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.0019999763
@@ -24637,6 +24641,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: -0.09100004
       objectReference: {fileID: 0}
+    - target: {fileID: 822007633297340131, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1170395535976759688, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 30.5538
@@ -24644,6 +24652,10 @@ PrefabInstance:
     - target: {fileID: 1170395535976759688, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -1.1687014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1244424174802583050, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1494330176329635741, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Name
@@ -24765,6 +24777,14 @@ PrefabInstance:
       propertyPath: m_Distance
       value: 0.6330343
       objectReference: {fileID: 0}
+    - target: {fileID: 2182748226500040406, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2334992690114018947, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2462083704051330866, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Mass
       value: 0.22
@@ -24799,7 +24819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3229204677001204914, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Mass
-      value: 0.49
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 3229204677001204914, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_LinearDrag
@@ -24896,6 +24916,10 @@ PrefabInstance:
     - target: {fileID: 5749519765594425696, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_Distance
       value: 0.08795641
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793986344110348986, guid: 1718ce025b5194150878c326cf17a747, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5835675001825708359, guid: 1718ce025b5194150878c326cf17a747, type: 3}
       propertyPath: m_ConnectedAnchor.x

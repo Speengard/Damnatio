@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject onboardingScreen;
     public static GameManager Instance { get; private set; }
     public float levelStartDelay = 2f;
-    private LevelManager boardScript;
+    private LevelManager levelManager;
     public int level = 0;
     public List<Enemy> enemies;
     public List<GameObject> lootObjects;
@@ -51,8 +51,6 @@ public class GameManager : MonoBehaviour
 
 		}
 
-        print("reading back:" + gameDataManager.readPlayerFile());
-
         // init the onboarding by enabling the canvas object
         // if (!PlayerPrefs.HasKey("isFirstLaunch")) {
             // onboardingScreen.SetActive(true);
@@ -60,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
-        boardScript = GetComponent<LevelManager>();
+        levelManager = GetComponent<LevelManager>();
     }
 
     private void Start()
@@ -108,7 +106,7 @@ public class GameManager : MonoBehaviour
     {
         enemies.Clear();
         lootObjects.Clear();
-        boardScript.InstantiatePlayer(); // instantiate the player or reset the position in the scene
+        levelManager.InstantiatePlayer(); // instantiate the player or reset the position in the scene
 
         // mark the player as instantiated
         isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
@@ -121,15 +119,15 @@ public class GameManager : MonoBehaviour
         {
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
-            boardScript.SetupScene(level); // spawn enemies and enable the power-up system
-            
-
+            print("init level + " + level);
+            levelManager.SetupScene(level); // spawn enemies and enable the power-up system
         }
         else
         {
             // if we are the "start scene", enable its manager
             startSceneManager.enabled = true;
         }
+
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)

@@ -110,6 +110,8 @@ public class Laser : MonoBehaviour
 
     void UpdateLaser()
     {
+        if (target == null) return;
+        
         direction = (Vector2)target.transform.position - (Vector2)firePoint.position;
 
         if(lineRenderer.enabled == false) return;
@@ -124,7 +126,6 @@ public class Laser : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
-                print("hit enemy");
                 hasHit = true;
                 hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
                 if(target == null){
