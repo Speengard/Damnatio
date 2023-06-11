@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardManager : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Player player;
     private string path = "Cards/";
     private int numberOfCards = 2;
-
     private bool hasChosen = false;
 
     public IEnumerator GenerateCards(Action callback) {
@@ -41,6 +41,8 @@ public class CardManager : MonoBehaviour
             // get a value according to the current "run stats" of the player
             int selectedValue = GetStatsDifference(selectedSuit) + 1;
 
+            SetText(cardButtons[i], selectedSuit, selectedValue);
+
             // JUST FOR TEST: since we don't have other cards yet, force the value as 1
             selectedValue = 1; 
 
@@ -48,7 +50,7 @@ public class CardManager : MonoBehaviour
             spritePath = path + selectedValue + "Of" + selectedSuit;
 
             // display the right sprite for the generated card
-            cardButtons[i].GetComponent<Image>().sprite = Resources.Load<Sprite>(spritePath);   
+            cardButtons[i].GetComponent<Image>().sprite = Resources.Load<Sprite>(spritePath);
 
             // remove previous listeners so that only the targeted stat is updated
             cardButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
@@ -61,6 +63,25 @@ public class CardManager : MonoBehaviour
 
         callback.Invoke();
 
+    }
+
+    private void SetText(GameObject card, CardSuits suit, int value) {
+        switch (suit) {
+            case CardSuits.Cups: // power up for health points
+                card.GetComponentInChildren<TextMeshProUGUI>().text = "Health +" + value;
+                break;
+            case CardSuits.Batons: // power up for ranged weapon
+                card.GetComponentInChildren<TextMeshProUGUI>().text = "Ranged +" + value;
+                break;
+            case CardSuits.Swords: // power up for morning star
+                card.GetComponentInChildren<TextMeshProUGUI>().text = "Morning Star +" + value;
+                break;
+            case CardSuits.Coins: // power up for collectibles
+                card.GetComponentInChildren<TextMeshProUGUI>().text = "Luck +" + value;
+                break;
+            default:
+                break;
+        }
     }
 
     private void AssignPowerUp(CardSuits suit) {
