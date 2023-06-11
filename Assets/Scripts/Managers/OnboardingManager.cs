@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System.Linq;
 
 public class OnboardingManager : MonoBehaviour
 {
@@ -17,9 +16,10 @@ public class OnboardingManager : MonoBehaviour
     private float scaleDifference = 260f; // the highlighted circle has a bigger scale than the objects on screen
     private GameObject instantiatedHighlightPrefab;
     private int currentStep = 0;
-    [SerializeField] private bool stepIsActive = false; // check if the user is doing something related to a step
+    private bool stepIsActive = false; // check if the user is doing something related to a step
     private List <OnboardingStep> steps = new List<OnboardingStep>();
-
+    private bool isTouchingScreen = false;
+    private bool mannequinHasBeenHit = false;
 
     void Start()
     {
@@ -32,6 +32,9 @@ public class OnboardingManager : MonoBehaviour
             if (Input.GetMouseButtonUp(0)) {
                 panel.SetActive(false);
                 stepIsActive = true;
+                isTouchingScreen = false;
+            } else {
+                isTouchingScreen = Input.GetMouseButton(0);
             }
         
         #else
@@ -45,6 +48,10 @@ public class OnboardingManager : MonoBehaviour
             }  
 
         #endif
+
+        if (morningStar.hasHit) {
+            mannequinHasBeenHit = true;
+        }
 
         CheckStepIsCompleted();
 
@@ -95,13 +102,18 @@ public class OnboardingManager : MonoBehaviour
 
     // this functions increments the step index and checks if there are steps left
     private void NextStep() {
-        panel.SetActive(true);
-        stepIsActive = false;
-
-        if (instantiatedHighlightPrefab != null)    Destroy(instantiatedHighlightPrefab);
+        if (isTouchingScreen) {
+            isTouchingScreen = false;
+            return;
+        }
 
         currentStep++;
         if (currentStep < steps.Count) {
+            panel.SetActive(true);
+            stepIsActive = false;
+
+            if (instantiatedHighlightPrefab != null)    Destroy(instantiatedHighlightPrefab);
+
             LoadCurrentStep();
         } else {
             Debug.Log("finished onboarding");
@@ -120,7 +132,7 @@ public class OnboardingManager : MonoBehaviour
         steps.Add(new OnboardingStep(
             "Hit enemies with the morning star by moving in circles. Look around for the mannequin to train",
             null,
-            () => morningStar.hasHit) // hit the mannequin to continue
+            () => mannequinHasBeenHit) // hit the mannequin to continue
         );
 
         steps.Add(new OnboardingStep(

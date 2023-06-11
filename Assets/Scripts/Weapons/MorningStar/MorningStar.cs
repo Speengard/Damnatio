@@ -60,10 +60,10 @@ public class MorningStar : MonoBehaviour
             }
         }
 
-        StartCoroutine(ResetHitFlagCoroutine());
+        StartCoroutine(ResetHitFlag());
     }
 
-    private IEnumerator ResetHitFlagCoroutine()
+    private IEnumerator ResetHitFlag()
     {
         yield return new WaitForSeconds(0.5f);
         hasHit = false;
