@@ -42,12 +42,17 @@ public class OnboardingManager : MonoBehaviour
         #else
             if (Input.touchCount > 0) {
                 Touch touch = Input.GetTouch(0);
-                if(touch.phase == TouchPhase.Ended) {
-                    Debug.Log("sollevato ditino");
+    
+                if (touch.phase == TouchPhase.Ended) {
                     panel.SetActive(false);
                     stepIsActive = true;
+                    isTouchingScreen = false;
+                } else {
+                    isTouchingScreen = (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved);
                 }
-            }  
+            } else {
+                isTouchingScreen = false;
+            }
 
         #endif
 
@@ -65,6 +70,7 @@ public class OnboardingManager : MonoBehaviour
 
         player = GameManager.Instance.player.gameObject;
         morningStar = player.GetComponent<PlayerAttackController>().morningStar.GetComponentInChildren<MorningStar>();
+        playerAttackController = player.GetComponent<PlayerAttackController>();
 
         LoadSteps();
 
@@ -141,7 +147,7 @@ public class OnboardingManager : MonoBehaviour
         steps.Add(new OnboardingStep(
             "Click to switch to the ranged weapon",
             switchButton,
-            () => player.GetComponent<PlayerAttackController>().hasRanged) // click the switch button to continue
+            () => playerAttackController.hasRanged) // click the switch button to continue
         );
 
         steps.Add(new OnboardingStep(
