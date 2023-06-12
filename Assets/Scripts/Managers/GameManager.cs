@@ -42,18 +42,20 @@ public class GameManager : MonoBehaviour
         {
 
             playerStatsManager = new PlayerStatsManager();
-            
+
             gameDataManager.writePlayerData(playerStatsManager);
 
-        }else{
+        }
+        else
+        {
             //I create a copy of the player's stats so that I can modify them without modifying the original
             playerStatsManager = gameDataManager.readPlayerFile();
 
-		}
+        }
 
         // init the onboarding by enabling the canvas object
         // if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-            // onboardingScreen.SetActive(true);
+        onboardingScreen.SetActive(true);
         // }
 
         enemies = new List<Enemy>();
@@ -74,15 +76,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-	public void saveStats(){
-		gameDataManager.writePlayerData(playerStatsManager);
-		playerStatsManager = gameDataManager.readPlayerFile();
-	}
+    public void saveStats()
+    {
+        gameDataManager.writePlayerData(playerStatsManager);
+        playerStatsManager = gameDataManager.readPlayerFile();
+    }
 
     public void GameOver()
     {
         Time.timeScale = 0;
-        
+
         followPlayer.enabled = false;
         gameOverScene.gameObject.SetActive(true);
 
@@ -131,10 +134,10 @@ public class GameManager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        
+
         InitGame();
     }
 
-    
+
 
 }
