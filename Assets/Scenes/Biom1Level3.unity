@@ -1433,7 +1433,6 @@ GameObject:
   - component: {fileID: 441161247}
   - component: {fileID: 441161252}
   - component: {fileID: 441161251}
-  - component: {fileID: 441161250}
   m_Layer: 0
   m_Name: 'Contorno Alberi '
   m_TagString: Untagged
@@ -2367,27 +2366,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!50 &441161250
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441161245}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &441161251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35275,12 +35253,24 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3268568662922705252, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 13.421288
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268568662922705252, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.023308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268568662922705252, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4872146
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268568662922705252, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.22
+      value: 6.9
       objectReference: {fileID: 0}
     - target: {fileID: 3268568662922705252, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9
+      value: 27.6
       objectReference: {fileID: 0}
     - target: {fileID: 3268568662922705252, guid: 03bd7cc805dbd4d67b1c9df9e3677de0, type: 3}
       propertyPath: m_LocalPosition.z
