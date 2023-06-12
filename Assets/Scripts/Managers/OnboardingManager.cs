@@ -76,6 +76,7 @@ public class OnboardingManager : MonoBehaviour
     // this coroutine allows the player to test the latest instruction before going to the next step
     private IEnumerator DelayNextStep()
     {
+        yield return new WaitUntil(() => steps[currentStep].completionCondition());
         yield return new WaitForSeconds(2f); // wait 2 seconds
         NextStep();
     }
@@ -96,7 +97,7 @@ public class OnboardingManager : MonoBehaviour
 
     private void CheckStepIsCompleted() {
         // activate next step
-        if (stepIsActive && currentStep < steps.Count && steps[currentStep].completionCondition()) {
+        if (stepIsActive && currentStep < steps.Count) {
             stepIsActive = false;
             StartCoroutine(DelayNextStep());
         }
