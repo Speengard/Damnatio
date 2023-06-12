@@ -15,6 +15,7 @@ public class AnimationController : MonoBehaviour
             //it gets the rotation in respect to the direction of the the gameobject and based on that value along the z axis, it snaps to the unique value of each animation
 
             Quaternion rotation = Quaternion.LookRotation(Vector3.forward, movementdirection);
+            
             switch (rotation.eulerAngles.z)
             {
             //N

@@ -90,8 +90,6 @@ public class LevelManager : MonoBehaviour
     {
         if ((level % 2) == 0)
         {
-            print("level is even, cards");
-
             StartCoroutine(cardManager.GenerateCards(() =>
             {
                 Time.timeScale = 0;
@@ -103,7 +101,6 @@ public class LevelManager : MonoBehaviour
             }));
 
         }else{
-            print("level is odd, no cards");
                 Time.timeScale = 0;
                 StartCoroutine(WaitBeforeStart(() =>
                 {

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     public static Player Instance { get; private set; }
     public GameManager gameManager;
+    public GameObject portalArrow;
 
     void Awake() {
 

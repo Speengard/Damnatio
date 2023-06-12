@@ -119,7 +119,6 @@ public class GameManager : MonoBehaviour
         {
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
-            print("init level + " + level);
             levelManager.SetupScene(level); // spawn enemies and enable the power-up system
         }
         else
@@ -132,6 +131,7 @@ public class GameManager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
+        
         InitGame();
     }
 
