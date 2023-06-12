@@ -18,7 +18,7 @@ public class OnboardingManager : MonoBehaviour
     private float scaleDifference = 260f; // the highlighted circle has a bigger scale than the objects on screen
     private GameObject instantiatedHighlightPrefab;
     private int currentStep = 0;
-    private bool stepIsActive = false; // check if the user is doing something related to a step
+    public bool stepIsActive = false; // check if the user is doing something related to a step
     private List <OnboardingStep> steps = new List<OnboardingStep>();
     private bool isTouchingScreen = false;
     private bool mannequinHasBeenHit = false;
@@ -82,9 +82,11 @@ public class OnboardingManager : MonoBehaviour
     // this coroutine allows the player to test the latest instruction before going to the next step
     private IEnumerator DelayNextStep()
     {
-        yield return new WaitUntil(() => steps[currentStep].completionCondition());
-        yield return new WaitForSeconds(2f); // wait 2 seconds
-        NextStep();
+        if (!stepIsActive) {
+            yield return new WaitUntil(() => steps[currentStep].completionCondition());
+            yield return new WaitForSeconds(2f); // wait 2 seconds
+            NextStep();
+        }
     }
 
     private void InstantiateHighlightedCircle(Transform objectToHighlight) {
@@ -103,7 +105,7 @@ public class OnboardingManager : MonoBehaviour
 
     private void CheckStepIsCompleted() {
         // activate next step
-        if (stepIsActive && currentStep < steps.Count) {
+        if (stepIsActive && currentStep < steps.Count && steps[currentStep].completionCondition()) {
             stepIsActive = false;
             StartCoroutine(DelayNextStep());
         }
