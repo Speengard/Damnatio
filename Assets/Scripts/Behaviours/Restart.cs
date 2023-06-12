@@ -8,11 +8,12 @@ public class Restart : MonoBehaviour
 {
     [SerializeField] private Sprite openPortalTexture;
     private bool flag = false;
+
     private void OnCollisionEnter2D(Collision2D other) {
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        if (GameManager.Instance.enemies.Count == 0)
+        if (GameManager.Instance.enemies.Count == 0 && PlayerPrefs.HasKey("isFirstLaunch"))
         {
 
             GameManager.Instance.player.portalArrow.SetActive(false);
@@ -29,7 +30,7 @@ public class Restart : MonoBehaviour
 
     private void Update() {
         
-        if(GameManager.Instance.enemies.Count == 0 && !flag) {
+        if(GameManager.Instance.enemies.Count == 0 && !flag && PlayerPrefs.HasKey("isFirstLaunch")) {
             GetComponentInParent<SpriteRenderer>().sprite = openPortalTexture;
             GameManager.Instance.player.portalArrow.SetActive(true);
             flag = true;

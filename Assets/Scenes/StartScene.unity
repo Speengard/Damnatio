@@ -3025,10 +3025,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7613571883447918135, guid: cc3d60492dc6443b9bea1ba96a4e00a8, type: 3}
-      propertyPath: m_TagString
-      value: PowerUp
-      objectReference: {fileID: 0}
     - target: {fileID: 7613571883447918136, guid: cc3d60492dc6443b9bea1ba96a4e00a8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6180,6 +6176,7 @@ MonoBehaviour:
   player: {fileID: 0}
   mannequin: {fileID: 2047964064}
   loadingWeaponBar: {fileID: 2131563865}
+  powerUpObject: {fileID: 358883536}
   morningStar: {fileID: 0}
   laser: {fileID: 0}
   playerAttackController: {fileID: 0}
