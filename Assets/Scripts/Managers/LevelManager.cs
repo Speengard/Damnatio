@@ -28,6 +28,11 @@ public class LevelManager : MonoBehaviour
     public GameObject countDown;
     public TMP_Text countDownText;
 
+    private float leftBound = -20;
+    private float rightBound = 13;
+    private float topBound = 23;
+    private float bottomBound = -2;
+
     private void SpawnEnemies()
     {
         for (int i = 0; i < enemiesToSpawn; i++)
@@ -43,9 +48,8 @@ public class LevelManager : MonoBehaviour
 
     private Vector2 RandomPointInScreen()
     {
-        float halfDiamondSize = Mathf.Min(roomWidth / 2f, roomHeight / 2f);
-        float randomX = Random.Range(-1f, 1f) * halfDiamondSize;
-        float randomY = Random.Range(-1f, 1f) * halfDiamondSize;
+        float randomX = Random.Range(-leftBound, rightBound);
+        float randomY = Random.Range(-bottomBound, topBound);
 
         //Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
         Vector2 randomPositionOnScreen = new Vector2(randomX, randomY);
@@ -78,7 +82,7 @@ public class LevelManager : MonoBehaviour
 
     private int CalculateEnemiesToSpawn(int level)
     {
-        return (10 * level / 3);
+        return (15 * level / 3);
     }
 
     public void AddEnemyToList(Enemy enemy)
