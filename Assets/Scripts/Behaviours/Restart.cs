@@ -31,7 +31,7 @@ public class Restart : MonoBehaviour
     private void Update() {
         
         if(GameManager.Instance.enemies.Count == 0 && !flag && PlayerPrefs.HasKey("isFirstLaunch")) {
-            GetComponentInParent<SpriteRenderer>().sprite = openPortalTexture;
+            if (GameManager.Instance.level != 0)     GetComponentInParent<SpriteRenderer>().sprite = openPortalTexture;
             GameManager.Instance.player.portalArrow.SetActive(true);
             flag = true;
         }

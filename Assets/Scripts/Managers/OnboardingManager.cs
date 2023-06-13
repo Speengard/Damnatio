@@ -176,7 +176,7 @@ public class OnboardingManager : MonoBehaviour
         );
 
         steps.Add(new OnboardingStep(
-            "Now that you know how to fight, look for the altar to upgrade your skills",
+            "Now that you know how to fight, look for the statue on the right to upgrade your skills",
             null,
             () => hasOpenedPowerUp) // touch altar to continue
         );

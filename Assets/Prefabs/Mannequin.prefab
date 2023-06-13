@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 3f9f87c9b225c44fdbb5e5e0ad730cc2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0c4539114f2c4032a78bbb7435dbff9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8461984286223772684}
-  - component: {fileID: 211605171629847916}
   - component: {fileID: 6581158020346830309}
   - component: {fileID: 7763913227900583102}
   - component: {fileID: 7500355629378704643}
@@ -113,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 2092302190926759340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.49593556, y: -3.3834338, z: 0}
-  m_LocalScale: {x: 1.0519768, y: 1.0519768, z: 1.0519768}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5649845989325152651}
@@ -121,26 +120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &211605171629847916
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092302190926759340}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d3452a8cfe1ef4a40933b2497e0f7db3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &6581158020346830309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +144,7 @@ MonoBehaviour:
   damage: 20
   spawnId: 2
   bulletPrefab: {fileID: 1693975906328065251, guid: 6f5564bb7183541889def42b0482d721, type: 3}
-  animator: {fileID: 211605171629847916}
+  animator: {fileID: 0}
   spawnPoint: {fileID: 5649845989325152651}
 --- !u!50 &7763913227900583102
 Rigidbody2D:
