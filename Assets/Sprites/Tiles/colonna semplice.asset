@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: prova sx
+  m_Name: colonna semplice
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: aca62e64bd3d74376bc1846cb8ffdac0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0771ee97d21a74005895a000c62a5390, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
