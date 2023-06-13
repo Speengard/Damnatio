@@ -35,7 +35,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Start()
     {
-        speedMovement = 3.5f; // Player.runStats.playerCurrentStats.speed;
+        speedMovement = Player.runStats.playerCurrentStats.speed;
     }
 
     #region Joystick Logic
