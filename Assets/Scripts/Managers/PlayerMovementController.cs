@@ -156,15 +156,12 @@ public class PlayerMovementController : MonoBehaviour
         Vector2 scaledMovement = speedMovement * Time.deltaTime * new Vector2(MovementAmount.x, MovementAmount.y);
         if (scaledMovement != Vector2.zero)
         {
-
             Player.rb.MovePosition(Player.rb.position + scaledMovement);
         }
         else
         {
             Player.rb.velocity = Vector2.zero;
         }
-
-
 
         if (MovementAmount != Vector2.zero)
         {

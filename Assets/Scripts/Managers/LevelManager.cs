@@ -94,6 +94,7 @@ public class LevelManager : MonoBehaviour
     {
         if ((level % 2) == 0)
         {
+            StartCoroutine(WaitDelay(() =>
             StartCoroutine(cardManager.GenerateCards(() =>
             {
                 Time.timeScale = 0;
@@ -102,8 +103,8 @@ public class LevelManager : MonoBehaviour
                     Player.Instance.enabled = false;
                     Time.timeScale = 1;
                 }));
-            }));
-
+            }))));
+            
         }else{
                 Time.timeScale = 0;
                 StartCoroutine(WaitBeforeStart(() =>
@@ -128,6 +129,11 @@ public class LevelManager : MonoBehaviour
         countDownText.text = "GO!";
         yield return new WaitForSecondsRealtime(1f);
         countDown.SetActive(false);
+        callback.Invoke();
+    }
+
+    private IEnumerator WaitDelay(Action callback){
+        yield return new WaitForSecondsRealtime(1.5f);
         callback.Invoke();
     }
 
