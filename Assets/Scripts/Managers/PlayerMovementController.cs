@@ -20,7 +20,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
-    public float speedMovement = 20;
+    public float speedMovement = 30;
     [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private GameObject Handle;

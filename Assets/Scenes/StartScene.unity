@@ -10566,7 +10566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4330123862991447923, guid: 616fc0f461d7046aba681a7e89de6112, type: 3}
       propertyPath: m_Name
-      value: PortalHUB
+      value: Portal
       objectReference: {fileID: 0}
     - target: {fileID: 6027246026421634936, guid: 616fc0f461d7046aba681a7e89de6112, type: 3}
       propertyPath: m_RootOrder
