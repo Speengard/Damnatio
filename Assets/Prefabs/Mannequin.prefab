@@ -93,12 +93,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8461984286223772684}
-  - component: {fileID: 6581158020346830309}
-  - component: {fileID: 7763913227900583102}
   - component: {fileID: 7500355629378704643}
+  - component: {fileID: 1574308619809285340}
   m_Layer: 7
   m_Name: Mannequin
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,53 +119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6581158020346830309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092302190926759340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83b4bb290c22d424aa1a1c23e2dd75d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  rb2d: {fileID: 7763913227900583102}
-  target: {fileID: 0}
-  healthController: {fileID: 0}
-  enemyStats: {fileID: 11400000, guid: 6cd09ae837d1d471ba351aead4dadf78, type: 2}
-  lootPrefab: {fileID: 6960023711730406667, guid: fd010997f2d9f4f73840a7c27e88c7f1, type: 3}
-  stopMoving: 0
-  damage: 20
-  spawnId: 2
-  bulletPrefab: {fileID: 1693975906328065251, guid: 6f5564bb7183541889def42b0482d721, type: 3}
-  animator: {fileID: 0}
-  spawnPoint: {fileID: 5649845989325152651}
---- !u!50 &7763913227900583102
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092302190926759340}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!61 &7500355629378704643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193,6 +145,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3376634, y: 1.1763281}
   m_EdgeRadius: 0
+--- !u!114 &1574308619809285340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092302190926759340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848ebb3160a6a4f3390f5f682e4c700e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 0}
+  health: 0
+  maxHealth: 0
+  material: {fileID: 0}
+  skeletons:
+  - {fileID: 127831182099644231}
+  boxCollider: {fileID: 7500355629378704643}
 --- !u!1 &5909700018608920242
 GameObject:
   m_ObjectHideFlags: 0

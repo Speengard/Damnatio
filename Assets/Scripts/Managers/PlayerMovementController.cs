@@ -20,7 +20,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private Finger MovementFinger = null;
     private Vector2 MovementAmount;
-    public float speedMovement;
+    public float speedMovement = 20;
     [SerializeField] private Animator playerAnimator;
 
     [SerializeField] private GameObject Handle;
@@ -33,15 +33,12 @@ public class PlayerMovementController : MonoBehaviour
         playerAnimator = new Animator();
     }
 
-    private void Start()
-    {
-        speedMovement = Player.runStats.playerCurrentStats.speed;
-    }
-
     #region Joystick Logic
     //since every time the player lifts the finger, and since the joystick starts disabled, we have to
     //work around the onenable and ondisable
-
+    void Start(){
+        speedMovement = 20f;
+    }
     private void OnEnable()
     {
         EnhancedTouchSupport.Enable();

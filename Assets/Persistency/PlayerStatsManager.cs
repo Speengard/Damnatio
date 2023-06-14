@@ -25,7 +25,6 @@ public class PlayerStatsManager {
         playerCurrentStats.collectedSouls = from.collectedSouls;
         playerCurrentStats.maxHealth = from.maxHealth;
         playerCurrentStats.dropRate = from.dropRate;
-        playerCurrentStats.speed = from.speed;
         playerCurrentStats.morningStarDamage = from.morningStarDamage;
         playerCurrentStats.rangedDamage = from.rangedDamage;
 
@@ -74,7 +73,6 @@ public class playerStats
         public int maxHealth = 100;
         public int dropRate = 1;
         public int health = 100;
-        public int speed = 20;
         public int morningStarDamage = 10;
         public int rangedDamage = 5;
 }
