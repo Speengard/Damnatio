@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
         // handle the level according to which kind of level the player is in
         if (sceneIndex != 0)
         {
+            onboardingScreen.SetActive(false); // deactivate onboarding screen
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
             levelManager.SetupScene(level); // spawn enemies and enable the power-up system

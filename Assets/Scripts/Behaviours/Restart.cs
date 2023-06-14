@@ -13,10 +13,9 @@ public class Restart : MonoBehaviour
     {
         if (!other.gameObject.CompareTag("Player")) return;
 
-        if (GameManager.Instance.enemies.Count == 0 && PlayerPrefs.HasKey("isFirstLaunch"))
+        if (GameManager.Instance.enemies.Count == 0)
         {
-
-            GameManager.Instance.player.portalArrow.SetActive(false);
+            if(PlayerPrefs.HasKey("isFirstLaunch")) GameManager.Instance.player.portalArrow.SetActive(false);
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             LoadRandomScene();
         }

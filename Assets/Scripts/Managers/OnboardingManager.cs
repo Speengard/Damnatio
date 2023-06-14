@@ -94,7 +94,7 @@ public class OnboardingManager : MonoBehaviour
     {
         if (!stepIsActive) {
             yield return new WaitUntil(() => steps[currentStep].completionCondition());
-            yield return new WaitForSeconds(2f); // wait 2 seconds
+            yield return new WaitForSeconds(1f); // wait 2 seconds
             if(steps[currentStep].completionCondition())    NextStep();
         }
     }
