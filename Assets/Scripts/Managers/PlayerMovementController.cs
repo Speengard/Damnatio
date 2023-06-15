@@ -22,8 +22,8 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 MovementAmount;
     public float speedMovement = 30;
     [SerializeField] private Animator playerAnimator;
-
     [SerializeField] private GameObject Handle;
+    public bool isMoving = false;
 
 
     private void Awake()
@@ -157,9 +157,11 @@ public class PlayerMovementController : MonoBehaviour
         if (scaledMovement != Vector2.zero)
         {
             Player.rb.MovePosition(Player.rb.position + scaledMovement);
+            isMoving = true;
         }
         else
         {
+            isMoving = false;
             Player.rb.velocity = Vector2.zero;
         }
 

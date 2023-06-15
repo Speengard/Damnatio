@@ -34,11 +34,17 @@ public class FollowPlayer : MonoBehaviour
         {
             StartCameraShakeEffect();
         }
-
-        
     }
+    
     void LateUpdate()
-    {   
+    {  
+        if(player.GetComponent<PlayerMovementController>().isMoving){
+            GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, 12, 0.1f);
+        }else{
+            if(GetComponent<Camera>().orthographicSize > 10){
+                GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, 9, 0.1f);
+            }
+        }
         // float cameraOffset = 2;
 
         // set the camera position as the player position with an offset
