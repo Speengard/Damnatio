@@ -127,7 +127,11 @@ public class Laser : MonoBehaviour
             if (hit.collider.tag == "Enemy" && !hasHit)
             {
                 hasHit = true;
-                hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(rangedDamage);
+                if(hit.collider.GetComponent<Enemy>() != null){
+                    hit.collider.GetComponent<Enemy>().TakeDamage(rangedDamage);
+                }else{
+                    hit.collider.GetComponent<MannequinController>().TakeDamage(0);
+                }
                 if(target == null){
                     StopEverything();  
                     return;

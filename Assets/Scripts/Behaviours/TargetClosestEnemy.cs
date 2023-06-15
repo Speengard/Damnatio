@@ -7,19 +7,20 @@ using UnityEngine;
 public class TargetClosestEnemy : MonoBehaviour
 {
     [SerializeField] private PlayerAttackController player;
-    [SerializeField] private List<int> enemiesID = new List<int>();
+    [SerializeField] private List<GameObject> enemiesID = new List<GameObject>();
     
     //this script is attached to a circle with a collider that handles when an enemy enters in the attack range
 
     //when an enemy enters the attack range
     private void OnTriggerEnter2D(Collider2D col)
     {
+
         if(col.tag != "Enemy") return;
        if(enemiesID.Count == 0){
-            enemiesID.Add(col.GetComponent<Enemy>().spawnId);
+            enemiesID.Add(col.gameObject);
             player.FirstEnemy(col.gameObject);
        }else{
-        enemiesID.Add(col.GetComponent<Enemy>().spawnId);
+        enemiesID.Add(col.gameObject);
        }
 
     }
@@ -29,6 +30,7 @@ public class TargetClosestEnemy : MonoBehaviour
         if(other.tag != "Enemy") return;
         
         if(enemiesID.Count >= 1){
+
             
         if(Vector2.Distance(player.transform.position, other.transform.position) < player.distance){
             player.ChangeTarget(other.gameObject);
@@ -44,11 +46,10 @@ public class TargetClosestEnemy : MonoBehaviour
     {
         if(other.tag != "Enemy") return;
 
-        if(enemiesID.Count == 1 && enemiesID[0] == other.GetComponent<Enemy>().spawnId){
-            
+        if(enemiesID.Count == 1 && enemiesID[0] == other.gameObject){
             player.LastEnemy();
         }
 
-        enemiesID.Remove(other.GetComponent<Enemy>().spawnId);
+        enemiesID.Remove(other.gameObject);
     }
 }
