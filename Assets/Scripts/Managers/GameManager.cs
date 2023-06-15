@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScene;
     [SerializeField] private StartSceneManager startSceneManager;
     [SerializeField] private GameObject onboardingScreen;
+    [SerializeField] private OnboardingManager onboardingManager;
     public static GameManager Instance { get; private set; }
     public float levelStartDelay = 2f;
     private LevelManager levelManager;
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         // init the onboarding by enabling the canvas object
         if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-            onboardingScreen.SetActive(true);
+            onboardingManager.enabled = true;
         }
 
         enemies = new List<Enemy>();
