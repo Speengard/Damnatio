@@ -1483,6 +1483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mannequin
       objectReference: {fileID: 0}
+    - target: {fileID: 2092302190926759340, guid: 2e6e997ae12fb44e7916ca1bf732c5c7, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8461984286223772684, guid: 2e6e997ae12fb44e7916ca1bf732c5c7, type: 3}
       propertyPath: m_RootOrder
       value: 1
