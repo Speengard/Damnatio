@@ -39,7 +39,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelPower: 1
-    - _circleroundness: 7.24
+    - _circleroundness: 4.93
     m_Colors:
     - _Color: {r: 1.5215687, g: 4, b: 3.8745098, a: 1}
   m_BuildTextureStacks: []

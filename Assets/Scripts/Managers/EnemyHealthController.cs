@@ -97,7 +97,7 @@ public class EnemyHealthController : HealthController
         StartCoroutine(GiveRedTint());
     }
 
-    IEnumerator GiveRedTint()
+    public IEnumerator GiveRedTint()
     {
 
         foreach (SpriteRenderer spriteRenderer in spriteRenderers)

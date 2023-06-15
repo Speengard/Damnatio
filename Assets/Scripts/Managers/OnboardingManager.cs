@@ -11,6 +11,7 @@ public class OnboardingManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject mannequin;
     [SerializeField] private GameObject loadingWeaponBar;
+    [SerializeField] private GameObject powerUpObject;
     [SerializeField] private MorningStar morningStar;
     [SerializeField] private Laser laser;
     [SerializeField] private PlayerAttackController playerAttackController;
@@ -22,6 +23,8 @@ public class OnboardingManager : MonoBehaviour
     private List <OnboardingStep> steps = new List<OnboardingStep>();
     private bool isTouchingScreen = false;
     private bool mannequinHasBeenHit = false;
+    private bool laserHasHit = false;
+    private bool hasOpenedPowerUp = false;
 
     void Start()
     {
@@ -60,6 +63,12 @@ public class OnboardingManager : MonoBehaviour
             mannequinHasBeenHit = true;
         }
 
+        if (currentStep == 4 && player.GetComponentInChildren<Laser>() != null && player.GetComponentInChildren<Laser>().hasHit) {
+            laserHasHit = true;
+        } else if (currentStep == 5 && powerUpObject.GetComponent<ShowPowerUp>().toShow.activeInHierarchy) {
+            hasOpenedPowerUp = true;
+        }
+
         CheckStepIsCompleted();
 
     }
@@ -69,6 +78,7 @@ public class OnboardingManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // wait a moment to load all the references
 
         player = GameManager.Instance.player.gameObject;
+        player.GetComponent<Player>().portalArrow.SetActive(false);
         morningStar = player.GetComponent<PlayerAttackController>().morningStar.GetComponentInChildren<MorningStar>();
         playerAttackController = player.GetComponent<PlayerAttackController>();
 
@@ -82,9 +92,11 @@ public class OnboardingManager : MonoBehaviour
     // this coroutine allows the player to test the latest instruction before going to the next step
     private IEnumerator DelayNextStep()
     {
-        yield return new WaitUntil(() => steps[currentStep].completionCondition());
-        yield return new WaitForSeconds(2f); // wait 2 seconds
-        NextStep();
+        if (!stepIsActive) {
+            yield return new WaitUntil(() => steps[currentStep].completionCondition());
+            yield return new WaitForSeconds(1f); // wait 2 seconds
+            if(steps[currentStep].completionCondition())    NextStep();
+        }
     }
 
     private void InstantiateHighlightedCircle(Transform objectToHighlight) {
@@ -103,7 +115,7 @@ public class OnboardingManager : MonoBehaviour
 
     private void CheckStepIsCompleted() {
         // activate next step
-        if (stepIsActive && currentStep < steps.Count) {
+        if (stepIsActive && currentStep < steps.Count && steps[currentStep].completionCondition()) {
             stepIsActive = false;
             StartCoroutine(DelayNextStep());
         }
@@ -126,6 +138,7 @@ public class OnboardingManager : MonoBehaviour
             LoadCurrentStep();
         } else {
             Debug.Log("finished onboarding");
+            player.GetComponent<Player>().portalArrow.SetActive(true);
             PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
         }
     }
@@ -159,13 +172,13 @@ public class OnboardingManager : MonoBehaviour
         steps.Add(new OnboardingStep(
             "When it's loaded, start moving to hit the closest enemy",
             mannequin,
-            () => player.GetComponentInChildren<Laser>().hasHit) // hit enemy with the ranged weapon to continue
+            () => laserHasHit) // hit enemy with the ranged weapon to continue
         );
 
         steps.Add(new OnboardingStep(
-            "Now that you know how to fight, look for the altar to upgrade your skills",
+            "Now that you know how to fight, look for the statue on the right to upgrade your skills",
             null,
-            () => true) // touch altar to continue
+            () => hasOpenedPowerUp) // touch altar to continue
         );
 
         steps.Add(new OnboardingStep(

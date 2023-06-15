@@ -42,19 +42,21 @@ public class GameManager : MonoBehaviour
         {
 
             playerStatsManager = new PlayerStatsManager();
-            
+
             gameDataManager.writePlayerData(playerStatsManager);
 
-        }else{
+        }
+        else
+        {
             //I create a copy of the player's stats so that I can modify them without modifying the original
             playerStatsManager = gameDataManager.readPlayerFile();
 
-		}
+        }
 
         // init the onboarding by enabling the canvas object
-        // if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-            // onboardingScreen.SetActive(true);
-        // }
+        if (!PlayerPrefs.HasKey("isFirstLaunch")) {
+            onboardingScreen.SetActive(true);
+        }
 
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
@@ -74,15 +76,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-	public void saveStats(){
-		gameDataManager.writePlayerData(playerStatsManager);
-		playerStatsManager = gameDataManager.readPlayerFile();
-	}
+    public void saveStats()
+    {
+        gameDataManager.writePlayerData(playerStatsManager);
+        playerStatsManager = gameDataManager.readPlayerFile();
+    }
 
     public void GameOver()
     {
         Time.timeScale = 0;
-        
+
         followPlayer.enabled = false;
         gameOverScene.gameObject.SetActive(true);
 
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
         // handle the level according to which kind of level the player is in
         if (sceneIndex != 0)
         {
+            onboardingScreen.SetActive(false); // deactivate onboarding screen
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
             levelManager.SetupScene(level); // spawn enemies and enable the power-up system
@@ -131,10 +135,10 @@ public class GameManager : MonoBehaviour
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        
+
         InitGame();
     }
 
-    
+
 
 }
