@@ -94,10 +94,10 @@ public class LevelManager : MonoBehaviour
     {
         if ((level % 2) == 0)
         {
+            Time.timeScale = 0;
             StartCoroutine(WaitDelay(() =>
             StartCoroutine(cardManager.GenerateCards(() =>
             {
-                Time.timeScale = 0;
                 StartCoroutine(WaitBeforeStart(() =>
                 {
                     Player.Instance.enabled = false;

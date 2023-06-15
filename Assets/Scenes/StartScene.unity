@@ -1738,6 +1738,11 @@ MonoBehaviour:
   - {fileID: 1936949265}
   - {fileID: 1904438342}
   player: {fileID: 0}
+  cardSound:
+  - {fileID: 8300000, guid: b75d0c255becf46b290d9de44fecb8f0, type: 3}
+  - {fileID: 8300000, guid: 5a992fc99c3124693a1ca5552c480cbc, type: 3}
+  - {fileID: 8300000, guid: fa8a760b8f4804a74a3dbe44d05f5955, type: 3}
+  audioSource: {fileID: 932610932}
 --- !u!114 &532697264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4156,9 +4161,26 @@ PrefabInstance:
       propertyPath: cardButtons.Array.data[1]
       value: 
       objectReference: {fileID: 1904438342}
+    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: MinDistance
+      value: 1.9584416
+      objectReference: {fileID: 0}
+    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b75d0c255becf46b290d9de44fecb8f0, type: 3}
+    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+--- !u!82 &932610932 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+  m_PrefabInstance: {fileID: 932610931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &952291054
 GameObject:
   m_ObjectHideFlags: 0
