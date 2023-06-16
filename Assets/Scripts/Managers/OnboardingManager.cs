@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering.Universal;
+
 
 public class OnboardingManager : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class OnboardingManager : MonoBehaviour
     [SerializeField] private MorningStar morningStar;
     [SerializeField] private Laser laser;
     [SerializeField] private PlayerAttackController playerAttackController;
-    private List <OnboardingStep> steps = new List<OnboardingStep>();
+    private List<OnboardingStep> steps = new List<OnboardingStep>();
     private int currentStep = 0;
     private bool mannequinHasBeenHit = false;
     private bool laserHasHit = false;
@@ -29,6 +31,9 @@ public class OnboardingManager : MonoBehaviour
     private GameObject arrow;
     private float scaleDifference = 260f; // the highlighted circle has a bigger scale than the objects on screen
     private GameObject instantiatedHighlightPrefab;
+
+    public Light2D[] lightsToBeEnabled;
+    public Light2D playerLight;
 
     void Start()
     {
@@ -40,20 +45,25 @@ public class OnboardingManager : MonoBehaviour
 
         // make instructions appear
         panel.SetActive(true);
+        playerLight = Player.Instance.GetComponent<Light2D>();
 
         // wait a moment to load all the references and load the first step
         StartCoroutine(InitOnboarding());
     }
 
-    private void Update() {
-        #if UNITY_EDITOR
-            if (Input.GetMouseButtonDown(0)) {
-                hasTapped = true;
-            } else if (Input.GetMouseButtonUp(0)) {
-                hasTapped = false;
-            }
-        
-        #else
+    private void Update()
+    {
+#if UNITY_EDITOR
+        if (Input.GetMouseButtonDown(0))
+        {
+            hasTapped = true;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            hasTapped = false;
+        }
+
+#else
             if (Input.touchCount > 0) {
                 Touch touch = Input.GetTouch(0);
     
@@ -66,21 +76,29 @@ public class OnboardingManager : MonoBehaviour
             } else {
                 hasTapped = false;
             }
-        #endif
+#endif
 
-        if (morningStar != null && morningStar.hasHit) {
+        if (morningStar != null && morningStar.hasHit)
+        {
             mannequinHasBeenHit = true;
         }
 
-        if (currentStep == 4 && player.GetComponentInChildren<Laser>() != null && player.GetComponentInChildren<Laser>().hasHit) {
+        if (currentStep == 4 && player.GetComponentInChildren<Laser>() != null && player.GetComponentInChildren<Laser>().hasHit)
+        {
             // laserHasHit = true;
             Invoke("SetLaserHasHit", 0.5f);
-        } else if (currentStep == 5 && powerUpObject.GetComponent<ShowPowerUp>().toShow.activeInHierarchy) {
+        }
+        else if (currentStep == 5 && powerUpObject.GetComponent<ShowPowerUp>().toShow.activeInHierarchy)
+        {
             hasOpenedPowerUp = true;
         }
 
-        if (hasStarted && steps[currentStep].targetArrow != null) {
-            arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, steps[currentStep].targetArrow.transform.position - arrow.transform.position);
+        if (currentStep < steps.Count)
+        {
+            if (hasStarted && steps[currentStep].targetArrow != null)
+            {
+                arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, steps[currentStep].targetArrow.transform.position - arrow.transform.position);
+            }
         }
 
         CheckStepIsCompleted();
@@ -110,60 +128,73 @@ public class OnboardingManager : MonoBehaviour
     }
 
     // this function load the instructions text for the current step, highlights the needed object and set the arrow
-    private void LoadCurrentStep() {
+    private void LoadCurrentStep()
+    {
         instructionsText.text = steps[currentStep].instructions;
 
-        if (steps[currentStep].objectToHighlight != null) {
+        if (steps[currentStep].objectToHighlight != null)
+        {
             steps[currentStep].objectToHighlight.SetActive(true);
-            
+
             InstantiateHighlightedCircle(steps[currentStep].objectToHighlight.transform);
         }
 
-        if (steps[currentStep].targetArrow != null) {
+        if (steps[currentStep].targetArrow != null)
+        {
             steps[currentStep].targetArrow.SetActive(true);
             arrow.SetActive(true);
-        } else {
+        }
+        else
+        {
             arrow.SetActive(false);
         }
     }
 
-    private void CheckStepIsCompleted() {
+    private void CheckStepIsCompleted()
+    {
         // activate next step
-        if (currentStep < steps.Count && steps[currentStep].completionCondition()) {
+        if (currentStep < steps.Count && steps[currentStep].completionCondition())
+        {
             NextStep();
         }
     }
 
-    private void NextStep() {
+    private void NextStep()
+    {
         currentStep++;
 
-        if (currentStep < steps.Count) {
-            if (instantiatedHighlightPrefab != null)    Destroy(instantiatedHighlightPrefab);
+        if (currentStep < steps.Count)
+        {
+            if (instantiatedHighlightPrefab != null) Destroy(instantiatedHighlightPrefab);
 
             LoadCurrentStep();
-        } else {
-            Debug.Log("finished onboarding");
+        }
+        else
+        {
             portal.SetActive(true);
             grid.SetActive(true);
             animaeCount.SetActive(true);
+            StartCoroutine(increasePlayerLight());
             PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
         }
     }
 
-    private void InstantiateHighlightedCircle(Transform objectToHighlight) {
+    private void InstantiateHighlightedCircle(Transform objectToHighlight)
+    {
         instantiatedHighlightPrefab = Instantiate(highlightPrefab, objectToHighlight.transform.position, Quaternion.identity, panel.transform);
         instantiatedHighlightPrefab.transform.localScale = objectToHighlight.localScale * scaleDifference;
     }
 
     // this function adds all the onboarding steps to the step List
-    private void LoadSteps() {
+    private void LoadSteps()
+    {
         steps.Add(new OnboardingStep(
             "This is Mikael! Touch anywhere on the screen and slide your finger to make him move",
             null,
             null,
             () => hasTapped) // tap to continue
         );
-        
+
         steps.Add(new OnboardingStep(
             "Move in circles to use the morning star. Look around for the mannequin to train",
             null,
@@ -205,6 +236,24 @@ public class OnboardingManager : MonoBehaviour
             portal,
             () => hasTapped) // tap to continue
         );
+    }
+
+    IEnumerator increasePlayerLight()
+    {
+        playerLight.intensity = 1f;
+
+        while (playerLight.pointLightOuterRadius < 70f)
+        {
+            playerLight.pointLightOuterRadius += 2f;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        playerLight.intensity = 0f;
+
+        foreach (Light2D light in lightsToBeEnabled)
+        {
+            light.intensity = 1f;
+        }
     }
 }
 
@@ -273,7 +322,7 @@ public class OnboardingManager : MonoBehaviour
 //             player,
 //             () => true) // tap to continue
 //         );
-        
+
 //         steps.Add(new OnboardingStep(
 //             "Move in circles to use the morning star. Look around for the mannequin to train",
 //             null,
@@ -313,13 +362,15 @@ public class OnboardingManager : MonoBehaviour
 
 // }
 
-public class OnboardingStep {
+public class OnboardingStep
+{
     public string instructions; // text to show up
     public GameObject objectToHighlight; // object that will be highlighted, can be null
     public GameObject targetArrow; // object that the arrow will point to, can be null
     public System.Func<bool> completionCondition; // check the status of the step
 
-    public OnboardingStep(string instructions, GameObject objectToHighlight, GameObject targetArrow, System.Func<bool> completionCondition) {
+    public OnboardingStep(string instructions, GameObject objectToHighlight, GameObject targetArrow, System.Func<bool> completionCondition)
+    {
         this.instructions = instructions;
         this.objectToHighlight = objectToHighlight;
         this.targetArrow = targetArrow;

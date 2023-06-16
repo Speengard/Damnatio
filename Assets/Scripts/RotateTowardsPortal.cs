@@ -14,7 +14,10 @@ public class RotateTowardsPortal : MonoBehaviour
     }
 
     private void Update() {
+        if(portal != null){
+
         transform.rotation = Quaternion.LookRotation(Vector3.forward, portal.transform.position - transform.position);
+        }
     }
 
 }

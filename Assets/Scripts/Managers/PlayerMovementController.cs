@@ -37,7 +37,7 @@ public class PlayerMovementController : MonoBehaviour
     //since every time the player lifts the finger, and since the joystick starts disabled, we have to
     //work around the onenable and ondisable
     void Start(){
-        speedMovement = 20f;
+        speedMovement = 30f;
     }
     private void OnEnable()
     {
