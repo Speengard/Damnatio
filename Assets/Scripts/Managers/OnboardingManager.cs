@@ -116,7 +116,7 @@ public class OnboardingManager : MonoBehaviour
 
     IEnumerator InitOnboarding()
     {
-        yield return new WaitForSeconds(0.1f); // wait a moment to load all the references
+        yield return new WaitForSecondsRealtime(0.5f); // wait a moment to load all the references
 
         player = GameManager.Instance.player.gameObject;
         arrow = player.GetComponent<Player>().portalArrow;

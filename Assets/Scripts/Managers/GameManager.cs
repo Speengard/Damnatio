@@ -55,11 +55,6 @@ public class GameManager : MonoBehaviour
 
         }
 
-        // init the onboarding by enabling the canvas object
-        //if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-        //onboardingManager.enabled = true;
-        //}
-
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
         levelManager = GetComponent<LevelManager>();
@@ -68,6 +63,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = Player.Instance;
+        // init the onboarding by enabling the canvas object
+        if (!PlayerPrefs.HasKey("isFirstLaunch"))
+        {
+            onboardingScreen.SetActive(true);
+            onboardingScreen.GetComponent<OnboardingManager>().enabled = true;
+        }
     }
 
     private void Update()
@@ -88,10 +89,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        followPlayer.enabled = false;
-        gameOverScene.gameObject.SetActive(true);
+        
 
-        StartCoroutine(shutLightsOff());
+        StartCoroutine(shutLightsOff(() =>{
+            followPlayer.enabled = false;
+            gameOverScene.gameObject.SetActive(true);
+        }));
 
         // update the value of Animae
         playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
@@ -143,7 +146,7 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
-    IEnumerator shutLightsOff()
+    IEnumerator shutLightsOff(Action callback)
     {
 
         GameObject.FindGameObjectWithTag("GlobalLight").SetActive(false);
@@ -160,6 +163,8 @@ public class GameManager : MonoBehaviour
         }
 
         light2D.intensity = 0f;
+
+        callback.Invoke();
     }
 
 }
