@@ -26,7 +26,6 @@ public class CardManager : MonoBehaviour
         List<CardSuits> availableSuits = new List<CardSuits>((CardSuits[])Enum.GetValues(typeof(CardSuits)));
 
         // pause game and make the cards appear
-        Time.timeScale = 0;
         cardMenu.gameObject.SetActive(true);
         
         //selecting the cards
@@ -130,6 +129,5 @@ public class CardManager : MonoBehaviour
     private void CloseCardMenu() {
         cardMenu.gameObject.SetActive(false);
         hasChosen = true;
-        Time.timeScale = 1;
     }
 }

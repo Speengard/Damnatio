@@ -95,21 +95,23 @@ public class LevelManager : MonoBehaviour
         if ((level % 2) == 0)
         {
             Time.timeScale = 0;
+
             StartCoroutine(WaitDelay(() =>
+            
             StartCoroutine(cardManager.GenerateCards(() =>
             {
+    
                 StartCoroutine(WaitBeforeStart(() =>
                 {
-                    Player.Instance.enabled = false;
                     Time.timeScale = 1;
                 }));
+
             }))));
             
         }else{
                 Time.timeScale = 0;
                 StartCoroutine(WaitBeforeStart(() =>
                 {
-                    Player.Instance.enabled = false;
                     Time.timeScale = 1;
                 }));
 
@@ -133,7 +135,7 @@ public class LevelManager : MonoBehaviour
     }
 
     private IEnumerator WaitDelay(Action callback){
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         callback.Invoke();
     }
 

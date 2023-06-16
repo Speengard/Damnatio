@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         // init the onboarding by enabling the canvas object
         if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-            onboardingScreen.SetActive(true);
+            //onboardingScreen.SetActive(true);
         }
 
         enemies = new List<Enemy>();
