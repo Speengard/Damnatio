@@ -16,7 +16,6 @@ public class EnemyAttackController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Player")) {
             player.healthController.TakeDamage(movingEnemy.damage);
-            Debug.Log("eheheh toccato il player");
         }
     }
 }

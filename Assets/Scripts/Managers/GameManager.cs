@@ -24,13 +24,14 @@ public class GameManager : MonoBehaviour
     public GameObject laserSlider;
     public Light2D globalLight;
     public Light2D portalLight;
+    public Light2D light2D;
+    public int enemySlain = 0;
 
     [SerializeField] private GameDataManager gameDataManager;
     public PlayerStatsManager playerStatsManager;
 
     void Awake()
     {
-
         if (Instance == null) Instance = this;
 
         if (Instance != this)
@@ -93,6 +94,9 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(shutLightsOff(() =>{
             followPlayer.enabled = false;
+            light2D.intensity = 1f;
+            light2D.pointLightOuterRadius = 70f;
+            enemySlain = 0;
             gameOverScene.gameObject.SetActive(true);
         }));
 
@@ -151,15 +155,17 @@ public class GameManager : MonoBehaviour
 
         globalLight = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
         portalLight = GameObject.FindGameObjectWithTag("Finish").GetComponentInChildren<Light2D>();
+
         portalLight.intensity = 0f;
         globalLight.intensity = 0f;
 
-        Light2D light2D = Player.Instance.GetComponent<Light2D>();
+        light2D = Player.Instance.GetComponent<Light2D>();
+        light2D.pointLightOuterRadius = 30f;
 
-        while (light2D.pointLightOuterRadius < 5)
+        while (light2D.pointLightOuterRadius > 1)
         {
-            light2D.pointLightOuterRadius -= 0.1f;
-            yield return new WaitForSeconds(0.1f);
+            light2D.pointLightOuterRadius -= 1f;
+            yield return new WaitForSecondsRealtime(0.01f);
         }
 
         light2D.intensity = 0f;

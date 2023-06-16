@@ -2,33 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class PauseMenu : MonoBehaviour
-{
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject gameOverScene;
+using TMPro;
 
-    public void PauseGame() {
-        Time.timeScale = 0;
-        pauseMenu.SetActive(true);
+public class QuitMenu : MonoBehaviour
+{
+    public TMP_Text animaeText;
+    public TMP_Text enemiesText;
+
+    private void OnEnable() {
+        animaeText.text = "Animae: " + Player.Instance.collectedSouls;
+        enemiesText.text = "Enemies slain " + GameManager.Instance.enemySlain;
     }
 
-    public void ResumeGame() {
-        pauseMenu.SetActive(false);
-        gameOverScene.SetActive(false);
 
+    public void ResumeGame()
+    {
         // disable camera shake
         if (GameManager.Instance.level > 0) GameManager.Instance.followPlayer.enabled = true;
 
         Time.timeScale = 1;
     }
 
-    public void GetStartScene() {
+    public void OnClick()
+    {
         GameManager.Instance.level = 0; // reset the level number
         SceneManager.LoadScene(0); // load the start scene
         GameManager.Instance.enemySlain = 0;
         // reset player health
         GameManager.Instance.player.healthController.healthSlider.gameObject.SetActive(false);
-        
+
         ResumeGame();
     }
 }
