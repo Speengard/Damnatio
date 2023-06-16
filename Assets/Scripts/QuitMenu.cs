@@ -32,5 +32,6 @@ public class QuitMenu : MonoBehaviour
         GameManager.Instance.player.healthController.healthSlider.gameObject.SetActive(false);
 
         ResumeGame();
+        gameObject.SetActive(false);
     }
 }
