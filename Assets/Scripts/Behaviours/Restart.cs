@@ -3,11 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class Restart : MonoBehaviour
 {
     [SerializeField] private Sprite openPortalTexture;
+    private Light2D light2D;
+
     private bool flag = false;
+
+    private void Start() {
+        light2D = GetComponentInChildren<Light2D>();
+    }
 
     private void OnCollisionEnter2D(Collision2D other) {
     {

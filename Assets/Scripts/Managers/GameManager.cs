@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -55,9 +56,9 @@ public class GameManager : MonoBehaviour
         }
 
         // init the onboarding by enabling the canvas object
-        if (!PlayerPrefs.HasKey("isFirstLaunch")) {
-            onboardingManager.enabled = true;
-        }
+        //if (!PlayerPrefs.HasKey("isFirstLaunch")) {
+        //onboardingManager.enabled = true;
+        //}
 
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
@@ -66,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = Player.Instance;
     }
 
     private void Update()
@@ -89,6 +90,8 @@ public class GameManager : MonoBehaviour
 
         followPlayer.enabled = false;
         gameOverScene.gameObject.SetActive(true);
+
+        StartCoroutine(shutLightsOff());
 
         // update the value of Animae
         playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
@@ -140,6 +143,23 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
+    IEnumerator shutLightsOff()
+    {
 
+        GameObject.FindGameObjectWithTag("GlobalLight").SetActive(false);
+        GameObject.FindGameObjectWithTag("Finish").SetActive(false);
+
+        Light2D light2D = Player.Instance.GetComponentInChildren<Light2D>();
+
+        light2D.intensity = 1f;
+
+        while (light2D.pointLightOuterRadius < 5)
+        {
+            light2D.pointLightOuterRadius -= 2f;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        light2D.intensity = 0f;
+    }
 
 }

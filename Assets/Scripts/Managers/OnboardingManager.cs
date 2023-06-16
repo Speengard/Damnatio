@@ -32,11 +32,15 @@ public class OnboardingManager : MonoBehaviour
     private float scaleDifference = 260f; // the highlighted circle has a bigger scale than the objects on screen
     private GameObject instantiatedHighlightPrefab;
 
-    public Light2D[] lightsToBeEnabled;
+    private Light2D[] lightsToBeEnabled;
     public Light2D playerLight;
 
-    void Start()
+    void OnEnable()
     {
+        lightsToBeEnabled = new Light2D[2];
+        lightsToBeEnabled[0] = GameObject.FindGameObjectWithTag("Finish").GetComponent<Light2D>();
+
+        lightsToBeEnabled[1] = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
         // disable tilemap and objects
         grid.SetActive(false);
         mannequin.SetActive(false);
@@ -174,7 +178,7 @@ public class OnboardingManager : MonoBehaviour
             portal.SetActive(true);
             grid.SetActive(true);
             animaeCount.SetActive(true);
-            StartCoroutine(increasePlayerLight());
+                StartCoroutine(increasePlayerLight());
             PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
         }
     }

@@ -10,6 +10,7 @@ TagManager:
   - Mace
   - MorningStarLink
   - PowerUp
+  - GlobalLight
   layers:
   - Default
   - TransparentFX
