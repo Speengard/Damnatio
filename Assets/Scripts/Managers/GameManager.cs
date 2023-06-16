@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public bool isPlayerInstantiated = false;
     public FollowPlayer followPlayer;
     public GameObject laserSlider;
+    public Light2D globalLight;
+    public Light2D portalLight;
 
     [SerializeField] private GameDataManager gameDataManager;
     public PlayerStatsManager playerStatsManager;
@@ -89,8 +91,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        
-
         StartCoroutine(shutLightsOff(() =>{
             followPlayer.enabled = false;
             gameOverScene.gameObject.SetActive(true);
@@ -149,16 +149,16 @@ public class GameManager : MonoBehaviour
     IEnumerator shutLightsOff(Action callback)
     {
 
-        GameObject.FindGameObjectWithTag("GlobalLight").SetActive(false);
-        GameObject.FindGameObjectWithTag("Finish").SetActive(false);
+        globalLight = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
+        portalLight = GameObject.FindGameObjectWithTag("Finish").GetComponentInChildren<Light2D>();
+        portalLight.intensity = 0f;
+        globalLight.intensity = 0f;
 
-        Light2D light2D = Player.Instance.GetComponentInChildren<Light2D>();
-
-        light2D.intensity = 1f;
+        Light2D light2D = Player.Instance.GetComponent<Light2D>();
 
         while (light2D.pointLightOuterRadius < 5)
         {
-            light2D.pointLightOuterRadius -= 2f;
+            light2D.pointLightOuterRadius -= 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
 

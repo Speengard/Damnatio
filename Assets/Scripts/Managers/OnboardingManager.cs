@@ -41,6 +41,7 @@ public class OnboardingManager : MonoBehaviour
         lightsToBeEnabled[0] = GameObject.FindGameObjectWithTag("Finish").GetComponent<Light2D>();
 
         lightsToBeEnabled[1] = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
+
         // disable tilemap and objects
         grid.SetActive(false);
         mannequin.SetActive(false);
@@ -50,6 +51,8 @@ public class OnboardingManager : MonoBehaviour
         // make instructions appear
         panel.SetActive(true);
         playerLight = Player.Instance.GetComponent<Light2D>();
+        playerLight.intensity = 0f;
+        playerLight.pointLightOuterRadius = 0f; 
 
         // wait a moment to load all the references and load the first step
         StartCoroutine(InitOnboarding());
