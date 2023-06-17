@@ -31,16 +31,8 @@ public class OnboardingManager : MonoBehaviour
     private GameObject arrow;
     private float scaleDifference = 260f; // the highlighted circle has a bigger scale than the objects on screen
     private GameObject instantiatedHighlightPrefab;
-
-    private Light2D[] lightsToBeEnabled;
-    public Light2D playerLight;
-
     void OnEnable()
     {
-        lightsToBeEnabled = new Light2D[2];
-        lightsToBeEnabled[0] = GameObject.FindGameObjectWithTag("Finish").GetComponent<Light2D>();
-
-        lightsToBeEnabled[1] = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
 
         // disable tilemap and objects
         grid.SetActive(false);
@@ -50,9 +42,6 @@ public class OnboardingManager : MonoBehaviour
 
         // make instructions appear
         panel.SetActive(true);
-        playerLight = Player.Instance.GetComponent<Light2D>();
-        playerLight.intensity = 0f;
-        playerLight.pointLightOuterRadius = 0f; 
 
         // wait a moment to load all the references and load the first step
         StartCoroutine(InitOnboarding());
@@ -95,7 +84,7 @@ public class OnboardingManager : MonoBehaviour
             // laserHasHit = true;
             Invoke("SetLaserHasHit", 0.5f);
         }
-        else if (currentStep == 5 && powerUpObject.GetComponent<ShowPowerUp>().toShow.activeInHierarchy)
+        else if (currentStep == 5 && CanvasManager.Instance.isShowingPowerUp)
         {
             hasOpenedPowerUp = true;
         }
@@ -181,7 +170,7 @@ public class OnboardingManager : MonoBehaviour
             portal.SetActive(true);
             grid.SetActive(true);
             animaeCount.SetActive(true);
-                StartCoroutine(increasePlayerLight());
+            GameManager.Instance.turnLightsOn();
             PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
         }
     }
@@ -245,22 +234,21 @@ public class OnboardingManager : MonoBehaviour
         );
     }
 
-    IEnumerator increasePlayerLight()
+    
+}
+public class OnboardingStep
+{
+    public string instructions; // text to show up
+    public GameObject objectToHighlight; // object that will be highlighted, can be null
+    public GameObject targetArrow; // object that the arrow will point to, can be null
+    public System.Func<bool> completionCondition; // check the status of the step
+
+    public OnboardingStep(string instructions, GameObject objectToHighlight, GameObject targetArrow, System.Func<bool> completionCondition)
     {
-        playerLight.intensity = 1f;
-
-        while (playerLight.pointLightOuterRadius < 70f)
-        {
-            playerLight.pointLightOuterRadius += 2f;
-            yield return new WaitForSeconds(0.1f);
-        }
-
-        playerLight.intensity = 0f;
-
-        foreach (Light2D light in lightsToBeEnabled)
-        {
-            light.intensity = 1f;
-        }
+        this.instructions = instructions;
+        this.objectToHighlight = objectToHighlight;
+        this.targetArrow = targetArrow;
+        this.completionCondition = completionCondition;
     }
 }
 
@@ -369,18 +357,3 @@ public class OnboardingManager : MonoBehaviour
 
 // }
 
-public class OnboardingStep
-{
-    public string instructions; // text to show up
-    public GameObject objectToHighlight; // object that will be highlighted, can be null
-    public GameObject targetArrow; // object that the arrow will point to, can be null
-    public System.Func<bool> completionCondition; // check the status of the step
-
-    public OnboardingStep(string instructions, GameObject objectToHighlight, GameObject targetArrow, System.Func<bool> completionCondition)
-    {
-        this.instructions = instructions;
-        this.objectToHighlight = objectToHighlight;
-        this.targetArrow = targetArrow;
-        this.completionCondition = completionCondition;
-    }
-}

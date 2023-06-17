@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject onboardingScreen;
     [SerializeField] private OnboardingManager onboardingManager;
     public static GameManager Instance { get; private set; }
-    public float levelStartDelay = 2f;
     private LevelManager levelManager;
     public int level = 0;
     public List<Enemy> enemies;
@@ -22,13 +21,11 @@ public class GameManager : MonoBehaviour
     public bool isPlayerInstantiated = false;
     public FollowPlayer followPlayer;
     public GameObject laserSlider;
-    public Light2D globalLight;
-    public Light2D portalLight;
-    public Light2D light2D;
     public int enemySlain = 0;
-
     [SerializeField] private GameDataManager gameDataManager;
     public PlayerStatsManager playerStatsManager;
+
+    [SerializeField] private CanvasManager canvasManager;
 
     void Awake()
     {
@@ -92,13 +89,13 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
 
-        StartCoroutine(shutLightsOff(() =>{
+        shutLightsOff(() =>
+        {
             followPlayer.enabled = false;
-            light2D.intensity = 1f;
-            light2D.pointLightOuterRadius = 70f;
             enemySlain = 0;
             gameOverScene.gameObject.SetActive(true);
-        }));
+
+        });
 
         // update the value of Animae
         playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
@@ -142,6 +139,8 @@ public class GameManager : MonoBehaviour
             startSceneManager.enabled = true;
         }
 
+        levelManager.getLights();
+
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
@@ -150,27 +149,14 @@ public class GameManager : MonoBehaviour
         InitGame();
     }
 
-    IEnumerator shutLightsOff(Action callback)
-    {
-
-        globalLight = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
-        portalLight = GameObject.FindGameObjectWithTag("Finish").GetComponentInChildren<Light2D>();
-
-        portalLight.intensity = 0f;
-        globalLight.intensity = 0f;
-
-        light2D = Player.Instance.GetComponent<Light2D>();
-        light2D.pointLightOuterRadius = 30f;
-
-        while (light2D.pointLightOuterRadius > 1)
-        {
-            light2D.pointLightOuterRadius -= 1f;
-            yield return new WaitForSecondsRealtime(0.01f);
-        }
-
-        light2D.intensity = 0f;
-
-        callback.Invoke();
+    public void turnLightsOn(){
+        StartCoroutine(levelManager.turnLightsOn());
     }
+    
+    public void shutLightsOff(Action callback){
+        StartCoroutine(levelManager.shutLightsOff(callback));
+    }
+
+
 
 }

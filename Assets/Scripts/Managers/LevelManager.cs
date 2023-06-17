@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using TMPro;
+using UnityEngine.Rendering.Universal;
 
 public class LevelManager : MonoBehaviour
 {
@@ -25,13 +26,14 @@ public class LevelManager : MonoBehaviour
     public bool isPlayerInstantiated;
     private GameObject player;
     private int numberOfEnemyType = 2;
-    public GameObject countDown;
-    public TMP_Text countDownText;
 
     private float leftBound = -20;
     private float rightBound = 13;
     private float topBound = 23;
     private float bottomBound = -2;
+    private Light2D globalLight;
+    private Light2D portalLight;
+    private Light2D playerLight;
 
     private void SpawnEnemies()
     {
@@ -101,7 +103,7 @@ public class LevelManager : MonoBehaviour
             StartCoroutine(cardManager.GenerateCards(() =>
             {
     
-                StartCoroutine(WaitBeforeStart(() =>
+                StartCoroutine(CanvasManager.Instance.showCountDown(() =>
                 {
                     Time.timeScale = 1;
                 }));
@@ -110,7 +112,7 @@ public class LevelManager : MonoBehaviour
             
         }else{
                 Time.timeScale = 0;
-                StartCoroutine(WaitBeforeStart(() =>
+                StartCoroutine(CanvasManager.Instance.showCountDown(() =>
                 {
                     Time.timeScale = 1;
                 }));
@@ -118,25 +120,55 @@ public class LevelManager : MonoBehaviour
         }
 
     }
-
-    IEnumerator WaitBeforeStart(Action callback)
-    {
-        countDown.SetActive(true);
-        countDownText.text = "3";
-        yield return new WaitForSecondsRealtime(1f);
-        countDownText.text = "2";
-        yield return new WaitForSecondsRealtime(1f);
-        countDownText.text = "1";
-        yield return new WaitForSecondsRealtime(1f);
-        countDownText.text = "GO!";
-        yield return new WaitForSecondsRealtime(1f);
-        countDown.SetActive(false);
-        callback.Invoke();
-    }
-
     private IEnumerator WaitDelay(Action callback){
         yield return new WaitForSecondsRealtime(0.5f);
         callback.Invoke();
     }
 
+
+    #region lightsManagement
+    public IEnumerator shutLightsOff(Action callback)
+    {
+        portalLight.intensity = 0f;
+        globalLight.intensity = 0f;
+
+        playerLight.pointLightOuterRadius = 30f;
+
+        while (playerLight.pointLightOuterRadius > 1)
+        {
+            playerLight.pointLightOuterRadius -= 1f;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        playerLight.intensity = 0f;
+
+        callback?.Invoke();
+
+        playerLight.intensity = 1f;
+        playerLight.pointLightOuterRadius = 70f;
+    }
+
+    public IEnumerator turnLightsOn()
+    {
+        playerLight.intensity = 1f;
+
+        while (playerLight.pointLightOuterRadius < 70f)
+        {
+            playerLight.pointLightOuterRadius += 2f;
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        playerLight.intensity = 0f;
+
+        globalLight.intensity = 1f;
+        portalLight.intensity = 1f;
+    }
+
+    public void getLights(){
+        globalLight = GameObject.FindGameObjectWithTag("GlobalLight").GetComponent<Light2D>();
+        portalLight = GameObject.FindGameObjectWithTag("Finish").GetComponentInChildren<Light2D>();
+        playerLight = Player.Instance.GetComponent<Light2D>();
+    }
+
+    #endregion
 }

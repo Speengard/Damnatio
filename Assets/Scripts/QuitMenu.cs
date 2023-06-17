@@ -21,6 +21,8 @@ public class QuitMenu : MonoBehaviour
         if (GameManager.Instance.level > 0) GameManager.Instance.followPlayer.enabled = true;
 
         Time.timeScale = 1;
+        CanvasManager.Instance.isShowingGameOver = false;
+        gameObject.SetActive(false);
     }
 
     public void OnClick()
@@ -32,6 +34,6 @@ public class QuitMenu : MonoBehaviour
         GameManager.Instance.player.healthController.healthSlider.gameObject.SetActive(false);
 
         ResumeGame();
-        gameObject.SetActive(false);
+        
     }
 }
