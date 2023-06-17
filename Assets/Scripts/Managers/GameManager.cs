@@ -92,13 +92,12 @@ public class GameManager : MonoBehaviour
         shutLightsOff(() =>
         {
             followPlayer.enabled = false;
-            enemySlain = 0;
             gameOverScene.gameObject.SetActive(true);
-
         });
 
         // update the value of Animae
-        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
+        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.runStats.playerCurrentStats.collectedSouls - playerStatsManager.playerCurrentStats.collectedSouls;
+
 
         gameDataManager.writePlayerData(playerStatsManager);
     }

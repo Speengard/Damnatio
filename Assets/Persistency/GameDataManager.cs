@@ -34,9 +34,16 @@ public class GameDataManager : MonoBehaviour
 
     public void writePlayerData(PlayerStatsManager playerCurrentStats)
     {
-        
+#if UNITY_EDITOR
+
+        string json = JsonUtility.ToJson(playerCurrentStats.playerCurrentStats);
+        File.WriteAllText(playerFile,json);
+
+#else
         string json = JsonConvert.SerializeObject(playerCurrentStats.playerCurrentStats);
 
         JsonConvert.SerializeObject(json);
+#endif
     }
+
 }

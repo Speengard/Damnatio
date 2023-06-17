@@ -3618,7 +3618,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1946982811}
   gameOverMenu: {fileID: 1757050170}
   countDown: {fileID: 1231465517684465642}
-  powerUp: {fileID: 0}
+  powerUp: {fileID: 7613571884837802479}
   isShowingPause: 0
   isShowingGameOver: 0
   isShowingCountDown: 0
@@ -8361,6 +8361,11 @@ GameObject:
 --- !u!224 &7613571884837802464 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7613571883447918136, guid: cc3d60492dc6443b9bea1ba96a4e00a8, type: 3}
+  m_PrefabInstance: {fileID: 1400377304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7613571884837802479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7613571883447918135, guid: cc3d60492dc6443b9bea1ba96a4e00a8, type: 3}
   m_PrefabInstance: {fileID: 1400377304}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9149447138908558121

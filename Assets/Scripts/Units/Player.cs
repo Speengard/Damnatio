@@ -14,9 +14,8 @@ public class Player : MonoBehaviour
     public PlayerMovementController movementController;
     public Rigidbody2D rb;
     [SerializeField] public PlayerStatsManager baseStats;
-    [SerializeField] public PlayerStatsManager runStats;
+    public PlayerStatsManager runStats;
     public int collectedSouls = 0;
-
     public static Player Instance { get; private set; }
     public GameManager gameManager;
     public GameObject portalArrow;
@@ -39,10 +38,12 @@ public class Player : MonoBehaviour
         runStats = new PlayerStatsManager(gameManager.playerStatsManager.playerCurrentStats);
     }
 
+/* 
 #region LootManager
     public void EnableLoot() {
         Vector3 targetPosition = transform.position;
 
+        if(GameManager.Instance.lootObjects.Count != 0){
         for (int i = 0; i < GameManager.Instance.lootObjects.Count; i++)
         {
             // make the objects move towards the player
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
 
             // update the number of collected objects
             collectedSouls += 1;
+        }
         }
     }
 
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
         float elapsedTime = 0f;
 
         while (elapsedTime < duration) {
+            if(objectToMove == null){ break; };
             objectToMove.transform.position = Vector3.Lerp(startPosition, transform.position, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -71,5 +74,7 @@ public class Player : MonoBehaviour
         // destroy the object
         Destroy(objectToMove);
     }
+
 #endregion
+*/
 }

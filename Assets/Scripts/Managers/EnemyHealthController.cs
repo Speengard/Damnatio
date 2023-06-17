@@ -46,18 +46,12 @@ public class EnemyHealthController : HealthController
             // handle the death of the enemy
             GameManager.Instance.enemies.Remove(gameObject.GetComponent<Enemy>());
             
-            GameManager.Instance.enemySlain++;
+            GameManager.Instance.enemySlain += 1;
 
             Player.Instance.attackController.target = null;
 
             enemy.DropObjects(); // make the enemy drop something when it dies
             //Destroy(gameObject); // destroy enemy
-
-            if (GameManager.Instance.enemies.Count == 0)
-            {
-                GameManager.Instance.player.EnableLoot();
-            }
-
             return true;
         }
         else
