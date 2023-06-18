@@ -149,12 +149,14 @@ public class LevelManager : MonoBehaviour
     }
 
     public IEnumerator turnLightsOn()
-    {
+    {  
+        globalLight.intensity = 0f;
+        portalLight.intensity = 0f;
         playerLight.intensity = 1f;
 
         while (playerLight.pointLightOuterRadius < 70f)
         {
-            playerLight.pointLightOuterRadius += 2f;
+            playerLight.pointLightOuterRadius += 2.5f;
             yield return new WaitForSecondsRealtime(0.1f);
         }
 
