@@ -31,9 +31,9 @@ public class LevelManager : MonoBehaviour
     private float rightBound = 13;
     private float topBound = 23;
     private float bottomBound = -2;
-    private Light2D globalLight;
-    private Light2D portalLight;
-    private Light2D playerLight;
+    public Light2D globalLight;
+    public Light2D portalLight;
+    public Light2D playerLight;
 
     private void SpawnEnemies()
     {
@@ -155,10 +155,8 @@ public class LevelManager : MonoBehaviour
         while (playerLight.pointLightOuterRadius < 70f)
         {
             playerLight.pointLightOuterRadius += 2f;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
-
-        playerLight.intensity = 0f;
 
         globalLight.intensity = 1f;
         portalLight.intensity = 1f;
