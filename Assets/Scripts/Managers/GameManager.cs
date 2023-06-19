@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         player = Player.Instance;
         // init the onboarding by enabling the canvas object
-        if (PlayerPrefs.HasKey("isFirstLaunch"))
+        if (!PlayerPrefs.HasKey("isFirstLaunch"))
         {
             onboardingScreen.SetActive(true);
             onboardingScreen.GetComponent<OnboardingManager>().enabled = true;
