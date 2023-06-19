@@ -175,7 +175,7 @@ public class OnboardingManager : MonoBehaviour
             grid.SetActive(true);
             animaeCount.SetActive(true);
             GameManager.Instance.turnLightsOn();
-            PlayerPrefs.DeleteKey("isFirstLaunch"); // create the key and set the value as 0 (false)
+            PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
         }
     }
 
