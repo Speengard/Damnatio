@@ -3623,6 +3623,7 @@ MonoBehaviour:
   isShowingGameOver: 0
   isShowingCountDown: 0
   isShowingPowerUp: 0
+  flag: 0
 --- !u!1 &914656190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3776,6 +3777,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: ForestOST
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cf5604faec174c73a9b713a2d8d0d6a, type: 3}
+    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: churchOST
+      value: 
+      objectReference: {fileID: 8300000, guid: ac008cc62ad95491d8eae466ef252a7f, type: 3}
+    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: countDown
       value: 
       objectReference: {fileID: 1231465517684465642}
@@ -3919,6 +3928,10 @@ PrefabInstance:
       propertyPath: cardButtons.Array.data[1]
       value: 
       objectReference: {fileID: 1904438342}
+    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: m_Volume
+      value: 0.37
+      objectReference: {fileID: 0}
     - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: MinDistance
       value: 1.9584416

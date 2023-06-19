@@ -168,6 +168,10 @@ public class PowerUpManager : MonoBehaviour
     public void CloseView()
     {
         CanvasManager.Instance.isShowingPowerUp = false;
+        
+        if(CanvasManager.Instance.flag == false){
+            CanvasManager.Instance.flag = true;
+        }
         pauseButton.SetActive(true);
         gameObject.SetActive(false);
     }

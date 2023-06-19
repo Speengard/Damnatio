@@ -16,6 +16,8 @@ public class CanvasManager : MonoBehaviour
     public bool isShowingCountDown = false;
     public bool isShowingPowerUp = false;
 
+    public bool flag = false;
+
     public static CanvasManager Instance { get; private set; } 
     private void Awake()
     {

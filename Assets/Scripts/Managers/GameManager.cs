@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
     public int enemySlain = 0;
     [SerializeField] private GameDataManager gameDataManager;
     public PlayerStatsManager playerStatsManager;
-
     [SerializeField] private CanvasManager canvasManager;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip churchOST;
+    [SerializeField] private AudioClip ForestOST;
 
     void Awake()
     {
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
         levelManager = GetComponent<LevelManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -127,6 +130,7 @@ public class GameManager : MonoBehaviour
         // handle the level according to which kind of level the player is in
         if (sceneIndex != 0)
         {
+            playForestOst();
             onboardingScreen.SetActive(false); // deactivate onboarding screen
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
@@ -155,6 +159,17 @@ public class GameManager : MonoBehaviour
         StartCoroutine(levelManager.shutLightsOff(callback));
     }
 
+    public void playForestOst(){
+        audioSource.Stop();
+        audioSource.PlayOneShot(ForestOST);
+        audioSource.loop = true;
+    }
+
+    public void playChurchOst(){
+        audioSource.Stop();
+        audioSource.PlayOneShot(churchOST);
+        audioSource.loop = true;
+    }
 
 
 }

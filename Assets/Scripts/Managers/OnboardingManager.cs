@@ -84,7 +84,7 @@ public class OnboardingManager : MonoBehaviour
             // laserHasHit = true;
             Invoke("SetLaserHasHit", 0.5f);
         }
-        else if (currentStep == 5 && CanvasManager.Instance.isShowingPowerUp)
+        else if (currentStep == 5 && CanvasManager.Instance.flag)
         {
             hasOpenedPowerUp = true;
         }
@@ -167,6 +167,7 @@ public class OnboardingManager : MonoBehaviour
         }
         else
         {
+            GameManager.Instance.playChurchOst();
             portal.SetActive(true);
             grid.SetActive(true);
             animaeCount.SetActive(true);
