@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            playChurchOst();
             // if we are the "start scene", enable its manager
             startSceneManager.enabled = true;
         }

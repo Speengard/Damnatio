@@ -118,8 +118,9 @@ public class Laser : MonoBehaviour
 
         lineRenderer.SetPosition(0, firePoint.position);
         startVFX.transform.position = (Vector2)firePoint.position;
-        Debug.DrawLine(direction, firePoint.position, Color.yellow);
-        lineRenderer.SetPosition(1, direction.normalized * 20);
+
+        lineRenderer.SetPosition(1, direction.normalized * 10);
+
         RaycastHit2D hit = Physics2D.Raycast((Vector2)firePoint.position, direction.normalized, direction.magnitude);
 
         if (hit)
@@ -132,6 +133,7 @@ public class Laser : MonoBehaviour
                 }else{
                     hit.collider.GetComponent<MannequinController>().TakeDamage(0);
                 }
+
                 if(target == null){
                     StopEverything();  
                     return;
@@ -176,10 +178,11 @@ public class Laser : MonoBehaviour
         rangedDamage = Player.Instance.runStats.playerCurrentStats.rangedDamage;
         lineRenderer.enabled = false;
 
-        laserMaterial.SetFloat("_LaserEdgeThickness", 7.6f);
+        laserMaterial.SetFloat("_LaserEdgeThickness", 7.4f);
         isShooting = false;
 
     }
+
     void FillList()
     {
 
