@@ -86,6 +86,7 @@ public class OnboardingManager : MonoBehaviour
         }
         else if (currentStep == 5 && CanvasManager.Instance.flag)
         {
+            //GameManager.Instance.playChurchOst();
             hasOpenedPowerUp = true;
         }
 

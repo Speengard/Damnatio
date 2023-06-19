@@ -10,6 +10,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject gameOverMenu;
     [SerializeField] private GameObject countDown;
     [SerializeField] private GameObject powerUp;
+    [SerializeField] private GameObject pauseButton;
 
     public bool isShowingPause = false;
     public bool isShowingGameOver = false;
@@ -66,10 +67,8 @@ public class CanvasManager : MonoBehaviour
 
     public void showPowerUp(){
         isShowingPowerUp = true;
+        pauseButton.SetActive(false);
         powerUp.SetActive(true);
     }
-
-    
-
 
 }

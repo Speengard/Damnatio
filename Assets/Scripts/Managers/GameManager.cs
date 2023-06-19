@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         player = Player.Instance;
         // init the onboarding by enabling the canvas object
-        if (!PlayerPrefs.HasKey("isFirstLaunch"))
+        if (PlayerPrefs.HasKey("isFirstLaunch"))
         {
             onboardingScreen.SetActive(true);
             onboardingScreen.GetComponent<OnboardingManager>().enabled = true;
@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playChurchOst();
+            if(!PlayerPrefs.HasKey("isFirstLaunch")) playChurchOst();
             // if we are the "start scene", enable its manager
             startSceneManager.enabled = true;
         }
