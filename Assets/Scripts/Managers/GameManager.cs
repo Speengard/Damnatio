@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            
             if(!PlayerPrefs.HasKey("isFirstLaunch")) playChurchOst();
             // if we are the "start scene", enable its manager
             startSceneManager.enabled = true;
@@ -167,9 +168,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void playChurchOst(){
+
         audioSource.Stop();
         audioSource.PlayOneShot(churchOST);
         audioSource.loop = true;
+    }
+
+    public void loadLevel(){
+
     }
 
 

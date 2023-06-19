@@ -39,6 +39,7 @@ public class OnboardingManager : MonoBehaviour
         mannequin.SetActive(false);
         portal.SetActive(false);
         animaeCount.SetActive(false);
+        powerUpObject.SetActive(false);
 
         // make instructions appear
         panel.SetActive(true);
@@ -83,6 +84,7 @@ public class OnboardingManager : MonoBehaviour
         {
             // laserHasHit = true;
             Invoke("SetLaserHasHit", 0.5f);
+            powerUpObject.SetActive(true);
         }
         else if (currentStep == 5 && CanvasManager.Instance.flag)
         {
@@ -173,7 +175,7 @@ public class OnboardingManager : MonoBehaviour
             grid.SetActive(true);
             animaeCount.SetActive(true);
             GameManager.Instance.turnLightsOn();
-            PlayerPrefs.SetInt("isFirstLaunch", 0); // create the key and set the value as 0 (false)
+            PlayerPrefs.DeleteKey("isFirstLaunch"); // create the key and set the value as 0 (false)
         }
     }
 
