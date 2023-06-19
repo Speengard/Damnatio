@@ -28,8 +28,8 @@ public class LevelManager : MonoBehaviour
     private int numberOfEnemyType = 2;
 
     private float leftBound = -20;
-    private float rightBound = 13;
-    private float topBound = 23;
+    private float rightBound = 12;
+    private float topBound = 22;
     private float bottomBound = -2;
     public Light2D globalLight;
     public Light2D portalLight;
