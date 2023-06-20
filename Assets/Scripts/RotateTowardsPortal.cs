@@ -14,9 +14,12 @@ public class RotateTowardsPortal : MonoBehaviour
     }
 
     private void Update() {
-        if(portal != null){
+        if(portal != null && GameManager.Instance.enemies.Count == 0){
 
         transform.rotation = Quaternion.LookRotation(Vector3.forward, portal.transform.position - transform.position);
+        }
+        else if(portal == null){
+            portal = GameObject.Find("Portal");
         }
     }
 

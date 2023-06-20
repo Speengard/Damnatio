@@ -26,7 +26,6 @@ public class LevelManager : MonoBehaviour
     public bool isPlayerInstantiated;
     private GameObject player;
     private int numberOfEnemyType = 2;
-
     private float leftBound = -20;
     private float rightBound = 12;
     private float topBound = 22;

@@ -13,6 +13,7 @@ public class ShowPowerUp : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && canShow){
             Time.timeScale = 0;
             CanvasManager.Instance.showPowerUp();
+            canShow = false;
         }
     }
 

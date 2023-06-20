@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         player = Player.Instance;
         // init the onboarding by enabling the canvas object
-        if (!PlayerPrefs.HasKey("isFirstLaunch"))
+        if (PlayerPrefs.HasKey("isFirstLaunch"))
         {
             onboardingScreen.SetActive(true);
             onboardingScreen.GetComponent<OnboardingManager>().enabled = true;
@@ -99,8 +99,7 @@ public class GameManager : MonoBehaviour
         });
 
         // update the value of Animae
-        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.runStats.playerCurrentStats.collectedSouls - playerStatsManager.playerCurrentStats.collectedSouls;
-
+        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
 
         gameDataManager.writePlayerData(playerStatsManager);
     }

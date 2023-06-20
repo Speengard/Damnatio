@@ -27,6 +27,7 @@ public class PowerUpManager : MonoBehaviour
     public Button rangedButton;
     PlayerStatsManager playerStatsManager;
     public Sprite fullCapsule;
+    public Sprite emptyCapsule;
 
     public int[] healthCosts = { 0, 150, 450, 750, 1050, 1500 };
     public int[] damageCosts = { 0, 150, 450, 750, 1050, 1500 };
@@ -34,22 +35,21 @@ public class PowerUpManager : MonoBehaviour
 
     public GameObject pauseButton;
     public GameObject floatingJoystick;
-    public ShowPowerUp showPowerUp;
 
     private void OnEnable()
     {
         playerStatsManager = GameManager.Instance.playerStatsManager;
         Player.Instance.movementController.enabled = false;
-        showPowerUp.canShow = false;
         pauseButton.SetActive(false);
         floatingJoystick.SetActive(false);
+        emptyCapsules();
         initScreen();
     }
 
     private void OnDisable()
     {
         Player.Instance.movementController.enabled = true;
-
+        emptyCapsules();
         floatingJoystick.SetActive(false);
         Time.timeScale = 1;
         GameManager.Instance.saveStats();
@@ -62,6 +62,8 @@ public class PowerUpManager : MonoBehaviour
         dropText.text = "Drop: - level " + playerStatsManager.playerCurrentStats.dropLevel;
         meleeText.text = "Melee: - level " + playerStatsManager.playerCurrentStats.meleeLevel;
         rangedText.text = "Ranged: - level " + playerStatsManager.playerCurrentStats.rangedLevel;
+
+
 
         for (int i = 0; i < playerStatsManager.playerCurrentStats.healthLevel; i++)
         {
@@ -131,7 +133,7 @@ public class PowerUpManager : MonoBehaviour
 
     }
 
-
+    #region upgrade funcs
     public void UpgradeHealth()
     {
 
@@ -164,7 +166,7 @@ public class PowerUpManager : MonoBehaviour
         playerStatsManager.BuyPowerUp("ranged");
         initScreen();
     }
-
+    #endregion
     public void CloseView()
     {
         CanvasManager.Instance.isShowingPowerUp = false;
@@ -172,9 +174,29 @@ public class PowerUpManager : MonoBehaviour
         if(CanvasManager.Instance.flag == false){
             CanvasManager.Instance.flag = true;
         }
-        
+
         pauseButton.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    public void emptyCapsules(){
+        print("emptying capsules");
+        foreach (SpriteRenderer sr in healthCapsules)
+        {
+            sr.sprite = emptyCapsule;
+        }
+        foreach (SpriteRenderer sr in dropCapsules)
+        {
+            sr.sprite = emptyCapsule;
+        }
+        foreach (SpriteRenderer sr in meleeCapsules)
+        {
+            sr.sprite = emptyCapsule;
+        }
+        foreach (SpriteRenderer sr in rangedCapsules)
+        {
+            sr.sprite = emptyCapsule;
+        }
     }
 
 }

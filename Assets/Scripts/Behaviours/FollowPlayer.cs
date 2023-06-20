@@ -22,6 +22,9 @@ public class FollowPlayer : MonoBehaviour
     private bool canShake = false;
     private float _shakeTimer;
 
+    private void Awake() {
+        DontDestroyOnLoad(this.gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {

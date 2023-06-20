@@ -7,7 +7,7 @@ public class Soul : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
             GameManager.Instance.lootObjects.Remove(gameObject);
-            Player.Instance.runStats.playerCurrentStats.collectedSouls += 1;
+            Player.Instance.collectedSouls += 1;
             Destroy(gameObject);
         }
     }

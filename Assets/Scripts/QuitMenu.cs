@@ -10,7 +10,7 @@ public class QuitMenu : MonoBehaviour
     public TMP_Text enemiesText;
 
     private void OnEnable() {
-        animaeText.text = "Animae: " + (Player.Instance.runStats.playerCurrentStats.collectedSouls - Player.Instance.baseStats.playerCurrentStats.collectedSouls);
+        animaeText.text = "Animae: " + Player.Instance.collectedSouls;
         enemiesText.text = "Enemies slain " + GameManager.Instance.enemySlain;
     }
 
@@ -19,6 +19,8 @@ public class QuitMenu : MonoBehaviour
     {
         // disable camera shake
         if (GameManager.Instance.level > 0) GameManager.Instance.followPlayer.enabled = true;
+
+        Player.Instance.collectedSouls = 0;
 
         Time.timeScale = 1;
         CanvasManager.Instance.isShowingGameOver = false;

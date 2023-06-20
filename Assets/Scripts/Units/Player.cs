@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
         baseStats = gameManager.playerStatsManager;
         runStats = new PlayerStatsManager(gameManager.playerStatsManager.playerCurrentStats);
     }
+    
 
 /* 
 #region LootManager
