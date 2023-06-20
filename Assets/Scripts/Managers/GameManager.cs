@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void playChurchOst(){
-
+        print("church ost");
         audioSource.Stop();
         audioSource.PlayOneShot(churchOST);
         audioSource.loop = true;

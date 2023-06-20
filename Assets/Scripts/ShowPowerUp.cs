@@ -11,6 +11,8 @@ public class ShowPowerUp : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Player") && canShow){
+            Player.Instance.rb.velocity = Vector2.zero;
+            Player.Instance.rb.angularVelocity = 0f; 
             Time.timeScale = 0;
             CanvasManager.Instance.showPowerUp();
             canShow = false;

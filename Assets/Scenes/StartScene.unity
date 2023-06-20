@@ -1284,13 +1284,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwitchButton
       objectReference: {fileID: 0}
-    - target: {fileID: 6869165654054337398, guid: 94c5c0209bc0b4be58cb7c5a7d96b532, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 6094568309561032911, guid: 94c5c0209bc0b4be58cb7c5a7d96b532, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6869165654054337398, guid: 94c5c0209bc0b4be58cb7c5a7d96b532, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869165654054337398, guid: 94c5c0209bc0b4be58cb7c5a7d96b532, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94c5c0209bc0b4be58cb7c5a7d96b532, type: 3}
