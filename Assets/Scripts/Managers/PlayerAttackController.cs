@@ -37,7 +37,6 @@ public class PlayerAttackController : MonoBehaviour
     private void Start()
     {
         laserSlider = GameManager.Instance.laserSlider;
-        laserSlider.SetActive(true);
         LoadWeapon();
     }
 
