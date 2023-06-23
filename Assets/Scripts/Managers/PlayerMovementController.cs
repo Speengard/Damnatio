@@ -19,7 +19,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private Player Player;//our variable for the player
 
     private Finger MovementFinger = null;
-    private Vector2 MovementAmount;
+    public Vector2 MovementAmount;
     public float speedMovement = 30;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private GameObject Handle;

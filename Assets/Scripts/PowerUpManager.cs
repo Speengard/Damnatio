@@ -178,6 +178,7 @@ public class PowerUpManager : MonoBehaviour
 
         pauseButton.SetActive(true);
         gameObject.SetActive(false);
+        GameManager.Instance.player.movementController.MovementAmount = Vector2.zero;
     }
 
     public void emptyCapsules(){
