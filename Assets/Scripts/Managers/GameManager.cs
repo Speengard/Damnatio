@@ -27,7 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasManager canvasManager;
     private AudioSource audioSource;
     [SerializeField] private AudioClip churchOST;
-    [SerializeField] private AudioClip ForestOST;
+    [SerializeField] private AudioClip forestOST;
+
+    [SerializeField] private GameObject cameraPrefab;
 
     void Awake()
     {
@@ -44,11 +46,9 @@ public class GameManager : MonoBehaviour
         //checks if this is the first time the game is being played and if so, initializes the player's stats to a new file
         if (gameDataManager.readPlayerFile() == null)
         {
-
             playerStatsManager = new PlayerStatsManager();
 
             gameDataManager.writePlayerData(playerStatsManager);
-
         }
         else
         {
@@ -119,9 +119,11 @@ public class GameManager : MonoBehaviour
         enemies.Clear();
         lootObjects.Clear();
         levelManager.InstantiatePlayer(); // instantiate the player or reset the position in the scene
-
         // mark the player as instantiated
+        if(!isPlayerInstantiated){Instantiate(cameraPrefab,Vector3.zero,Quaternion.identity);};
+
         isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
+
 
         // get the index of the scene
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -134,16 +136,19 @@ public class GameManager : MonoBehaviour
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
             levelManager.SetupScene(level); // spawn enemies and enable the power-up system
+            CanvasManager.Instance.hideScoreText();
         }
         else
         {
-            
+
             if(PlayerPrefs.HasKey("isFirstLaunch")) playChurchOst();
+            CanvasManager.Instance.showScoreText();
             // if we are the "start scene", enable its manager
             startSceneManager.enabled = true;
         }
 
         levelManager.getLights();
+        if(PlayerPrefs.HasKey("isFirstLaunch")) CanvasManager.Instance.showSwitch();
 
     }
 
@@ -162,14 +167,14 @@ public class GameManager : MonoBehaviour
 
     public void playForestOst(){
         audioSource.Stop();
-        audioSource.PlayOneShot(ForestOST);
+        audioSource.PlayOneShot(forestOST);
         audioSource.loop = true;
     }
 
     public void playChurchOst(){
-        print("church ost");
         audioSource.Stop();
         audioSource.PlayOneShot(churchOST);
         audioSource.loop = true;
     }
 }
+

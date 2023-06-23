@@ -170,6 +170,7 @@ public class PowerUpManager : MonoBehaviour
     public void CloseView()
     {
         CanvasManager.Instance.isShowingPowerUp = false;
+        CanvasManager.Instance.showSwitch();
 
         if(CanvasManager.Instance.flag == false){
             CanvasManager.Instance.flag = true;
@@ -180,7 +181,6 @@ public class PowerUpManager : MonoBehaviour
     }
 
     public void emptyCapsules(){
-        print("emptying capsules");
         foreach (SpriteRenderer sr in healthCapsules)
         {
             sr.sprite = emptyCapsule;

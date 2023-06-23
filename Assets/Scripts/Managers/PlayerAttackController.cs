@@ -14,7 +14,6 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] public float distance = 10f;
     [SerializeField] public Vector3 direction;
 
-
     //these booleans are needed for detecting if the player is in the attack range
     public bool hasEnemy = false;
 
@@ -44,11 +43,12 @@ public class PlayerAttackController : MonoBehaviour
     {
         if (hasRanged)
         {
-
+            laserSlider.SetActive(true);
             rangedWeapon.gameObject.SetActive(true);
         }
         else
         {
+            laserSlider.SetActive(false);
             morningStar.SetActive(true);
         }
     }
