@@ -15,18 +15,20 @@ public class SwitchWeapon : MonoBehaviour
     public Image image;
     
     private void OnEnable() {
-        GetComponent<Button>().interactable = true;
-        image.overrideSprite = player.attackController.hasRanged ? morningStarSprite : rangedSprite;
-        slider.value = 2f;
-    }
 
-    public void OnClick()
-    {
         if (player == null)
         {
             player = Player.Instance;
         }
-        
+        GetComponent<Button>().interactable = true;
+
+        image.overrideSprite = player.attackController.hasRanged ? morningStarSprite : rangedSprite;
+
+        slider.value = 2f;
+    }
+
+    public void OnClick()
+    {   
         player.attackController.switchWeapon();
 
         image.overrideSprite = player.attackController.hasRanged ? morningStarSprite : rangedSprite;

@@ -46,16 +46,6 @@ public class PowerUpManager : MonoBehaviour
         initScreen();
     }
 
-    private void OnDisable()
-    {
-        Player.Instance.movementController.enabled = true;
-        emptyCapsules();
-        floatingJoystick.SetActive(false);
-        Time.timeScale = 1;
-        GameManager.Instance.saveStats();
-    }
-
-
     private void initScreen()
     {
         healthText.text = "Health: - level " + playerStatsManager.playerCurrentStats.healthLevel;
@@ -175,10 +165,16 @@ public class PowerUpManager : MonoBehaviour
         if(CanvasManager.Instance.flag == false){
             CanvasManager.Instance.flag = true;
         }
+        Player.Instance.movementController.enabled = true;
+        Player.Instance.movementController.MovementAmount = Vector2.zero;
 
+        floatingJoystick.SetActive(false);
+        Player.Instance.movementController.MovementFinger = null;
+        emptyCapsules();
+        Time.timeScale = 1;
+        GameManager.Instance.saveStats();
         pauseButton.SetActive(true);
         gameObject.SetActive(false);
-        GameManager.Instance.player.movementController.MovementAmount = Vector2.zero;
     }
 
     public void emptyCapsules(){

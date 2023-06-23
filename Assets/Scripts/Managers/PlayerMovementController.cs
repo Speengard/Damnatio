@@ -18,7 +18,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public FloatingJoystick Joystick;//our variable for the joystick
     [SerializeField] private Player Player;//our variable for the player
 
-    private Finger MovementFinger = null;
+    public Finger MovementFinger = null;
     public Vector2 MovementAmount;
     public float speedMovement = 30;
     [SerializeField] private Animator playerAnimator;
