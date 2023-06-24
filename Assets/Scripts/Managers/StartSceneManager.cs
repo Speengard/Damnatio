@@ -14,11 +14,6 @@ public class StartSceneManager : MonoBehaviour
         player.healthController.EnableHealthBar();
     }
 
-    private void OnEnable() {
-        // disable scripts that handle enemies and define the room size
-        GameManager.Instance.GetComponent<LevelManager>().enabled = false;
-    }
-
     // the GameManager disables this object when an actual playable level is loaded
     // so at this point we set the references for the player and setup the health bar
     private void OnDisable() {

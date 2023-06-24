@@ -6,7 +6,6 @@ using System;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    private Player player = null;
     public bool isChanging = false;
     [SerializeField] private Sprite morningStarSprite;
     [SerializeField] private Sprite rangedSprite;
@@ -16,22 +15,15 @@ public class SwitchWeapon : MonoBehaviour
     
     private void OnEnable() {
 
-        if (player == null)
-        {
-            player = Player.Instance;
-        }
         GetComponent<Button>().interactable = true;
-
-        image.overrideSprite = player.attackController.hasRanged ? morningStarSprite : rangedSprite;
-
         slider.value = 2f;
     }
 
     public void OnClick()
     {   
-        player.attackController.switchWeapon();
+        Player.Instance.attackController.switchWeapon();
 
-        image.overrideSprite = player.attackController.hasRanged ? morningStarSprite : rangedSprite;
+        image.overrideSprite = Player.Instance.attackController.hasRanged ? morningStarSprite : rangedSprite;
 
         GetComponent<Button>().interactable = false;
         isChanging = true;
@@ -45,7 +37,6 @@ public class SwitchWeapon : MonoBehaviour
     }
 
     IEnumerator Cooldown(float cd,Action callback = null){
-        print("started coroutine");
         while( cd < 2f){
             cd += 0.03f;
             slider.value = cd;

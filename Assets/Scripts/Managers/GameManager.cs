@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip forestOST;
 
     [SerializeField] private GameObject cameraPrefab;
+    public GameObject cameraInstance = null;
 
     void Awake()
     {
@@ -84,6 +85,9 @@ public class GameManager : MonoBehaviour
 
     public void saveStats()
     {
+        // update the value of Animae
+        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
+        Player.Instance.collectedSouls = 0;
         gameDataManager.writePlayerData(playerStatsManager);
         playerStatsManager = gameDataManager.readPlayerFile();
     }
@@ -98,10 +102,7 @@ public class GameManager : MonoBehaviour
             gameOverScene.gameObject.SetActive(true);
         });
 
-        // update the value of Animae
-        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
-
-        gameDataManager.writePlayerData(playerStatsManager);
+        saveStats();
     }
 
     void OnEnable()
@@ -119,12 +120,11 @@ public class GameManager : MonoBehaviour
         enemies.Clear();
         lootObjects.Clear();
         levelManager.InstantiatePlayer(); // instantiate the player or reset the position in the scene
+        saveStats();
         // mark the player as instantiated
-        if(!isPlayerInstantiated){Instantiate(cameraPrefab,Vector3.zero,Quaternion.identity);};
+        if(!isPlayerInstantiated){cameraInstance = Instantiate(cameraPrefab,Vector3.zero,Quaternion.identity);};
 
         isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
-
-
         // get the index of the scene
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
 

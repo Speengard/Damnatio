@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Soul : MonoBehaviour
 {
+    public bool flag = false;
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player")) {
+        if(flag == true) return;
+
+        if(flag == false && other.gameObject.CompareTag("Player")) {
+
+            flag = true;
             GameManager.Instance.lootObjects.Remove(gameObject);
             Player.Instance.collectedSouls += 1;
             Destroy(gameObject);
+        
         }
     }
 
