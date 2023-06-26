@@ -11,6 +11,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using TMPro;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Tilemaps;
 
 public class LevelManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class LevelManager : MonoBehaviour
     private float leftBound = -20;
     private float rightBound = 12;
     private float topBound = 22;
-    private float bottomBound = -2;
+    private float bottomBound = 0;
     public Light2D globalLight;
     public Light2D portalLight;
     public Light2D playerLight;
@@ -49,8 +50,8 @@ public class LevelManager : MonoBehaviour
 
     private Vector2 RandomPointInScreen()
     {
-        float randomX = Random.Range(-leftBound, rightBound);
-        float randomY = Random.Range(-bottomBound, topBound);
+        float randomX = Random.Range(leftBound, rightBound);
+        float randomY = Random.Range(bottomBound, topBound);
 
         //Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
         Vector2 randomPositionOnScreen = new Vector2(randomX, randomY);
@@ -69,6 +70,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             // reset player's position
+            GameManager.Instance.cameraInstance.transform.position = new Vector3(0,0,-10);
             GameManager.Instance.player.transform.position = Vector3.zero;
         }
     }
