@@ -9,7 +9,6 @@ public class UpdateSoulsCount : MonoBehaviour
 
     void Awake() {
         text = GetComponent<TextMeshPro>();
-        UpdateNumber();  
     }
 
     private void OnEnable() {
