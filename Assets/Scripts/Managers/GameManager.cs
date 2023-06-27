@@ -84,6 +84,11 @@ public class GameManager : MonoBehaviour
 
     public void saveStats()
     {
+
+        // update the value of Animae
+        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
+        Player.Instance.collectedSouls = 0;
+
         gameDataManager.writePlayerData(playerStatsManager);
         playerStatsManager = gameDataManager.readPlayerFile();
     }
@@ -97,9 +102,6 @@ public class GameManager : MonoBehaviour
             followPlayer.enabled = false;
             gameOverScene.gameObject.SetActive(true);
         });
-
-        // update the value of Animae
-        playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
 
         gameDataManager.writePlayerData(playerStatsManager);
     }
@@ -119,11 +121,11 @@ public class GameManager : MonoBehaviour
         enemies.Clear();
         lootObjects.Clear();
         levelManager.InstantiatePlayer(); // instantiate the player or reset the position in the scene
+        saveStats(); // save the player's stats
         // mark the player as instantiated
         if(!isPlayerInstantiated){Instantiate(cameraPrefab,Vector3.zero,Quaternion.identity);};
 
         isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
-
 
         // get the index of the scene
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -140,7 +142,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-
             if(PlayerPrefs.HasKey("isFirstLaunch")) playChurchOst();
             CanvasManager.Instance.showScoreText();
             // if we are the "start scene", enable its manager
@@ -149,7 +150,6 @@ public class GameManager : MonoBehaviour
 
         levelManager.getLights();
         if(PlayerPrefs.HasKey("isFirstLaunch")) CanvasManager.Instance.showSwitch();
-
     }
 
     void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
@@ -177,4 +177,6 @@ public class GameManager : MonoBehaviour
         audioSource.loop = true;
     }
 }
+
+ 
 
