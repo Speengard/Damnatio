@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameDataManager gameDataManager;
     public PlayerStatsManager playerStatsManager;
     [SerializeField] private CanvasManager canvasManager;
-    private AudioSource audioSource;
+    public MusicManager musicManager;
     [SerializeField] private AudioClip churchOST;
     [SerializeField] private AudioClip forestOST;
     [SerializeField] private GameObject cameraPrefab;
@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
         enemies = new List<Enemy>();
         lootObjects = new List<GameObject>();
         levelManager = GetComponent<LevelManager>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -131,7 +130,9 @@ public class GameManager : MonoBehaviour
         // handle the level according to which kind of level the player is in
         if (sceneIndex != 0)
         {
-            playForestOst();
+            if (musicManager.ostSource.enabled) {
+                playForestOst();
+            }
             onboardingScreen.SetActive(false); // deactivate onboarding screen
             level += 1; // increment the level only if the player isn't in the "start scene"
             startSceneManager.enabled = false; // disable the manager of the "start scene"
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
         else
         {
 
-            if(PlayerPrefs.HasKey("isFirstLaunch")) playChurchOst();
+            if(PlayerPrefs.HasKey("isFirstLaunch") && musicManager.ostSource.enabled) playChurchOst();
             CanvasManager.Instance.showScoreText();
             // if we are the "start scene", enable its manager
             startSceneManager.enabled = true;
@@ -166,15 +167,19 @@ public class GameManager : MonoBehaviour
     }
 
     public void playForestOst(){
-        audioSource.Stop();
-        audioSource.PlayOneShot(forestOST);
-        audioSource.loop = true;
+        musicManager.ostSource.Stop();
+        musicManager.ostSource.clip = forestOST;
+        musicManager.ostSource.Play();
+        // musicManager.ostSource.PlayOneShot(forestOST);
+        musicManager.ostSource.loop = true;
     }
 
     public void playChurchOst(){
-        audioSource.Stop();
-        audioSource.PlayOneShot(churchOST);
-        audioSource.loop = true;
+        musicManager.ostSource.Stop();
+        musicManager.ostSource.clip = churchOST;
+        musicManager.ostSource.Play();
+        // musicManager.ostSource.PlayOneShot(churchOST);
+        musicManager.ostSource.loop = true;
     }
 }
 

@@ -2870,47 +2870,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482215587}
   m_CullTransparentMesh: 1
---- !u!1 &532697255 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 539534086770803427, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-  m_PrefabInstance: {fileID: 932610931}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &532697260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532697255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f46825e9704c4701b9fa903f0d51adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardMenu: {fileID: 952291054}
-  cardButtons:
-  - {fileID: 1936949265}
-  - {fileID: 1904438342}
-  player: {fileID: 0}
-  cardSound:
-  - {fileID: 8300000, guid: b75d0c255becf46b290d9de44fecb8f0, type: 3}
-  - {fileID: 8300000, guid: 5a992fc99c3124693a1ca5552c480cbc, type: 3}
-  - {fileID: 8300000, guid: fa8a760b8f4804a74a3dbe44d05f5955, type: 3}
-  audioSource: {fileID: 932610932}
---- !u!114 &532697264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532697255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34d92cd5532344c7cbd7bff69a096ae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  healthSlider: {fileID: 1456409372}
 --- !u!1 &536431309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,6 +3272,18 @@ MonoBehaviour:
       - m_Target: {fileID: 666898927}
         m_TargetAssemblyTypeName: ChangeButtonSprite, Assembly-CSharp
         m_MethodName: ChangeSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 932610933}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: ToggleSFX
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3912,34 +3883,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: ForestOST
+    - target: {fileID: 532697260, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardMenu
       value: 
-      objectReference: {fileID: 8300000, guid: bcaf1c940b8434fa5af19fe01a86da52, type: 3}
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: churchOST
+      objectReference: {fileID: 952291054}
+    - target: {fileID: 532697260, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardButtons.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 897516fca63ea4ece8d73357ce2c1f2e, type: 3}
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: countDown
+      objectReference: {fileID: 1936949265}
+    - target: {fileID: 532697260, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: cardButtons.Array.data[1]
       value: 
-      objectReference: {fileID: 1231465517684465642}
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: forestOST
+      objectReference: {fileID: 1904438342}
+    - target: {fileID: 532697264, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: healthSlider
       value: 
-      objectReference: {fileID: 8300000, guid: bcaf1c940b8434fa5af19fe01a86da52, type: 3}
+      objectReference: {fileID: 1456409372}
     - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: laserSlider
       value: 
       objectReference: {fileID: 2131563865}
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: cameraPrefab
-      value: 
-      objectReference: {fileID: 4055850342700553971, guid: 7fd9566c0e75a4d1da15bc8a36ba8388, type: 3}
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: followPlayer
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: gameOverScene
       value: 
@@ -3952,10 +3915,6 @@ PrefabInstance:
       propertyPath: onboardingManager
       value: 
       objectReference: {fileID: 1942285409}
-    - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: startSceneManager
-      value: 
-      objectReference: {fileID: 532697264}
     - target: {fileID: 539534086770803425, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4004,98 +3963,23 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 914656194}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: countDown
-      value: 
-      objectReference: {fileID: 1231465517684465642}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: roomWidth
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: roomHeight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: cardManager
-      value: 
-      objectReference: {fileID: 532697260}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: enemyPrefab
-      value: 
-      objectReference: {fileID: 5359785769075411549, guid: 58ddd02e8873749e4b5a41746d8a49d7, type: 3}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 1926458876681971923, guid: fddf656ae8034469887cad17f185eb87, type: 3}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: countDownText
-      value: 
-      objectReference: {fileID: 1685748025}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: enemiesToSpawn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: enemyPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: enemyPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 5359785769075411549, guid: 58ddd02e8873749e4b5a41746d8a49d7, type: 3}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: enemyPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 3704657455127083575, guid: 5e3201b183b0d4be7911dcaec6685673, type: 3}
-    - target: {fileID: 539534086770803426, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: enemyPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1926458876681971923, guid: 9e0d43f6fdc764c36a9d1daf44fce4e2, type: 3}
     - target: {fileID: 539534086770803427, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: m_Name
       value: Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: cardMenu
-      value: 
-      objectReference: {fileID: 952291054}
-    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: cardButtons.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: cardButtons.Array.data[0]
-      value: 
-      objectReference: {fileID: 1936949265}
-    - target: {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: cardButtons.Array.data[1]
-      value: 
-      objectReference: {fileID: 1904438342}
-    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: m_Volume
-      value: 0.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: MinDistance
-      value: 1.9584416
-      objectReference: {fileID: 0}
-    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b75d0c255becf46b290d9de44fecb8f0, type: 3}
-    - target: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5670462346723797275, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
---- !u!82 &932610932 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+--- !u!114 &932610933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 932610933, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
   m_PrefabInstance: {fileID: 932610931}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac67b5e1c31d414a8e8a8cbdbcf428e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &952291054
 GameObject:
   m_ObjectHideFlags: 0
@@ -5668,6 +5552,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 932610933}
+        m_TargetAssemblyTypeName: MusicManager, Assembly-CSharp
+        m_MethodName: ToggleOST
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1524082811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5892,17 +5788,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1685748025 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3169358101477016825, guid: c8fe568e9de2a444db83411a32203dd9, type: 3}
-  m_PrefabInstance: {fileID: 1231465517684465640}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1691197771
 GameObject:
   m_ObjectHideFlags: 0

@@ -170,7 +170,9 @@ public class OnboardingManager : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.playChurchOst();
+            if (GameManager.Instance.musicManager.ostSource.enabled) {
+                GameManager.Instance.playChurchOst();
+            }
             portal.SetActive(true);
             grid.SetActive(true);
             animaeCount.SetActive(true);

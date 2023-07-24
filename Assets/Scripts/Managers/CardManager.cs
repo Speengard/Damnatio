@@ -15,7 +15,6 @@ public class CardManager : MonoBehaviour
     private int numberOfCards = 2;
     private bool hasChosen = false;
     [SerializeField] private AudioClip[] cardSound;
-    [SerializeField] private AudioSource audioSource;
 
     public IEnumerator GenerateCards(Action callback) {
         string spritePath;
@@ -59,7 +58,7 @@ public class CardManager : MonoBehaviour
             cardButtons[i].GetComponent<Button>().onClick.AddListener(() => AssignPowerUp(selectedSuit));
         }
 
-        audioSource.PlayOneShot(cardSound[Random.Range(0, cardSound.Length)]); 
+        GameManager.Instance.musicManager.sfxSource.PlayOneShot(cardSound[Random.Range(0, cardSound.Length)]); 
 
         while(!hasChosen) {
             yield return 0;

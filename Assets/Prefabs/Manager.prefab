@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 539534086770803424}
   - component: {fileID: 8637147488701471634}
   - component: {fileID: 6308642199214742372}
+  - component: {fileID: 932610938}
+  - component: {fileID: 532697260}
+  - component: {fileID: 532697264}
+  - component: {fileID: 932610933}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -47,16 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a1e04a0744d4f7fbba6af24830c2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesToSpawn: 2
-  enemyPrefabs: []
+  enemiesToSpawn: 0
+  enemyPrefabs:
+  - {fileID: 5359785769075411549, guid: 58ddd02e8873749e4b5a41746d8a49d7, type: 3}
+  - {fileID: 3704657455127083575, guid: 5e3201b183b0d4be7911dcaec6685673, type: 3}
+  - {fileID: 1926458876681971923, guid: 9e0d43f6fdc764c36a9d1daf44fce4e2, type: 3}
   playerPrefab: {fileID: 1926458876681971923, guid: fddf656ae8034469887cad17f185eb87, type: 3}
   joystick: {fileID: 0}
-  cardManager: {fileID: 0}
-  roomWidth: 8
-  roomHeight: 6
+  cardManager: {fileID: 532697260}
+  roomWidth: 7
+  roomHeight: 3
   isPlayerInstantiated: 0
-  countDown: {fileID: 0}
-  countDownText: {fileID: 0}
+  globalLight: {fileID: 0}
+  portalLight: {fileID: 0}
+  playerLight: {fileID: 0}
 --- !u!114 &539534086770803424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,16 +79,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   gameOverScene: {fileID: 0}
-  startSceneManager: {fileID: 0}
+  startSceneManager: {fileID: 532697264}
   onboardingScreen: {fileID: 0}
-  levelStartDelay: 2
+  onboardingManager: {fileID: 0}
   level: 0
   enemies: []
   lootObjects: []
   isPlayerInstantiated: 0
   followPlayer: {fileID: 0}
   laserSlider: {fileID: 0}
+  enemySlain: 0
   gameDataManager: {fileID: 8637147488701471634}
+  canvasManager: {fileID: 0}
+  musicManager: {fileID: 932610933}
+  churchOST: {fileID: 8300000, guid: 897516fca63ea4ece8d73357ce2c1f2e, type: 3}
+  forestOST: {fileID: 8300000, guid: bcaf1c940b8434fa5af19fe01a86da52, type: 3}
+  cameraPrefab: {fileID: 4055850342700553971, guid: 7fd9566c0e75a4d1da15bc8a36ba8388, type: 3}
+  cameraInstance: {fileID: 0}
 --- !u!114 &8637147488701471634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +109,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &6308642199214742372
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539534086770803427}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b75d0c255becf46b290d9de44fecb8f0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.37
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1.9584416
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &932610938
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,3 +300,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &532697260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539534086770803427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f46825e9704c4701b9fa903f0d51adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardMenu: {fileID: 0}
+  cardButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  player: {fileID: 0}
+  cardSound:
+  - {fileID: 8300000, guid: b75d0c255becf46b290d9de44fecb8f0, type: 3}
+  - {fileID: 8300000, guid: 5a992fc99c3124693a1ca5552c480cbc, type: 3}
+  - {fileID: 8300000, guid: fa8a760b8f4804a74a3dbe44d05f5955, type: 3}
+--- !u!114 &532697264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539534086770803427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d92cd5532344c7cbd7bff69a096ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  healthSlider: {fileID: 0}
+--- !u!114 &932610933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539534086770803427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac67b5e1c31d414a8e8a8cbdbcf428e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxSource: {fileID: 0}
+  ostSource: {fileID: 932610938}
