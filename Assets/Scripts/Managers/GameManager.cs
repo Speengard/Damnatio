@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip churchOST;
     [SerializeField] private AudioClip forestOST;
-
     [SerializeField] private GameObject cameraPrefab;
+    public GameObject cameraInstance = null;
 
     void Awake()
     {
@@ -101,7 +101,8 @@ public class GameManager : MonoBehaviour
         // update the value of Animae
         playerStatsManager.playerCurrentStats.collectedSouls += Player.Instance.collectedSouls;
 
-        gameDataManager.writePlayerData(playerStatsManager);
+        // PERSISTENCY BUG: this line is commented because it makes the player disappear when the start scene is loaded
+        // gameDataManager.writePlayerData(playerStatsManager);
     }
 
     void OnEnable()
@@ -120,10 +121,9 @@ public class GameManager : MonoBehaviour
         lootObjects.Clear();
         levelManager.InstantiatePlayer(); // instantiate the player or reset the position in the scene
         // mark the player as instantiated
-        if(!isPlayerInstantiated){Instantiate(cameraPrefab,Vector3.zero,Quaternion.identity);};
+        if(!isPlayerInstantiated){cameraInstance = Instantiate(cameraPrefab,Vector3.zero,Quaternion.identity);};
 
         isPlayerInstantiated = PlayerPrefs.GetInt("isPlayerInstantiated", 1) == 1;
-
 
         // get the index of the scene
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
