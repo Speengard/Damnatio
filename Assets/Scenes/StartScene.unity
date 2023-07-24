@@ -4607,9 +4607,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1757050174}
-        m_TargetAssemblyTypeName: QuitMenu, Assembly-CSharp
-        m_MethodName: OnClick
+      - m_Target: {fileID: 1757050175}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: GetStartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6029,6 +6029,7 @@ GameObject:
   - component: {fileID: 1757050173}
   - component: {fileID: 1757050172}
   - component: {fileID: 1757050174}
+  - component: {fileID: 1757050175}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -6112,6 +6113,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animaeText: {fileID: 2028478692}
   enemiesText: {fileID: 118554278}
+--- !u!114 &1757050175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757050170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102585e4b92524d0c8968c40d145fb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1798061886
 GameObject:
   m_ObjectHideFlags: 0

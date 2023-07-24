@@ -13,29 +13,4 @@ public class QuitMenu : MonoBehaviour
         animaeText.text = "Animae: " + Player.Instance.collectedSouls;
         enemiesText.text = "Enemies slain " + GameManager.Instance.enemySlain;
     }
-
-
-    public void CloseMenu()
-    {
-        // disable camera shake
-        if (GameManager.Instance.level > 0) GameManager.Instance.followPlayer.enabled = true;
-
-        Player.Instance.collectedSouls = 0;
-
-        Time.timeScale = 1;
-        CanvasManager.Instance.isShowingGameOver = false;
-        gameObject.SetActive(false);
-    }
-
-    public void OnClick()
-    {
-        GameManager.Instance.level = 0; // reset the level number
-        SceneManager.LoadScene(0); // load the start scene
-        GameManager.Instance.enemySlain = 0;
-        // reset player health
-        GameManager.Instance.player.healthController.healthSlider.gameObject.SetActive(false);
-
-        CloseMenu();
-        
-    }
 }
