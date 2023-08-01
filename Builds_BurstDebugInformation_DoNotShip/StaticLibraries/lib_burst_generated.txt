@@ -146,7 +146,7 @@ Library: /Users/serena/Documents/MC_Damnatio/Damnatio/Temp/StagingArea/StaticLib
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --compilation-defines=ENABLE_URP
---linker-options=min-ios-version=12.0
+--linker-options=min-ios-version=14.0
 --generate-link-xml=Temp/burst.link.xml
 --temp-folder=/Users/serena/Documents/MC_Damnatio/Damnatio/Temp/Burst
 --generate-static-linkage-methods

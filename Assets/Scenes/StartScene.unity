@@ -3899,6 +3899,10 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1456409372}
+    - target: {fileID: 932610933, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 932610937}
     - target: {fileID: 539534086770803424, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
       propertyPath: laserSlider
       value: 
@@ -3980,6 +3984,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac67b5e1c31d414a8e8a8cbdbcf428e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &932610937 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6308642199214742372, guid: 902b5ec3559c04dd59cac186727aabdb, type: 3}
+  m_PrefabInstance: {fileID: 932610931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &952291054
 GameObject:
   m_ObjectHideFlags: 0
